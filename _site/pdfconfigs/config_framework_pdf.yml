@@ -1,0 +1,18 @@
+destination: _site/
+url: "http://127.0.0.1:4012"
+baseurl: "/framework-pdf"
+port: 4012
+output: pdf
+product: frameowrk
+print_title: Framework Documentation
+print_subtitle: version 1.0
+output: pdf
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page_print"
+      comments: true
+      search: true

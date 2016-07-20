@@ -1,0 +1,76 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: ChatOps Framework
+  product: ChatOps Framework
+  version: 1.0
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage
+      output: pdf
+      type: frontmatter
+
+  - title: Introduction
+    output: web, pdf
+    folderitems:
+
+    - title: Overview
+      url: /framework_landing_page.html
+      output: web
+
+  - title: Plugin Workflow
+    output: web, pdf
+    folderitems:
+
+    - title: Framework Intialize
+      url: /plugin_workflow_01.html
+      output: web, pdf
+
+    - title: Eval & Install
+      url: /plugin_workflow_02.html
+      output: web, pdf
+
+    - title: Start Plugins
+      url: /plugin_workflow_03.html
+      output: web, pdf
+
+    - title: Info Endpoint
+      url: /plugin_workflow_04.html
+      output: web, pdf
+
+    - title: Build Command List
+      url: /plugin_workflow_05.html
+      output: web, pdf
+
+    - title: Client Connect
+      url: /plugin_workflow_06.html
+      output: web, pdf
+
+  - title: Command Workflow
+    output: web, pdf
+    folderitems:
+
+    - title: User Request
+      url: /command_workflow_01.html
+      output: web, pdf
+
+    - title: Plugin Router
+      url: /command_workflow_02.html
+      output: web, pdf
+
+    - title: Plugin Function
+      url: /command_workflow_03.html
+      output: web, pdf
+
+    - title: Plugin Response
+      url: /command_workflow_04.html
+      output: web, pdf
