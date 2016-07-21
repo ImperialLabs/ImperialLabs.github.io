@@ -49,7 +49,7 @@
 "title": "ChatOps Framework",
 "tags": "",
 "keywords": "framework",
-"url": "framework_landing_page.html",
+"url": "index.html",
 "summary": ""
 },
 
@@ -58,9 +58,9 @@
 {
 "title": "ChatOps Framework",
 "tags": "getting_started",
-"keywords": "ChatOps Framework Landing Page",
+"keywords": "framework",
 "url": "index.html",
-"summary": "Generalize breakdown of the Imperial Labs ChatOps Framework"
+"summary": ""
 },
 
 

@@ -24,7 +24,7 @@ entries:
     folderitems:
 
     - title: Overview
-      url: /framework_landing_page.html
+      url: /index.html
       output: web
 
   - title: Plugin Workflow
