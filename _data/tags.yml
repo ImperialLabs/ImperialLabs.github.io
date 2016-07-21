@@ -6,3 +6,5 @@ allowed-tags:
   - golang
   - plugins
   - brain
+  - framework
+  - api

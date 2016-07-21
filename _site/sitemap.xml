@@ -14,6 +14,30 @@
   
   
   <url>
+    <loc>/api_framework.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/api_landing.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/api_plugins.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/brain_landing.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>/command_workflow_01.html</loc>
   </url>
   
@@ -40,7 +64,7 @@
   
   
   <url>
-    <loc>/index.html</loc>
+    <loc>/framework_landing.html</loc>
   </url>
   
   
@@ -99,9 +123,9 @@
   
   
   
-  
-  
-  
+  <url>
+    <loc>/plugin_landing.html</loc>
+  </url>
   
   
   

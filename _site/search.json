@@ -4,6 +4,46 @@
 
 
 {
+"title": "API Framework",
+"tags": "api",
+"keywords": "getting_started, api",
+"url": "api_framework.html",
+"summary": ""
+},
+
+
+
+{
+"title": "API Overview",
+"tags": "getting_startedapi",
+"keywords": "getting_started, api",
+"url": "api_landing.html",
+"summary": ""
+},
+
+
+
+{
+"title": "API Requirements for Plugins",
+"tags": "api",
+"keywords": "getting_started, api",
+"url": "api_plugins.html",
+"summary": ""
+},
+
+
+
+{
+"title": "Brain Overview",
+"tags": "getting_started",
+"keywords": "getting_started, brain",
+"url": "brain_landing.html",
+"summary": ""
+},
+
+
+
+{
 "title": "Command Workflow",
 "tags": "",
 "keywords": "commands",
@@ -46,10 +86,10 @@
 
 
 {
-"title": "ChatOps Framework",
-"tags": "",
-"keywords": "framework",
-"url": "index.html",
+"title": "Framework Overview",
+"tags": "getting_startedframework",
+"keywords": "getting_started, framework",
+"url": "framework_landing.html",
 "summary": ""
 },
 
@@ -145,9 +185,13 @@
 
 
 
-
-
-
+{
+"title": "Plugins Overview",
+"tags": "getting_startedplugins",
+"keywords": "getting_started, plugins",
+"url": "plugin_landing.html",
+"summary": ""
+},
 
 
 

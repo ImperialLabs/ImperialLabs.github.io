@@ -3,74 +3,91 @@
 entries:
 - title: ChatOps Framework
   product: ChatOps Framework
-  version: 1.0
+  version: Alpha
   folders:
 
-  - title:
-    output: pdf
-    type: frontmatter
-    folderitems:
-    - title:
-      url: /titlepage
-      output: pdf
-      type: frontmatter
-    - title:
-      url: /tocpage
-      output: pdf
-      type: frontmatter
-
-  - title: Introduction
-    output: web, pdf
-    folderitems:
-
-    - title: Overview
-      url: /index.html
-      output: web
-
-  - title: Plugin Workflow
-    output: web, pdf
-    folderitems:
-
-    - title: Framework Intialize
-      url: /plugin_workflow_01.html
+    - title: Framework
       output: web, pdf
+      folderitems:
+          - title: Framework Overview
+            url: /framework_landing.html
+            output: web, pdf
 
-    - title: Eval & Install
-      url: /plugin_workflow_02.html
+    - title: Plugins
       output: web, pdf
+      folderitems:
+          - title: Plugins Overview
+            url: /plugin_landing.html
+            output: web, pdf
 
-    - title: Start Plugins
-      url: /plugin_workflow_03.html
+    - title: API
       output: web, pdf
+      folderitems:
+          - title: API Overview
+            url: /api_landing.html
+            output: web, pdf
 
-    - title: Info Endpoint
-      url: /plugin_workflow_04.html
+          - title: API - Framework
+            url: /api_framework.html
+            output: web, pdf
+
+          - title: API - Plugins
+            url: /api_plugins.html
+            output: web, pdf
+
+          - title: API - Brain
+            url: /api_brain.html
+            output: web, pdf
+
+    - title: Brain
       output: web, pdf
+      folderitems:
+          - title: Brain Overview
+            url: /brain_landing.html
+            output: web, pdf
 
-    - title: Build Command List
-      url: /plugin_workflow_05.html
+    - title: Plugin Workflow
       output: web, pdf
+      folderitems:
+          - title: Framework Intialize
+            url: /plugin_workflow_01.html
+            output: web, pdf
 
-    - title: Client Connect
-      url: /plugin_workflow_06.html
+          - title: Eval & Install
+            url: /plugin_workflow_02.html
+            output: web, pdf
+
+          - title: Start Plugins
+            url: /plugin_workflow_03.html
+            output: web, pdf
+
+          - title: Info Endpoint
+            url: /plugin_workflow_04.html
+            output: web, pdf
+
+          - title: Build Command List
+            url: /plugin_workflow_05.html
+            output: web, pdf
+
+          - title: Client Connect
+            url: /plugin_workflow_06.html
+            output: web, pdf
+
+    - title: Command Workflow
       output: web, pdf
+      folderitems:
+          - title: User Request
+            url: /command_workflow_01.html
+            output: web, pdf
 
-  - title: Command Workflow
-    output: web, pdf
-    folderitems:
+          - title: Plugin Router
+            url: /command_workflow_02.html
+            output: web, pdf
 
-    - title: User Request
-      url: /command_workflow_01.html
-      output: web, pdf
+          - title: Plugin Function
+            url: /command_workflow_03.html
+            output: web, pdf
 
-    - title: Plugin Router
-      url: /command_workflow_02.html
-      output: web, pdf
-
-    - title: Plugin Function
-      url: /command_workflow_03.html
-      output: web, pdf
-
-    - title: Plugin Response
-      url: /command_workflow_04.html
-      output: web, pdf
+          - title: Plugin Response
+            url: /command_workflow_04.html
+            output: web, pdf
