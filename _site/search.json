@@ -90,57 +90,57 @@
 "tags": "",
 "keywords": "plugins",
 "url": "plugin_workflow_01.html",
-"summary": "Plugin initialization steps"
+"summary": ""
 },
 
 
 
 {
-"title": "Plugin Initialize",
+"title": "Eval and Install",
 "tags": "",
 "keywords": "plugins",
-"url": "plugin_workflow_01.html",
-"summary": "Plugin initialization steps"
+"url": "plugin_workflow_02.html",
+"summary": ""
 },
 
 
 
 {
-"title": "Plugin Initialize",
+"title": "Plugin Start",
 "tags": "",
 "keywords": "plugins",
-"url": "plugin_workflow_01.html",
-"summary": "Plugin initialization steps"
+"url": "plugin_workflow_03.html",
+"summary": ""
 },
 
 
 
 {
-"title": "Plugin Initialize",
+"title": "Plugin Info Endpoint",
 "tags": "",
 "keywords": "plugins",
-"url": "plugin_workflow_01.html",
-"summary": "Plugin initialization steps"
+"url": "plugin_workflow_04.html",
+"summary": ""
 },
 
 
 
 {
-"title": "Plugin Initialize",
+"title": "Build Command List",
 "tags": "",
 "keywords": "plugins",
-"url": "plugin_workflow_01.html",
-"summary": "Plugin initialization steps"
+"url": "plugin_workflow_05.html",
+"summary": ""
 },
 
 
 
 {
-"title": "Plugin Initialize",
+"title": "Connect Client",
 "tags": "",
 "keywords": "plugins",
-"url": "plugin_workflow_01.html",
-"summary": "Plugin initialization steps"
+"url": "plugin_workflow_06.html",
+"summary": ""
 },
 
 

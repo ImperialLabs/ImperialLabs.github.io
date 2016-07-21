@@ -254,7 +254,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   /*color: #77777a; */
-  background-color: #ffffff;
+  background-color: #F5F5F5;
 }
 input,
 button,
@@ -271,7 +271,7 @@ textarea {
   background-image: none;
 }
 a {
-  color: #248EC2;
+  color: #263238;
   text-decoration: none;
 }
 a:hover,
@@ -349,13 +349,13 @@ cite {
   color: #f9faf9;
 }
 .text-primary {
-  color: #74ab50;
+  color: #607D8B;
 }
 .text-warning {
   color: #c09853;
 }
 .text-danger {
-  color: #b94a48;
+  color: darkred;
 }
 .text-success {
   color: #468847;
@@ -4597,7 +4597,7 @@ a.list-group-item:focus {
 }
 .panel {
   margin-bottom: 20px;
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -4668,7 +4668,7 @@ a.list-group-item:focus {
 }
 .panel-footer {
   padding: 10px 15px;
-  background-color: #f5f5f5;
+  background-color: #E0E0E0;
   border-top: 1px solid #dddddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -4698,7 +4698,7 @@ a.list-group-item:focus {
 }
 .panel-default > .panel-heading {
   color: #77777a;
-  background-color: #f5f5f5;
+  background-color: #EEEEEE;
   border-color: #dddddd;
 }
 .panel-default > .panel-heading + .panel-collapse .panel-body {

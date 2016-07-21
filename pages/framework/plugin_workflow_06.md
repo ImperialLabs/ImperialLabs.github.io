@@ -1,23 +1,15 @@
 ---
-title: Plugin Initialize
+title: Connect Client
 keywords: plugins
-summary: "Plugin initialization steps"
 sidebar: framework_sidebar
-permalink: plugin_workflow_01.html
+permalink: plugin_workflow_06.html
 simple_map: true
 map_name: pluginmap
-box_number: 1
+box_number: 6
 folder: framework
 ---
 
-## Plugin Control System
+## Connect Client
 
-### Evaluate Plugins
-
-#### Plugin Config File
-
-#### Plugin Sources
-
-### Install Plugins
 
 {% include links.html %}

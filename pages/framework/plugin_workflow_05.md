@@ -1,23 +1,14 @@
 ---
-title: Plugin Initialize
+title: Build Command List
 keywords: plugins
-summary: "Plugin initialization steps"
 sidebar: framework_sidebar
-permalink: plugin_workflow_01.html
+permalink: plugin_workflow_05.html
 simple_map: true
 map_name: pluginmap
-box_number: 1
+box_number: 5
 folder: framework
 ---
 
-## Plugin Control System
-
-### Evaluate Plugins
-
-#### Plugin Config File
-
-#### Plugin Sources
-
-### Install Plugins
+## Command and Help Buildout
 
 {% include links.html %}
