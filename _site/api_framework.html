@@ -429,38 +429,32 @@ $('#toc').on('click', 'a', function() {
 
 <p>Utilize Slack’s Message Formatting (see doc <a href="https://api.slack.com/docs/message-formatting">here</a>)</p>
 
-<h3 id="markdown-formatter">Markdown Formatter</h3>
+<h3 id="markdown-formatted">Markdown Formatted</h3>
 
 <p>See example output <a href="https://api.slack.com/docs/messages/builder?msg=%7B%0A%20%20%22text%22%3A%20%22*bold*%20%60code%60%20_italic_%20~strike~%22%2C%0A%20%20%22username%22%3A%20%22markdownbot%22%2C%0A%20%20%22mrkdwn%22%3A%20true%0A%7D">here</a></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"framework"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"speak"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"markdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*bold* `code` _italic_ ~strike~"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+        </span><span class="nt">"formatted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*bold* `code` _italic_ ~strike~"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
 
-<h3 id="attachment-formatter">Attachment Formatter</h3>
+<h3 id="attachment-formatted">Attachment Formatted</h3>
 
 <p>See example output <a href="https://api.slack.com/docs/messages/builder?msg=%7B%0A%20%20%20%20%22attachments%22%3A%20%5B%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22title%22%3A%20%22Title%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22pretext%22%3A%20%22Pretext%20_supports_%20mrkdwn%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22text%22%3A%20%22Testing%20*right%20now!*%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22mrkdwn_in%22%3A%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22text%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22pretext%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%0A%7D">here</a></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"framework"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"speak"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"attachment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Title"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"pretext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pretext _supports_ mrkdwn"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing *right now!*"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"mrkdwn_in"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pretext"</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+        </span><span class="nt">"attachment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Title"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"pretext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pretext _supports_ mrkdwn"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing *right now!*"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"mrkdwn_in"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pretext"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">

@@ -18,8 +18,8 @@ folder: api
             "commandData": "data after command",
             "fromUser": "username",
             "mentionedUser": "username"
-        },
-    },
+        }
+    }
 }
 ```
 
@@ -39,9 +39,9 @@ In order to build out Command and Help info, the following endpoint will need to
                 "command1": "Command Description",
                 "command2": "Command Description",
                 "command2": "Command Description"
-            },
-        },
-    },
+            }
+        }
+    }
 }
 ```
 
