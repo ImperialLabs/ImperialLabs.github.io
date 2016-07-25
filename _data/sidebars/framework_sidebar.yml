@@ -17,7 +17,7 @@ entries:
       output: web, pdf
       folderitems:
           - title: Plugins Overview
-            url: /plugin_landing.html
+            url: /plugins_landing.html
             output: web, pdf
 
     - title: API

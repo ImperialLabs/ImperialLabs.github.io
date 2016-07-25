@@ -8,6 +8,7 @@ permalink: brain_landing.html
 folder: brain
 ---
 
+## Imagine a brain!
 
 
 {% include links.html %}
