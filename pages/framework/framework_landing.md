@@ -8,6 +8,23 @@ permalink: framework_landing.html
 folder: framework
 ---
 
+## Design Overview
+
+What the ChatOps Framework strives to accomplish is a truly code base agnostic approach to utilizing Bots and ChatOps.
+
+How is this different than other Bots?
+
+* No requirement to use same code base or import a specific library
+* Utilizes Docker as a package management system
+* Handles routing and plugin management within the framework
+* The only requirements are very simple simple data endpoints laid out here (coming soon)
+
+{% include image.html file="design_overview.jpg" %}
+
+## Framework Overview
+Breadown of how the framework will be built out and communicate within itself
+
+{% include image.html file="framework_overview.jpg" %}
 
 
 {% include links.html %}

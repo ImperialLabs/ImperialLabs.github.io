@@ -264,83 +264,33 @@ window.location.href = uri;
         
     
     <li>
-        <a href="#">Plugin Workflow</a>
+        <a href="#">Plugin/Command Workflow</a>
         <ul>
             
             
             
-            <li><a href="plugin_workflow_01.html">Framework Intialize</a></li>
+            <li><a href="plugin_workflow_01.html">Intialize</a></li>
             
             
             
             
             
             
-            <li class="active"><a href="plugin_workflow_02.html">Eval & Install</a></li>
+            <li class="active"><a href="plugin_workflow_02.html">Eval, Install, Start</a></li>
             
             
             
             
             
             
-            <li><a href="plugin_workflow_03.html">Start Plugins</a></li>
+            <li><a href="plugin_workflow_03.html">Command Builder</a></li>
             
             
             
             
             
             
-            <li><a href="plugin_workflow_04.html">Info Endpoint</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_05.html">Build Command List</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_06.html">Client Connect</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Command Workflow</a>
-        <ul>
-            
-            
-            
-            <li><a href="command_workflow_01.html">User Request</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_02.html">Plugin Router</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_03.html">Plugin Function</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_04.html">Plugin Response</a></li>
+            <li><a href="plugin_workflow_04.html">Client Connect</a></li>
             
             
             
@@ -379,15 +329,11 @@ window.location.href = uri;
 <div id="userMap">
 <div class="content"><a href="plugin_workflow_01.html"><div class="box box1">Initialize</div></a></div>
 <div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_02.html"><div class="box box2">Eval & Install</div></a></div>
+<div class="content"><a href="plugin_workflow_02.html"><div class="box box2">Eval, Install, Start</div></a></div>
 <div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_03.html"><div class="box box3">Start Plugins</div></a></div>
+<div class="content"><a href="plugin_workflow_03.html"><div class="box box3">Command Builder</div></a></div>
 <div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_04.html"><div class="box box4">Ping Info Endpoint</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_05.html"><div class="box box5">Build Command List</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_06.html"><div class="box box6">Connect Client</div></a></div>
+<div class="content"><a href="plugin_workflow_04.html"><div class="box box4">Client Connect</div></a></div>
 <div class="clearfix"></div>
 </div>
 
@@ -429,7 +375,34 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="plugin-config-file">Plugin Config File</h2>
+  <h2 id="plugin-management-system">Plugin Management System</h2>
+
+<h3 id="pull-and-build-plugins">Pull and Build Plugins</h3>
+
+<ul>
+  <li>Evaluate plugin config for list of plugins
+    <ul>
+      <li>Check for source; dockerhub, dockerfile (local or git)</li>
+      <li>Pull or Build plugin</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="configure-plugins-and-start">Configure Plugins and Start</h3>
+
+<ul>
+  <li>Load plugin config and assign appropriate config to docker start command
+    <ul>
+      <li>Assign variables to their own <code class="highlighter-rouge">-e</code></li>
+    </ul>
+  </li>
+  <li>Associate plugin name with port number, load into brain
+    <ul>
+      <li>i.e. <code class="highlighter-rouge">pagerduty == 8100</code></li>
+    </ul>
+  </li>
+  <li>Start plugin (aka docker run)</li>
+</ul>
 
 
 
@@ -446,7 +419,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jul 21, 2016 <br />
+ Site last generated: Jul 25, 2016 <br />
                 </div>
             </div>
 </footer>

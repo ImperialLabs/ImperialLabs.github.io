@@ -9,6 +9,20 @@ box_number: 2
 folder: plugin_workflow
 ---
 
-## Plugin Config File
+## Plugin Management System
+
+### Pull and Build Plugins
+
+* Evaluate plugin config for list of plugins
+    * Check for source; dockerhub, dockerfile (local or git)
+    * Pull or Build plugin
+
+### Configure Plugins and Start
+
+* Load plugin config and assign appropriate config to docker start command
+    * Assign variables to their own `-e`
+* Associate plugin name with port number, load into brain
+    * i.e. `pagerduty == 8100`
+* Start plugin (aka docker run)
 
 {% include links.html %}

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" plugins">
-<title>Plugin Start | Imperial Labs Documentation</title>
+<title>Plugin Info and Command Build | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -121,7 +121,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the Plugin Start page: ";
+var body = "I have some feedback about the Plugin Info and Command Build page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -148,7 +148,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Plugin Start">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="Plugin Info and Command Build">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -264,83 +264,33 @@ window.location.href = uri;
         
     
     <li>
-        <a href="#">Plugin Workflow</a>
+        <a href="#">Plugin/Command Workflow</a>
         <ul>
             
             
             
-            <li><a href="plugin_workflow_01.html">Framework Intialize</a></li>
+            <li><a href="plugin_workflow_01.html">Intialize</a></li>
             
             
             
             
             
             
-            <li><a href="plugin_workflow_02.html">Eval & Install</a></li>
+            <li><a href="plugin_workflow_02.html">Eval, Install, Start</a></li>
             
             
             
             
             
             
-            <li class="active"><a href="plugin_workflow_03.html">Start Plugins</a></li>
+            <li class="active"><a href="plugin_workflow_03.html">Command Builder</a></li>
             
             
             
             
             
             
-            <li><a href="plugin_workflow_04.html">Info Endpoint</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_05.html">Build Command List</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_06.html">Client Connect</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Command Workflow</a>
-        <ul>
-            
-            
-            
-            <li><a href="command_workflow_01.html">User Request</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_02.html">Plugin Router</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_03.html">Plugin Function</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_04.html">Plugin Response</a></li>
+            <li><a href="plugin_workflow_04.html">Client Connect</a></li>
             
             
             
@@ -364,7 +314,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Plugin Start</h1>
+   <h1 class="post-title-main">Plugin Info and Command Build</h1>
 </div>
 
 
@@ -379,15 +329,11 @@ window.location.href = uri;
 <div id="userMap">
 <div class="content"><a href="plugin_workflow_01.html"><div class="box box1">Initialize</div></a></div>
 <div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_02.html"><div class="box box2">Eval & Install</div></a></div>
+<div class="content"><a href="plugin_workflow_02.html"><div class="box box2">Eval, Install, Start</div></a></div>
 <div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_03.html"><div class="box box3">Start Plugins</div></a></div>
+<div class="content"><a href="plugin_workflow_03.html"><div class="box box3">Command Builder</div></a></div>
 <div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_04.html"><div class="box box4">Ping Info Endpoint</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_05.html"><div class="box box5">Build Command List</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="plugin_workflow_06.html"><div class="box box6">Connect Client</div></a></div>
+<div class="content"><a href="plugin_workflow_04.html"><div class="box box4">Client Connect</div></a></div>
 <div class="clearfix"></div>
 </div>
 
@@ -429,9 +375,57 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="plugin-start">Plugin Start</h2>
+  <h2 id="info-endpoint">Info Endpoint</h2>
+<ul>
+  <li>Perform data grab on info endpoint and parse
+    <ul>
+      <li>Example: Get pageduty info <code class="highlighter-rouge">https://localhost:8100/info</code></li>
+      <li>Example Payload:
+  <code class="highlighter-rouge">json
+ {
+      "plugin": {
+          "info":{
+              "name": "pagerduty",
+              "endpoint": "true",
+              "commandList": {
+                  "on call": "Find out who's on call",
+                  "on call next": "find out who's next to be on call",
+                  "resolve": "resolve incident"
+          }
+      }
+  }
+ </code></li>
+    </ul>
+  </li>
+</ul>
 
-<h3 id="routing-system-config">Routing System Config</h3>
+<h2 id="build-command-list">Build Command List</h2>
+
+<ul>
+  <li>Consumes data and stores into brain</li>
+  <li>Builds default help command
+    <ul>
+      <li><code class="highlighter-rouge">@framework help</code> just returns list of plugins</li>
+      <li><code class="highlighter-rouge">@framework $plugin help</code> returns plugin help list</li>
+    </ul>
+  </li>
+  <li>Commands are assigned to ports
+    <ul>
+      <li>All pagerduty:$ command will route to 8100</li>
+      <li><code class="highlighter-rouge">@framework pagerduty:on call</code> will route to https://localhost:8100</li>
+      <li>Example payload:
+  <code class="highlighter-rouge">json
+  {
+      "plugin": {
+          "command": "on call",
+          "fromUser": "dude_awesome"
+          }
+      }
+  }
+ </code></li>
+    </ul>
+  </li>
+</ul>
 
 
 
@@ -448,7 +442,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jul 21, 2016 <br />
+ Site last generated: Jul 25, 2016 <br />
                 </div>
             </div>
 </footer>

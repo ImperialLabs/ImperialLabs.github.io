@@ -46,48 +46,21 @@ entries:
             url: /brain_landing.html
             output: web, pdf
 
-    - title: Plugin Workflow
+    - title: Plugin/Command Workflow
       output: web, pdf
       folderitems:
-          - title: Framework Intialize
+          - title: Intialize
             url: /plugin_workflow_01.html
             output: web, pdf
 
-          - title: Eval & Install
+          - title: Eval, Install, Start
             url: /plugin_workflow_02.html
             output: web, pdf
 
-          - title: Start Plugins
+          - title: Command Builder
             url: /plugin_workflow_03.html
             output: web, pdf
 
-          - title: Info Endpoint
-            url: /plugin_workflow_04.html
-            output: web, pdf
-
-          - title: Build Command List
-            url: /plugin_workflow_05.html
-            output: web, pdf
-
           - title: Client Connect
-            url: /plugin_workflow_06.html
-            output: web, pdf
-
-    - title: Command Workflow
-      output: web, pdf
-      folderitems:
-          - title: User Request
-            url: /command_workflow_01.html
-            output: web, pdf
-
-          - title: Plugin Router
-            url: /command_workflow_02.html
-            output: web, pdf
-
-          - title: Plugin Function
-            url: /command_workflow_03.html
-            output: web, pdf
-
-          - title: Plugin Response
-            url: /command_workflow_04.html
+            url: /plugin_workflow_04.html
             output: web, pdf

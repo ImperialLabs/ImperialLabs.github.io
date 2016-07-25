@@ -146,7 +146,7 @@
 
 
 {
-"title": "Plugin Start",
+"title": "Plugin Info and Command Build",
 "tags": "",
 "keywords": "plugins",
 "url": "plugin_workflow_03.html",
@@ -156,30 +156,10 @@
 
 
 {
-"title": "Plugin Info Endpoint",
+"title": "Client Connect",
 "tags": "",
 "keywords": "plugins",
 "url": "plugin_workflow_04.html",
-"summary": ""
-},
-
-
-
-{
-"title": "Build Command List",
-"tags": "",
-"keywords": "plugins",
-"url": "plugin_workflow_05.html",
-"summary": ""
-},
-
-
-
-{
-"title": "Connect Client",
-"tags": "",
-"keywords": "plugins",
-"url": "plugin_workflow_06.html",
 "summary": ""
 },
 
