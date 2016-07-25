@@ -19,12 +19,12 @@ How is this different than other Bots?
 * Handles routing and plugin management within the framework
 * The only requirements are very simple simple data endpoints laid out here (coming soon)
 
-{% include image.html file="design_overview.jpg" %}
+{% include image.html file="design_overview.png" %}
 
 ## Framework Overview
 Breadown of how the framework will be built out and communicate within itself
 
-{% include image.html file="framework_overview.jpg" %}
+{% include image.html file="framework_overview.png" %}
 
 
 {% include links.html %}
