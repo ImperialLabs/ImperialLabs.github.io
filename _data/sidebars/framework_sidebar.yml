@@ -1,9 +1,9 @@
 # This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
 
 entries:
-- title: ChatOps Framework
-  product: ChatOps Framework
-  version: Alpha
+- title: SLAPI
+  product: SLAPI -
+  version: Design Phase
   folders:
 
     - title: Framework
@@ -18,6 +18,9 @@ entries:
       folderitems:
           - title: Plugins Overview
             url: /plugins_landing.html
+            output: web, pdf
+          - title: Plugin Requirements
+            url: /plugin_requirements.html
             output: web, pdf
 
     - title: API

@@ -96,7 +96,7 @@
 
 
 {
-"title": "ChatOps Framework",
+"title": "SLAPI Bot",
 "tags": "getting_started",
 "keywords": "framework",
 "url": "index.html",
@@ -170,6 +170,16 @@
 "tags": "getting_startedplugins",
 "keywords": "getting_started, plugins",
 "url": "plugins_landing.html",
+"summary": ""
+},
+
+
+
+{
+"title": "Plugins Requirements",
+"tags": "getting_startedplugins",
+"keywords": "getting_started, plugins",
+"url": "plugin_requirements.html",
 "summary": ""
 },
 

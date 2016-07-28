@@ -11,7 +11,5 @@ folder: plugins
 ## Overview
 
 
-## Minimum Requirements
-
 
 {% include links.html %}

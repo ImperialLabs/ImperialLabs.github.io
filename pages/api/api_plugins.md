@@ -16,6 +16,7 @@ folder: api
         "name":{
             "command": "somecommand",
             "commandData": "data after command",
+            "channel": "channelid",
             "fromUser": "username",
             "mentionedUser": "username"
         }
@@ -31,15 +32,13 @@ In order to build out Command and Help info, the following endpoint will need to
 
 ```json
  {
-    "plugin": {
-        "info":{
-            "name": "pluginname",
-            "endpoint": "true",
-            "commandList": {
-                "command1": "Command Description",
-                "command2": "Command Description",
-                "command2": "Command Description"
-            }
+    "info":{
+        "command": "pluginname",
+        "endpoint": "true",
+        "commandOpts": {
+            "opt1": "Command Description",
+            "opt2": "Command Description",
+            "opt2": "Command Description"
         }
     }
 }

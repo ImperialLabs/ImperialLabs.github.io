@@ -10,7 +10,7 @@ folder: framework
 
 ## Design Overview
 
-What the ChatOps Framework strives to accomplish is a truly code base agnostic approach to utilizing Bots and ChatOps.
+SLAPI Bot (The ChatOps Framework) strives to accomplish is a truly code base agnostic approach to utilizing Bots and ChatOps.
 
 How is this different than other Bots?
 

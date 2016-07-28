@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Command workflow and lifecycle.">
-<meta name="keywords" content=" commands">
-<title>Command Workflow | Imperial Labs Documentation</title>
+<meta name="description" content="">
+<meta name="keywords" content="getting_startedplugins,  getting_started, plugins">
+<title>Plugins Requirements | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -121,7 +121,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the Command Workflow page: ";
+var body = "I have some feedback about the Plugins Requirements page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -148,7 +148,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Command Workflow">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="Plugins Requirements">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -178,7 +178,7 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">SLAPI - Design Phase</li>
+    <li class="sidebarTitle">ChatOps Framework Alpha</li>
     
     
     
@@ -321,36 +321,13 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Command Workflow</h1>
+   <h1 class="post-title-main">Plugins Requirements</h1>
 </div>
-
-
-
-<script>
-    $(document).ready ( function(){
-        $('.box1').addClass('active');
-    });
-</script>
-
-
-<div id="userMap">
-<div class="content"><a href="command_workflow_01.html"><div class="box box1">User Request</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="command_workflow_02.html"><div class="box box2">Plugin Router</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="command_workflow_03.html"><div class="box box3">Plugin Function</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="command_workflow_04.html"><div class="box box4">Plugin Response</div></a></div>
-<div class="clearfix"></div>
-</div>
-
 
 
 
 <div class="post-content">
 
-   
-    <div class="summary">Command workflow and lifecycle.</div>
    
 
     
@@ -384,13 +361,79 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="command-worflow">Command Worflow</h2>
+  <h2 id="overview">Overview</h2>
 
-<h3 id="user-request">User Request</h3>
+<p>We refer to our plugins as “slapins” so you can just “slap it in”.</p>
+
+<p>In that context we do our best to make the entry point into plugin design as simplistic as possible.</p>
+
+<h2 id="minimum-requirements">Minimum Requirements</h2>
+
+<h3 id="info-endpoint">Info Endpoint</h3>
+
+<p>This is an endpoint the Framework (slapi) can query to get plugin information and commands to setup routing and the help list with.</p>
+
+<p>Here is all the information the info endpoint can contain.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pagerduty"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"commandOpts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"on call"</span><span class="p">:</span><span class="w"> </span><span class="s2">"will return who's on call"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"on call for $schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chef who's on call for a specifc schedule"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"resolve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resolve incident"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+    </span><span class="p">}</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<ul>
+  <li>Required Info Items
+    <ul>
+      <li>commandOpts: this is what we build the help list off of.</li>
+    </ul>
+  </li>
+  <li>Optional Info Items
+    <ul>
+      <li>command: This is an override for replacing the plugin command. The plugin name is used by default.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="command-opts">Command Opts</h3>
+
+<p>Command Opts are built as follows
+* <code class="highlighter-rouge">"optname": "opt description/usage"</code></p>
+
+<p>an example of this in use is</p>
+
+<ul>
+  <li><code class="highlighter-rouge">@bot help plugin</code>
+<code class="highlighter-rouge">
+  bot: plugin opts help
+       opts: Description/Usage
+       opt2: Description/Usage
+</code></li>
+</ul>
 
 
 
     <div class="tags">
+        
+        <b>Tags: </b>
+        
+        
+        
+        <a href="tag_getting_started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting_started</a>
+        
+        
+        
+        <a href="tag_plugins.html" class="btn btn-default navbar-btn cursorNorm" role="button">plugins</a>
+        
+        
         
     </div>
 
@@ -403,7 +446,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Jul 28, 2016 <br />
+<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Jul 28, 2016 <br />
                 </div>
             </div>
 </footer>
