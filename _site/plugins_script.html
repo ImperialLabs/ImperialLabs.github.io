@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="keywords" content="api,  getting_started, api">
-<title>API Requirements for Plugins | Imperial Labs Documentation</title>
+<meta name="keywords" content="getting_startedplugins,  getting_started, plugins">
+<title>Script Based Plugins | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -121,7 +121,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the API Requirements for Plugins page: ";
+var body = "I have some feedback about the Script Based Plugins page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -148,7 +148,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="API Requirements for Plugins">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="Script Based Plugins">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -178,7 +178,7 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">ChatOps Framework Alpha</li>
+    <li class="sidebarTitle">SLAPI - Design Phase</li>
     
     
     
@@ -203,7 +203,28 @@ window.location.href = uri;
             
             
             
-            <li><a href="plugin_landing.html">Plugins Overview</a></li>
+            <li><a href="plugins_landing.html">Plugins Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="plugins_script.html">Script Plugin</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="plugins_container.html">Container Plugin</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="plugins_api.html">API Plugin</a></li>
             
             
             
@@ -264,83 +285,33 @@ window.location.href = uri;
         
     
     <li>
-        <a href="#">Plugin Workflow</a>
+        <a href="#">Plugin/Command Workflow</a>
         <ul>
             
             
             
-            <li><a href="plugin_workflow_01.html">Framework Intialize</a></li>
+            <li><a href="plugin_workflow_01.html">Intialize</a></li>
             
             
             
             
             
             
-            <li><a href="plugin_workflow_02.html">Eval & Install</a></li>
+            <li><a href="plugin_workflow_02.html">Eval, Install, Start</a></li>
             
             
             
             
             
             
-            <li><a href="plugin_workflow_03.html">Start Plugins</a></li>
+            <li><a href="plugin_workflow_03.html">Command Builder</a></li>
             
             
             
             
             
             
-            <li><a href="plugin_workflow_04.html">Info Endpoint</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_05.html">Build Command List</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_06.html">Client Connect</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Command Workflow</a>
-        <ul>
-            
-            
-            
-            <li><a href="command_workflow_01.html">User Request</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_02.html">Plugin Router</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_03.html">Plugin Function</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="command_workflow_04.html">Plugin Response</a></li>
+            <li><a href="plugin_workflow_04.html">Client Connect</a></li>
             
             
             
@@ -364,7 +335,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">API Requirements for Plugins</h1>
+   <h1 class="post-title-main">Script Based Plugins</h1>
 </div>
 
 
@@ -404,41 +375,47 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="framework-to-plugin-payloads">Framework to Plugin Payloads</h2>
+  <h1 id="overview">Overview</h1>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"plugin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:{</span><span class="w">
-            </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"somecommand"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"commandData"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data after command"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"fromUser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"mentionedUser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
-</span><span class="err">}</span><span class="w">
-</span></code></pre>
-</div>
+<p>In a effort to make the simplest expandable bot possible we have several options when it comes to utilizing plugins</p>
 
-<h2 id="plugin-info-endpoint-payload">Plugin Info Endpoint Payload</h2>
+<h1 id="minimum-requirements">Minimum Requirements</h1>
 
-<p>In order to build out Command and Help info, the following endpoint will need to exist to consume data from (port is just example, can be configured to whatever)</p>
+<h2 id="script-based">Script Based</h2>
 
-<p><code class="highlighter-rouge">curl -i https://localhost:8000/info</code></p>
+<p>The easiest and lowest entry point into creating a “plugin” for SLAPI.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"plugin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"info"</span><span class="p">:{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pluginname"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"commandList"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"command1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Command Description"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"command2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Command Description"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"command2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Command Description"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-        </span><span class="err">}</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
-</span><span class="err">}</span><span class="w">
-</span></code></pre>
+<p>Just a simple script you wish to run as a bot command.</p>
+
+<p>It will write out the run: &gt; portion into the appropriate file, mount, and run inside a container.</p>
+
+<h3 id="plugin-config">Plugin Config</h3>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin_name</span><span class="pi">:</span>
+    <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+    <span class="s">config</span><span class="pi">:</span>
+        <span class="s">command</span><span class="pi">:</span> <span class="s">my_script</span> <span class="c1"># aka 'bot my_script $args'</span>
+        <span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
+        <span class="c1"># Using pagerduty get-oncall as example</span>
+        <span class="s">run</span><span class="pi">:</span> <span class="pi">&gt;</span>
+          <span class="no">#!/usr/bin/env ruby</span>
+          <span class="no"># -*- coding: UTF-8 -*-</span>
+
+          <span class="no">require 'httparty'</span>
+
+          <span class="no">API_TOKEN = 'GFd723tgwEbnDcvixPV1'.freeze</span>
+
+          <span class="no">response = HTTParty.get(</span>
+          <span class="no">'https://api.pagerduty.com/oncalls',</span>
+          <span class="no">headers: {</span>
+            <span class="no">'Content-Type' =&gt; 'application/json',</span>
+            <span class="no">'Accept' =&gt; 'application/vnd.pagerduty+json;version=2',</span>
+            <span class="no">'Authorization' =&gt; "Token token=#{API_TOKEN}"</span>
+          <span class="no">}</span>
+          <span class="no">)</span>
+
+          <span class="no">puts response.body</span>
+</code></pre>
 </div>
 
 
@@ -449,7 +426,11 @@ $('#toc').on('click', 'a', function() {
         
         
         
-        <a href="tag_api.html" class="btn btn-default navbar-btn cursorNorm" role="button">api</a>
+        <a href="tag_getting_started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting_started</a>
+        
+        
+        
+        <a href="tag_plugins.html" class="btn btn-default navbar-btn cursorNorm" role="button">plugins</a>
         
         
         
@@ -464,7 +445,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Jul 21, 2016 <br />
+<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Oct 3, 2016 <br />
                 </div>
             </div>
 </footer>
