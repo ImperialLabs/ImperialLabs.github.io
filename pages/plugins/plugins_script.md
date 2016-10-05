@@ -126,13 +126,32 @@ type: script
 
 ## Usable Languages and Libraries
 
-Click to see each of the default scripting language containers we maintain to view usable libraries in the Script based plugins.
+Docker Image listed below that we utilize to run scripts in and the included 3rd party libraries.
 
 - Python: link to python image
+
+  - Installed Tools & Libraries
+
+    - HTTPie
+    - aws-cli
+
 - Ruby: link to ruby image
+
+  - Installed Tools & Libraries
+
+    - [httparty](http://johnnunemaker.com/httparty/)
+
 - Node: link to node image
+
+  - Installed Tools & Libraries
+
 - PHP: link to php image
+
+  - Installed Tools & Libraries
+
 - PowerShell: link to powershell image
+
+  - Installed Tools & Libraries
 
 ## Example Code used
 
