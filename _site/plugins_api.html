@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content="getting_startedplugins,  getting_started, plugins">
-<title>Plugins Requirements | Imperial Labs Documentation</title>
+<title>API Plugins | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -121,7 +121,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the Plugins Requirements page: ";
+var body = "I have some feedback about the API Plugins page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -148,7 +148,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Plugins Requirements">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="API Plugins">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -210,7 +210,21 @@ window.location.href = uri;
             
             
             
-            <li class="active"><a href="plugin_requirements.html">Plugin Requirements</a></li>
+            <li><a href="plugins_script.html">Script Plugin</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="plugins_container.html">Container Plugin</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="plugins_api.html">API Plugin</a></li>
             
             
             
@@ -321,7 +335,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Plugins Requirements</h1>
+   <h1 class="post-title-main">API Plugins</h1>
 </div>
 
 
@@ -361,21 +375,23 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="overview">Overview</h2>
+  <h1 id="overview">Overview</h1>
 
-<p>We refer to our plugins as “slapins” so you can just “slap it in”.</p>
+<p>In a effort to make the simplest expandable bot possible we have several options when it comes to utilizing plugins</p>
 
-<p>In that context we do our best to make the entry point into plugin design as simplistic as possible.</p>
+<h1 id="minimum-requirements">Minimum Requirements</h1>
 
-<h2 id="minimum-requirements">Minimum Requirements</h2>
+<h2 id="api-based">API Based</h2>
 
 <h3 id="info-endpoint">Info Endpoint</h3>
+
+<p><strong>-==Under Review==-</strong></p>
 
 <p>This is an endpoint the Framework (slapi) can query to get plugin information and commands to setup routing and the help list with.</p>
 
 <p>Here is all the information the info endpoint can contain.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pagerduty"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"commandOpts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -391,12 +407,16 @@ $('#toc').on('click', 'a', function() {
 </div>
 
 <ul>
-  <li>Required Info Items
+  <li>
+    <p>Required Info Items</p>
+
     <ul>
       <li>commandOpts: this is what we build the help list off of.</li>
     </ul>
   </li>
-  <li>Optional Info Items
+  <li>
+    <p>Optional Info Items</p>
+
     <ul>
       <li>command: This is an override for replacing the plugin command. The plugin name is used by default.</li>
     </ul>
@@ -405,8 +425,11 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="command-opts">Command Opts</h3>
 
-<p>Command Opts are built as follows
-* <code class="highlighter-rouge">"optname": "opt description/usage"</code></p>
+<p>Command Opts are built as follows</p>
+
+<ul>
+  <li><code class="highlighter-rouge">"optname": "opt description/usage"</code></li>
+</ul>
 
 <p>an example of this in use is</p>
 
@@ -447,7 +470,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Jul 28, 2016 <br />
+<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Oct 10, 2016 <br />
                 </div>
             </div>
 </footer>

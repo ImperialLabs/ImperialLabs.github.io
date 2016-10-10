@@ -112,13 +112,25 @@
   
   
   <url>
+    <loc>/plugins_api.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/plugins_container.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>/plugins_landing.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/plugin_requirements.html</loc>
+    <loc>/plugins_script.html</loc>
   </url>
   
   

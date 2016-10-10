@@ -166,6 +166,26 @@
 
 
 {
+"title": "API Plugins",
+"tags": "getting_startedplugins",
+"keywords": "getting_started, plugins",
+"url": "plugins_api.html",
+"summary": ""
+},
+
+
+
+{
+"title": "Container Plugin",
+"tags": "getting_startedplugins",
+"keywords": "getting_started, plugins",
+"url": "plugins_container.html",
+"summary": ""
+},
+
+
+
+{
 "title": "Plugins Overview",
 "tags": "getting_startedplugins",
 "keywords": "getting_started, plugins",
@@ -176,10 +196,10 @@
 
 
 {
-"title": "Plugins Requirements",
+"title": "Script Based Plugins",
 "tags": "getting_startedplugins",
 "keywords": "getting_started, plugins",
-"url": "plugin_requirements.html",
+"url": "plugins_script.html",
 "summary": ""
 },
 

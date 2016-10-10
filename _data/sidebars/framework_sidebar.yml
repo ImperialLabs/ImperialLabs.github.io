@@ -19,9 +19,16 @@ entries:
           - title: Plugins Overview
             url: /plugins_landing.html
             output: web, pdf
-          - title: Plugin Requirements
-            url: /plugin_requirements.html
+          - title: Script Plugin
+            url: /plugins_script.html
             output: web, pdf
+          - title: Container Plugin
+            url: /plugins_container.html
+            output: web, pdf
+          - title: API Plugin
+            url: /plugins_api.html
+            output: web, pdf
+
 
     - title: API
       output: web, pdf

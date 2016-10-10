@@ -1,22 +1,26 @@
 ---
-title: Plugins Requirements
-keywords: getting_started, plugins
-last_updated: July 21, 2016
-tags: [getting_started, plugins]
+title: API Plugins
+keywords: 'getting_started, plugins'
+last_updated: 'October 3, 2016'
+tags:
+  - getting_started
+  - plugins
 sidebar: framework_sidebar
-permalink: plugin_requirements.html
+permalink: plugins_api.html
 folder: plugins
 ---
 
-## Overview
+# Overview
 
-We refer to our plugins as "slapins" so you can just "slap it in".
+In a effort to make the simplest expandable bot possible we have several options when it comes to utilizing plugins
 
-In that context we do our best to make the entry point into plugin design as simplistic as possible.
+# Minimum Requirements
 
-## Minimum Requirements
+## API Based
 
 ### Info Endpoint
+
+**-==Under Review==-**
 
 This is an endpoint the Framework (slapi) can query to get plugin information and commands to setup routing and the help list with.
 
@@ -37,19 +41,23 @@ Here is all the information the info endpoint can contain.
 }
 ```
 
-* Required Info Items
-    * commandOpts: this is what we build the help list off of.
-* Optional Info Items
-    * command: This is an override for replacing the plugin command. The plugin name is used by default.
+- Required Info Items
+
+  - commandOpts: this is what we build the help list off of.
+
+- Optional Info Items
+
+  - command: This is an override for replacing the plugin command. The plugin name is used by default.
 
 ### Command Opts
 
 Command Opts are built as follows
-* `"optname": "opt description/usage"`
+
+- `"optname": "opt description/usage"`
 
 an example of this in use is
 
-* `@bot help plugin`
+- `@bot help plugin`
 
 ```
     bot: plugin opts help

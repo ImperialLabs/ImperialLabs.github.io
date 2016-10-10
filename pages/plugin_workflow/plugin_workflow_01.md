@@ -9,18 +9,20 @@ box_number: 1
 folder: plugin_workflow
 ---
 
-## Initialize Process
+# Initialize Process
 
-### Self-Check
+## Self-Check
 
-* Check for any framework updates, give option to update or notify of update available.
-    * Can be silenced
-    * Can set to update automatically
+- Check for any framework updates, give option to update or notify of update available.
 
-### Validate Files and Configs
+  - Can be silenced
+  - Can set to update automatically
 
-* The plugin management system will verify the following.
-    * Check: Which Configuration Files Exist (defaults will be used if absent)
-    * Check: Configuration files pass parser check and/or minimum requirements
+## Validate Files and Configs
+
+- The plugin management system will verify the following.
+
+  - Check: Which Configuration Files Exist (defaults will be used if absent)
+  - Check: Configuration files pass parser check and/or minimum requirements
 
 {% include links.html %}

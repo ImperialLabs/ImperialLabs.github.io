@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content="getting_startedplugins,  getting_started, plugins">
-<title>Plugins Overview | Imperial Labs Documentation</title>
+<title>Script Based Plugins | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -121,7 +121,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the Plugins Overview page: ";
+var body = "I have some feedback about the Script Based Plugins page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -148,7 +148,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Plugins Overview">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="Script Based Plugins">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -178,7 +178,7 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">ChatOps Framework Alpha</li>
+    <li class="sidebarTitle">SLAPI - Design Phase</li>
     
     
     
@@ -203,7 +203,28 @@ window.location.href = uri;
             
             
             
-            <li class="active"><a href="plugin_landing.html">Plugins Overview</a></li>
+            <li><a href="plugins_landing.html">Plugins Overview</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="plugins_script.html">Script Plugin</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="plugins_container.html">Container Plugin</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="plugins_api.html">API Plugin</a></li>
             
             
             
@@ -314,7 +335,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Plugins Overview</h1>
+   <h1 class="post-title-main">Script Based Plugins</h1>
 </div>
 
 
@@ -354,7 +375,189 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <p>##</p>
+  <h1 id="overview">Overview</h1>
+
+<p>In a effort to make the simplest expandable bot possible we have several options when it comes to utilizing plugins</p>
+
+<p>The easiest and lowest entry point into creating a “plugin” for SLAPI.</p>
+
+<p>Just a simple script you wish to run as a bot command.</p>
+
+<p>It will write out the run: &gt; portion into the appropriate file, mount, and run inside a container.</p>
+
+<h2 id="plugin-w-embedded-script">Plugin w/ Embedded Script</h2>
+
+<p>Will take the data from <code class="highlighter-rouge">write: &gt;</code> and write it out to a file with the plugin name as filename and appropriate language extension</p>
+
+<h3 id="minimum-requirements">Minimum Requirements</h3>
+
+<ul>
+  <li>example of file <code class="highlighter-rouge">on_call.yml</code></li>
+  <li>This example uses ruby and will write out to on_call.rb</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+  <span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
+  <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">on-calls</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">pagerduty"</span>
+  <span class="s">write</span><span class="pi">:</span> <span class="pi">&gt;</span>
+    <span class="no">#!/usr/bin/env ruby</span>
+    <span class="no"># -*- coding: UTF-8 -*-</span>
+
+    <span class="no">require 'httparty'</span>
+
+    <span class="no">API_TOKEN = 'GFd723tgwEbnDcvixPV1'.freeze</span>
+
+    <span class="no">response = HTTParty.get(</span>
+    <span class="no">'https://api.pagerduty.com/oncalls',</span>
+    <span class="no">headers: {</span>
+      <span class="no">'Content-Type' =&gt; 'application/json',</span>
+      <span class="no">'Accept' =&gt; 'application/vnd.pagerduty+json;version=2',</span>
+      <span class="no">'Authorization' =&gt; "Token token=#{API_TOKEN}"</span>
+    <span class="no">}</span>
+    <span class="no">)</span>
+
+    <span class="no">puts response.body</span>
+</code></pre>
+</div>
+
+<h3 id="all-available-options">All Available Options</h3>
+
+<ul>
+  <li>example of file <code class="highlighter-rouge">list_schedules.yml</code></li>
+  <li>This example uses python and will write out to schedules.py</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+  <span class="s">language</span><span class="pi">:</span> <span class="s">python</span>
+  <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span>
+  <span class="s">help</span><span class="pi">:</span> <span class="c1"># will be used to populate help options for schedules command</span>
+    <span class="s">schedules</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># overrides the description set due to being the primary command for plugin.</span>
+  <span class="s">write</span><span class="pi">:</span> <span class="pi">&gt;</span>
+    <span class="no">#!/usr/bin/env python</span>
+    <span class="no">import requests</span>
+
+    <span class="no"># Update to match your API key</span>
+    <span class="no">API_KEY = '3c3gRvzx7uGfMYEnWKvF'</span>
+
+    <span class="no"># Update to match your chosen parameters</span>
+    <span class="no">QUERY = ''</span>
+
+
+    <span class="no">def list_schedules():</span>
+        <span class="no">url = 'https://api.pagerduty.com/schedules'</span>
+        <span class="no">headers = {</span>
+            <span class="no">'Accept': 'application/vnd.pagerduty+json;version=2',</span>
+            <span class="no">'Authorization': 'Token token={token}'.format(token=API_KEY)</span>
+        <span class="no">}</span>
+        <span class="no">payload = {</span>
+            <span class="no">'query': QUERY</span>
+        <span class="no">}</span>
+        <span class="no">r = requests.get(url, headers=headers, params=payload)</span>
+        <span class="no">print 'Status Code: {code}'.format(code=r.status_code)</span>
+        <span class="no">print r.json()</span>
+
+    <span class="no">if __name__ == '__main__':</span>
+        <span class="no">list_schedules()</span>
+</code></pre>
+</div>
+
+<h2 id="plugin-w-script-path">Plugin w/ Script Path</h2>
+
+<p>Providing a script path will allow SLAPI to just mount and run the desired script in the language container of choice</p>
+
+<h3 id="minimum-requirements-1">Minimum Requirements</h3>
+
+<ul>
+  <li>example of file <code class="highlighter-rouge">on_call.yml</code></li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+  <span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
+  <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">on-calls</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">pagerduty"</span>
+  <span class="s">path</span><span class="pi">:</span> <span class="s">/path/to/scripts/on_call.rb</span>
+</code></pre>
+</div>
+
+<h3 id="all-available-options-1">All Available Options</h3>
+
+<ul>
+  <li>example of file <code class="highlighter-rouge">list_schedules.yml</code></li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+  <span class="s">language</span><span class="pi">:</span> <span class="s">python</span>
+  <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># is overrode by the `help:` setting if configured with `command: desc`</span>
+  <span class="s">help</span><span class="pi">:</span> <span class="c1"># will be used to populate help options for schedules command</span>
+    <span class="s">schedules</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># overrides the description set due to being the primary command for plugin.</span>
+  <span class="s">path</span><span class="pi">:</span> <span class="s">/path/to/scripts/schedules.py</span>
+</code></pre>
+</div>
+
+<h2 id="usable-languages-and-libraries">Usable Languages and Libraries</h2>
+
+<p>Docker Image listed below that we utilize to run scripts in and the included 3rd party libraries.</p>
+
+<ul>
+  <li>
+    <p>Python: link to python image</p>
+
+    <ul>
+      <li>
+        <p>Installed Tools &amp; Libraries</p>
+
+        <ul>
+          <li>HTTPie</li>
+          <li>aws-cli</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Ruby: link to ruby image</p>
+
+    <ul>
+      <li>
+        <p>Installed Tools &amp; Libraries</p>
+
+        <ul>
+          <li><a href="http://johnnunemaker.com/httparty/">httparty</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Node: link to node image</p>
+
+    <ul>
+      <li>Installed Tools &amp; Libraries</li>
+    </ul>
+  </li>
+  <li>
+    <p>PHP: link to php image</p>
+
+    <ul>
+      <li>Installed Tools &amp; Libraries</li>
+    </ul>
+  </li>
+  <li>
+    <p>PowerShell: link to powershell image</p>
+
+    <ul>
+      <li>Installed Tools &amp; Libraries</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="example-code-used">Example Code used</h2>
+
+<ul>
+  <li><a href="https://github.com/PagerDuty/API_Ruby_Examples/tree/master/REST_API_v2">Pagerduty Ruby V2 Examples</a></li>
+  <li><a href="https://github.com/PagerDuty/API_Python_Examples/tree/master/REST_API_v2">Pagerduty Python V2 Examples</a></li>
+</ul>
 
 
 
@@ -383,7 +586,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Jul 25, 2016 <br />
+<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Oct 10, 2016 <br />
                 </div>
             </div>
 </footer>
