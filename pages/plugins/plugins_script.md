@@ -30,7 +30,8 @@ Will take the data from `write: >` and write it out to a file with the plugin na
 - This example uses ruby and will write out to on_call.rb
 
 ```yaml
-type: script
+plugin:
+  type: script
   language: ruby
   description: "gets on-calls for pagerduty"
   write: >
@@ -58,13 +59,11 @@ type: script
 - example of file `list_schedules.yml`
 - This example uses python and will write out to schedules.py
 
-  - note the change, due to the option `command:` below it will change the name of file as well to match what's being used in chat.
-
 ```yaml
-type: script
+plugin:
+  type: script
   language: python
-  description: "gets pagerduty schedules for configured account" # is overrode by the `help:` setting if configured with `command: desc`
-  command: schedules # replaces the file name as command for bot
+  description: "gets pagerduty schedules for configured account"
   help: # will be used to populate help options for schedules command
     schedules: "gets pagerduty schedules for configured account" # overrides the description set due to being the primary command for plugin.
   write: >
@@ -104,7 +103,8 @@ Providing a script path will allow SLAPI to just mount and run the desired scrip
 - example of file `on_call.yml`
 
 ```yaml
-type: script
+plugin:
+  type: script
   language: ruby
   description: "gets on-calls for pagerduty"
   path: /path/to/scripts/on_call.rb
@@ -115,10 +115,10 @@ type: script
 - example of file `list_schedules.yml`
 
 ```yaml
-type: script
+plugin:
+  type: script
   language: python
   description: "gets pagerduty schedules for configured account" # is overrode by the `help:` setting if configured with `command: desc`
-  command: schedules # replaces the file name as command for bot
   help: # will be used to populate help options for schedules command
     schedules: "gets pagerduty schedules for configured account" # overrides the description set due to being the primary command for plugin.
   path: /path/to/scripts/schedules.py

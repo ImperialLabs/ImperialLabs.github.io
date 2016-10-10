@@ -377,28 +377,80 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="overview">Overview</h1>
 
-<p>In a effort to make the simplest expandable bot possible we have several options when it comes to utilizing plugins</p>
+<p>The 2nd level of plugins is a completely containerized container using docker.</p>
 
-<h1 id="minimum-requirements">Minimum Requirements</h1>
+<h2 id="containerized-plugin">Containerized Plugin</h2>
 
-<h2 id="dockercontainer-based">Docker/Container Based</h2>
+<p>You have several options when it comes to containers. We are utilizing the <a href="https://github.com/swipely/docker-api#containers">Docker API</a> Library and anything under <code class="highlighter-rouge">config:</code> will be passed without any alteration into the Container Creation.</p>
 
-<p>Plugin that is built and completely contained inside a Docker Container</p>
+<h3 id="minimum-requirements">Minimum Requirements</h3>
 
-<h3 id="plugin-config">Plugin Config</h3>
+<p>This is the baseline, the absolute minimum to configure to use a container based plugin.</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin_name</span><span class="pi">:</span>
+<ul>
+  <li>example of file <code class="highlighter-rouge">on_call.yml</code></li>
+  <li>Pulls from DockerHub</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
     <span class="s">type</span><span class="pi">:</span> <span class="s">docker</span>
-    <span class="s">managed</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Docker only setting</span>
     <span class="s">config</span><span class="pi">:</span>
         <span class="s">image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">username/plugin'</span> <span class="c1"># Required</span>
-        <span class="s">tag</span><span class="pi">:</span> <span class="s">latest</span> <span class="c1"># Latest used by default, can override</span>
-        <span class="s">ports</span><span class="pi">:</span> <span class="c1"># Choose which port(s) you want the plugin to respond on</span>
-          <span class="pi">-</span> <span class="s">8080</span>
-          <span class="pi">-</span> <span class="s">50000</span>
-        <span class="s">env</span><span class="pi">:</span> <span class="c1"># List of environment variables</span>
-            <span class="pi">-</span> <span class="s">API='1u3042034'</span>
-            <span class="pi">-</span> <span class="s">SERVICE='123490ijkd'</span>
+</code></pre>
+</div>
+
+<h3 id="all-available-options">All Available Options</h3>
+
+<p>All the options you can set when using a container.</p>
+
+<ul>
+  <li>example of file <code class="highlighter-rouge">schedules.yml</code></li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">docker</span>
+  <span class="s">managed</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Choose True or False for SLAPI management</span>
+  <span class="s">listen_type</span><span class="pi">:</span> <span class="s">passive</span> <span class="c1"># Choose passive or active.</span>
+  <span class="s">messageData</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># True/False to acccept the message data from who sent a message</span>
+  <span class="s">config</span><span class="pi">:</span>
+    <span class="s">name</span><span class="pi">:</span> <span class="s">schedules</span> <span class="c1"># Name of instance</span>
+    <span class="s">Image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slapi/schedules'</span> <span class="c1"># Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo</span>
+    <span class="s">Labels</span><span class="pi">:</span> <span class="s">labels</span>
+    <span class="s">Cmd</span><span class="pi">:</span> <span class="c1"># if you wish to override the container command</span>
+    <span class="s">Entrypoint</span><span class="pi">:</span> <span class="c1"># if you wish to override the container entrypoint</span>
+    <span class="s">Env</span><span class="pi">:</span> <span class="c1"># List of environment variables</span>
+      <span class="pi">-</span> <span class="s">API='1u3042034'</span>
+      <span class="pi">-</span> <span class="s">SERVICE='123490ijkd'</span>
+    <span class="s">ExposedPorts</span><span class="pi">:</span> <span class="c1"># Expose a port or a range of ports inside the container.</span>
+    <span class="s">8080/tcp</span><span class="pi">:</span> <span class="pi">{}</span>
+    <span class="s">Tty</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Set true/false for container TTY</span>
+    <span class="s">User</span><span class="pi">:</span> <span class="s">user</span> <span class="c1"># Set user in container to run commands as</span>
+    <span class="s">Volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">/from/host:/to/container'</span>
+    <span class="s">WorkingDir</span><span class="pi">:</span> <span class="c1"># Change working directory inside container</span>
+    <span class="s">HostConfig</span><span class="pi">:</span>
+    <span class="s">Dns</span><span class="pi">:</span> <span class="c1"># Set DNS if you wish</span>
+      <span class="pi">-</span> <span class="s">8.8.8.8</span>
+      <span class="pi">-</span> <span class="s">8.8.4.4</span>
+    <span class="s">DnsSearch</span><span class="pi">:</span> <span class="c1"># Sets the domain names that are searched when a bare unqualified hostname is used inside of the container</span>
+      <span class="pi">-</span> <span class="s">google.com</span>
+      <span class="pi">-</span> <span class="s">domain.com</span>
+    <span class="s">ExtraHosts</span><span class="pi">:</span> <span class="c1"># Add hosts to /etc/hosts</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">hostname:127.0.0.1"</span>
+    <span class="s">Links</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">container:hello'</span> <span class="c1"># Using this option as you run a container gives the new container’s /etc/hosts an extra entry named ALIAS that points to the IP address of the container identified by CONTAINER_NAME_or_ID.</span>
+    <span class="s">NetworkMode</span><span class="pi">:</span> <span class="s">host</span> <span class="c1"># Connect a container to a network https://docs.docker.com/engine/reference/run/#/network-settings</span>
+    <span class="s">PortBindings</span><span class="pi">:</span>
+     <span class="s">8080/tcp</span><span class="pi">:</span> <span class="c1"># Container Side: Set exposed port you want to mount to</span>
+      <span class="pi">-</span> <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1234'</span> <span class="c1"># Host Side: Set port to bind exposed port to</span>
+    <span class="s">PublishAllPorts</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># True/False Publish all exposed ports to the host interfaces</span>
+    <span class="s">RestartPolicy</span><span class="pi">:</span> <span class="c1"># https://docs.docker.com/engine/reference/run/#/restart-policies---restart</span>
+     <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
+     <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quiting</span>
+    <span class="s">ReadonlyRootfs</span><span class="pi">:</span> <span class="s">false</span> <span class="c1"># True/False to make Root Filesystem read only</span>
+    <span class="s">VolumesFrom</span><span class="pi">:</span> <span class="c1"># Volume From other Docker Containers</span>
+      <span class="pi">-</span> <span class="s">container1</span>
+      <span class="pi">-</span> <span class="s">container2</span>
 </code></pre>
 </div>
 
@@ -429,7 +481,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Oct 4, 2016 <br />
+<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Oct 10, 2016 <br />
                 </div>
             </div>
 </footer>

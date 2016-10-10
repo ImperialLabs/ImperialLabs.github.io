@@ -396,7 +396,8 @@ $('#toc').on('click', 'a', function() {
   <li>This example uses ruby and will write out to on_call.rb</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
   <span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
   <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">on-calls</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">pagerduty"</span>
   <span class="s">write</span><span class="pi">:</span> <span class="pi">&gt;</span>
@@ -424,19 +425,13 @@ $('#toc').on('click', 'a', function() {
 
 <ul>
   <li>example of file <code class="highlighter-rouge">list_schedules.yml</code></li>
-  <li>
-    <p>This example uses python and will write out to schedules.py</p>
-
-    <ul>
-      <li>note the change, due to the option <code class="highlighter-rouge">command:</code> below it will change the name of file as well to match what’s being used in chat.</li>
-    </ul>
-  </li>
+  <li>This example uses python and will write out to schedules.py</li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
   <span class="s">language</span><span class="pi">:</span> <span class="s">python</span>
-  <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># is overrode by the `help:` setting if configured with `command: desc`</span>
-  <span class="s">command</span><span class="pi">:</span> <span class="s">schedules</span> <span class="c1"># replaces the file name as command for bot</span>
+  <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span>
   <span class="s">help</span><span class="pi">:</span> <span class="c1"># will be used to populate help options for schedules command</span>
     <span class="s">schedules</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># overrides the description set due to being the primary command for plugin.</span>
   <span class="s">write</span><span class="pi">:</span> <span class="pi">&gt;</span>
@@ -478,7 +473,8 @@ $('#toc').on('click', 'a', function() {
   <li>example of file <code class="highlighter-rouge">on_call.yml</code></li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
   <span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
   <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">on-calls</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">pagerduty"</span>
   <span class="s">path</span><span class="pi">:</span> <span class="s">/path/to/scripts/on_call.rb</span>
@@ -491,10 +487,10 @@ $('#toc').on('click', 'a', function() {
   <li>example of file <code class="highlighter-rouge">list_schedules.yml</code></li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
   <span class="s">language</span><span class="pi">:</span> <span class="s">python</span>
   <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># is overrode by the `help:` setting if configured with `command: desc`</span>
-  <span class="s">command</span><span class="pi">:</span> <span class="s">schedules</span> <span class="c1"># replaces the file name as command for bot</span>
   <span class="s">help</span><span class="pi">:</span> <span class="c1"># will be used to populate help options for schedules command</span>
     <span class="s">schedules</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># overrides the description set due to being the primary command for plugin.</span>
   <span class="s">path</span><span class="pi">:</span> <span class="s">/path/to/scripts/schedules.py</span>
@@ -503,14 +499,57 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="usable-languages-and-libraries">Usable Languages and Libraries</h2>
 
-<p>Click to see each of the default scripting language containers we maintain to view usable libraries in the Script based plugins.</p>
+<p>Docker Image listed below that we utilize to run scripts in and the included 3rd party libraries.</p>
 
 <ul>
-  <li>Python: link to python image</li>
-  <li>Ruby: link to ruby image</li>
-  <li>Node: link to node image</li>
-  <li>PHP: link to php image</li>
-  <li>PowerShell: link to powershell image</li>
+  <li>
+    <p>Python: link to python image</p>
+
+    <ul>
+      <li>
+        <p>Installed Tools &amp; Libraries</p>
+
+        <ul>
+          <li>HTTPie</li>
+          <li>aws-cli</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Ruby: link to ruby image</p>
+
+    <ul>
+      <li>
+        <p>Installed Tools &amp; Libraries</p>
+
+        <ul>
+          <li><a href="http://johnnunemaker.com/httparty/">httparty</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Node: link to node image</p>
+
+    <ul>
+      <li>Installed Tools &amp; Libraries</li>
+    </ul>
+  </li>
+  <li>
+    <p>PHP: link to php image</p>
+
+    <ul>
+      <li>Installed Tools &amp; Libraries</li>
+    </ul>
+  </li>
+  <li>
+    <p>PowerShell: link to powershell image</p>
+
+    <ul>
+      <li>Installed Tools &amp; Libraries</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="example-code-used">Example Code used</h2>
@@ -547,7 +586,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Oct 4, 2016 <br />
+<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Oct 10, 2016 <br />
                 </div>
             </div>
 </footer>

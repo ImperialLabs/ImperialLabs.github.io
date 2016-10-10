@@ -12,29 +12,77 @@ folder: plugins
 
 # Overview
 
-In a effort to make the simplest expandable bot possible we have several options when it comes to utilizing plugins
+The 2nd level of plugins is a completely containerized container using docker.
 
-# Minimum Requirements
+## Containerized Plugin
 
-## Docker/Container Based
+You have several options when it comes to containers. We are utilizing the [Docker API](https://github.com/swipely/docker-api#containers) Library and anything under `config:` will be passed without any alteration into the Container Creation.
 
-Plugin that is built and completely contained inside a Docker Container
+### Minimum Requirements
 
-### Plugin Config
+This is the baseline, the absolute minimum to configure to use a container based plugin.
+
+- example of file `on_call.yml`
+- Pulls from DockerHub
 
 ```yaml
-plugin_name:
+plugin:
     type: docker
-    managed: true # Docker only setting
     config:
         image: 'username/plugin' # Required
-        tag: latest # Latest used by default, can override
-        ports: # Choose which port(s) you want the plugin to respond on
-          - 8080
-          - 50000
-        env: # List of environment variables
-            - API='1u3042034'
-            - SERVICE='123490ijkd'
+```
+
+### All Available Options
+
+All the options you can set when using a container.
+
+- example of file `schedules.yml`
+
+```yaml
+plugin:
+  type: docker
+  managed: true # Choose True or False for SLAPI management
+  listen_type: passive # Choose passive or active.
+  messageData: true # True/False to acccept the message data from who sent a message
+  config:
+    name: schedules # Name of instance
+    Image: 'slapi/schedules' # Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo
+    Labels: labels
+    Cmd: # if you wish to override the container command
+    Entrypoint: # if you wish to override the container entrypoint
+    Env: # List of environment variables
+      - API='1u3042034'
+      - SERVICE='123490ijkd'
+    ExposedPorts: # Expose a port or a range of ports inside the container.
+    8080/tcp: {}
+    Tty: true # Set true/false for container TTY
+    User: user # Set user in container to run commands as
+    Volumes:
+      - '/from/host:/to/container'
+    WorkingDir: # Change working directory inside container
+    HostConfig:
+    Dns: # Set DNS if you wish
+      - 8.8.8.8
+      - 8.8.4.4
+    DnsSearch: # Sets the domain names that are searched when a bare unqualified hostname is used inside of the container
+      - google.com
+      - domain.com
+    ExtraHosts: # Add hosts to /etc/hosts
+      - "hostname:127.0.0.1"
+    Links:
+      - 'container:hello' # Using this option as you run a container gives the new container’s /etc/hosts an extra entry named ALIAS that points to the IP address of the container identified by CONTAINER_NAME_or_ID.
+    NetworkMode: host # Connect a container to a network https://docs.docker.com/engine/reference/run/#/network-settings
+    PortBindings:
+     8080/tcp: # Container Side: Set exposed port you want to mount to
+      - HostPort: '1234' # Host Side: Set port to bind exposed port to
+    PublishAllPorts: true # True/False Publish all exposed ports to the host interfaces
+    RestartPolicy: # https://docs.docker.com/engine/reference/run/#/restart-policies---restart
+     Name: on-failure # no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount
+     MaximumRetryCount: 2 # Max number of time to attempt to restart container/plugin before quiting
+    ReadonlyRootfs: false # True/False to make Root Filesystem read only
+    VolumesFrom: # Volume From other Docker Containers
+      - container1
+      - container2
 ```
 
 {% include links.html %}
