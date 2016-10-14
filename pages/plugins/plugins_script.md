@@ -128,28 +128,43 @@ plugin:
 
 Docker Image listed below that we utilize to run scripts in and the included 3rd party libraries.
 
-- Python: link to python image
+- Python:
+
+  - DockerHub: <https://hub.docker.com/r/slapi/python/>
+  - Github: <https://github.com/ImperialLabs/docker-python>
 
   - Installed Tools & Libraries
 
-    - HTTPie
-    - aws-cli
+    - [HTTPie](https://github.com/jkbrzt/httpie)
+    - [Arrow](https://github.com/crsmithdev/arrow)
+    - [Requests](https://github.com/kennethreitz/requests)
+    - [awscli](https://github.com/aws/aws-cli)
 
-- Ruby: link to ruby image
+- Ruby:
+
+  - DockerHub: <https://hub.docker.com/r/slapi/ruby/>
+  - Github: <https://github.com/ImperialLabs/docker-ruby>
 
   - Installed Tools & Libraries
 
     - [httparty](http://johnnunemaker.com/httparty/)
 
-- Node: link to node image
+- NodeJS:
+
+  - DockerHub: <https://hub.docker.com/r/slapi/nodejs/>
+  - Github: <https://github.com/ImperialLabs/docker-nodejs>
 
   - Installed Tools & Libraries
 
-- PHP: link to php image
+    - [Request](https://www.npmjs.com/package/request)
+    - [Moment](https://www.npmjs.com/package/moment)
+    - [Node Rest Client](https://www.npmjs.com/package/node-rest-client)
+
+- PHP: (PENDING)
 
   - Installed Tools & Libraries
 
-- PowerShell: link to powershell image
+- PowerShell: (PENDING)
 
   - Installed Tools & Libraries
 
