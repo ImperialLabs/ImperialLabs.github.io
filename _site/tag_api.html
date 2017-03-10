@@ -178,17 +178,17 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">SLAPI - Design Phase</li>
+    <li class="sidebarTitle">SLAPI - 0.1.0</li>
     
     
     
     <li>
-        <a href="#">Framework</a>
+        <a href="#">SLAPI</a>
         <ul>
             
             
             
-            <li><a href="framework_landing.html">Framework Overview</a></li>
+            <li><a href="slapi_landing.html">SLAPI Overview</a></li>
             
             
             
@@ -246,7 +246,7 @@ window.location.href = uri;
             
             
             
-            <li><a href="api_framework.html">API - Framework</a></li>
+            <li><a href="api_chat.html">API - Chat</a></li>
             
             
             
@@ -254,13 +254,6 @@ window.location.href = uri;
             
             
             <li><a href="api_plugins.html">API - Plugins</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="api_brain.html">API - Brain</a></li>
             
             
             
@@ -276,42 +269,6 @@ window.location.href = uri;
             
             
             <li><a href="brain_landing.html">Brain Overview</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Plugin/Command Workflow</a>
-        <ul>
-            
-            
-            
-            <li><a href="plugin_workflow_01.html">Intialize</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_02.html">Eval, Install, Start</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_03.html">Command Builder</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_04.html">Client Connect</a></li>
             
             
             
@@ -385,9 +342,9 @@ $('#toc').on('click', 'a', function() {
     
         
 
-        <tr><td><a href="api_framework.html">API Framework</a></td>
+        <tr><td><a href="api_chat.html">SLAPI Chat API</a></td>
             <td><span class="label label-default">Page</span></td>
-          <td> Framework Speak { "framework": { "speak": "Command Response" } }   Framework Emote  { "framework": {... </td>
+          <td> SLAPI Speak  Endpoint: $bot_url/v1/speak Type: Post Params (All Required):  channel: $channel - The Slack Channel ID (Public Channel Name works, private requires ID) text: $text - The text that will be posted in the channel, supports formatting    Examples curl -X... </td>
         </tr>
         
      
@@ -413,7 +370,7 @@ This section covers all the API docs required to utilize SLAPI
 
         <tr><td><a href="api_plugins.html">API Requirements for Plugins</a></td>
             <td><span class="label label-default">Page</span></td>
-          <td> Framework to Plugin Payloads { "plugin": { "name":{ "command": "somecommand", "commandData": "data after command", "channel": "channelid", "fromUser"&lt;span... </td>
+          <td> PENDING UPDATE Framework to Plugin Payloads { "plugin": { "name":{ "command": "somecommand", "commandData": "data after command", "channel": "channelid",&lt;span... </td>
         </tr>
         
      
@@ -425,30 +382,8 @@ This section covers all the API docs required to utilize SLAPI
     
    
     
-   
-    
-   
-    
-   
-    
-   
-    
         
      
-        
-     
-   
-    
-        
-     
-   
-    
-   
-    
-   
-    
-   
-    
    
     
    
@@ -483,6 +418,12 @@ This section covers all the API docs required to utilize SLAPI
     
    
     
+   
+    
+        
+     
+        
+     
    
     
    
@@ -532,7 +473,7 @@ This section covers all the API docs required to utilize SLAPI
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Oct 14, 2016 <br />
+ Site last generated: Mar 10, 2017 <br />
                 </div>
             </div>
 </footer>

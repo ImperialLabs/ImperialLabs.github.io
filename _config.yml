@@ -26,6 +26,8 @@ port: 4005
 exclude:
   - .idea/
   - .gitignore
+  - vendor/
+  - .bundle
 # these are the files and directories that jekyll will exclude from the build
 
 feedback_email: atat@hearst.com

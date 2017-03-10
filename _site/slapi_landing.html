@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Command workflow and lifecycle.">
-<meta name="keywords" content=" commands">
-<title>Command Workflow | Imperial Labs Documentation</title>
+<meta name="description" content="">
+<meta name="keywords" content="getting_startedframework,  getting_started, framework">
+<title>SLAPI Overview | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -121,7 +121,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the Command Workflow page: ";
+var body = "I have some feedback about the SLAPI Overview page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -148,7 +148,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Command Workflow">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="SLAPI Overview">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -178,17 +178,17 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">SLAPI - Design Phase</li>
+    <li class="sidebarTitle">SLAPI - 0.1.0</li>
     
     
     
     <li>
-        <a href="#">Framework</a>
+        <a href="#">SLAPI</a>
         <ul>
             
             
             
-            <li><a href="framework_landing.html">Framework Overview</a></li>
+            <li class="active"><a href="slapi_landing.html">SLAPI Overview</a></li>
             
             
             
@@ -246,7 +246,7 @@ window.location.href = uri;
             
             
             
-            <li><a href="api_framework.html">API - Framework</a></li>
+            <li><a href="api_chat.html">API - Chat</a></li>
             
             
             
@@ -254,13 +254,6 @@ window.location.href = uri;
             
             
             <li><a href="api_plugins.html">API - Plugins</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="api_brain.html">API - Brain</a></li>
             
             
             
@@ -276,42 +269,6 @@ window.location.href = uri;
             
             
             <li><a href="brain_landing.html">Brain Overview</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Plugin/Command Workflow</a>
-        <ul>
-            
-            
-            
-            <li><a href="plugin_workflow_01.html">Intialize</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_02.html">Eval, Install, Start</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_03.html">Command Builder</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_04.html">Client Connect</a></li>
             
             
             
@@ -335,36 +292,13 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Command Workflow</h1>
+   <h1 class="post-title-main">SLAPI Overview</h1>
 </div>
-
-
-
-<script>
-    $(document).ready ( function(){
-        $('.box4').addClass('active');
-    });
-</script>
-
-
-<div id="userMap">
-<div class="content"><a href="command_workflow_01.html"><div class="box box1">User Request</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="command_workflow_02.html"><div class="box box2">Plugin Router</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="command_workflow_03.html"><div class="box box3">Plugin Function</div></a></div>
-<div class="arrow">→</div>
-<div class="content"><a href="command_workflow_04.html"><div class="box box4">Plugin Response</div></a></div>
-<div class="clearfix"></div>
-</div>
-
 
 
 
 <div class="post-content">
 
-   
-    <div class="summary">Command workflow and lifecycle.</div>
    
 
     
@@ -398,13 +332,44 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="command-worflow">Command Worflow</h2>
+  <h1 id="slapi-overview-pending-update">SLAPI Overview (Pending Update)</h1>
 
-<h3 id="plugin-response">Plugin Response</h3>
+<p>SLAPI Bot (The ChatOps Framework) strives to accomplish is a truly code base agnostic approach to utilizing Bots and ChatOps.</p>
+
+<p>What does SLAPI Stand For? Simple Lightweight API Bot or Slack API Bot (Though slack is only the first support chat system)</p>
+
+<p>How is this different than other Bots?</p>
+
+<ul>
+  <li>No requirement to use same code base or import a specific library</li>
+  <li>Utilizes Docker as a package management system</li>
+  <li>Allows external API endpoints as plugins (if configured properly see Plugin Requirements)</li>
+  <li>Handles routing and plugin management within the framework</li>
+</ul>
+
+<figure><img class="docimage" src="images/design_overview.png" alt="" /></figure>
+
+<h1 id="framework-overview">Framework Overview</h1>
+
+<p>Breakdown of how the framework will be built out and communicate within itself</p>
+
+<figure><img class="docimage" src="images/framework_overview.png" alt="" /></figure>
 
 
 
     <div class="tags">
+        
+        <b>Tags: </b>
+        
+        
+        
+        <a href="tag_getting_started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting_started</a>
+        
+        
+        
+        <a href="tag_framework.html" class="btn btn-default navbar-btn cursorNorm" role="button">framework</a>
+        
+        
         
     </div>
 
@@ -417,7 +382,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Oct 14, 2016 <br />
+<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Mar 10, 2017 <br />
                 </div>
             </div>
 </footer>

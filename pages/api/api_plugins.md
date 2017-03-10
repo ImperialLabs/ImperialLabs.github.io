@@ -8,6 +8,8 @@ permalink: api_plugins.html
 folder: api
 ---
 
+# PENDING UPDATE
+
 ## Framework to Plugin Payloads
 
 ```json

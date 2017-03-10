@@ -14,7 +14,7 @@
   
   
   <url>
-    <loc>/api_framework.html</loc>
+    <loc>/api_chat.html</loc>
   </url>
   
   
@@ -37,36 +37,6 @@
   
   
   
-  <url>
-    <loc>/command_workflow_01.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/command_workflow_02.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/command_workflow_03.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/command_workflow_04.html</loc>
-  </url>
-  
-  
-  
-  
-  
-  <url>
-    <loc>/framework_landing.html</loc>
-  </url>
-  
   
   
   <url>
@@ -83,30 +53,6 @@
   
   <url>
     <loc>/news_archive.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/plugin_workflow_01.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/plugin_workflow_02.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/plugin_workflow_03.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/plugin_workflow_04.html</loc>
   </url>
   
   
@@ -138,6 +84,12 @@
   
   
   
+  
+  
+  
+  <url>
+    <loc>/slapi_landing.html</loc>
+  </url>
   
   
   

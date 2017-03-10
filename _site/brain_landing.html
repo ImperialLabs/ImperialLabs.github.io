@@ -178,17 +178,17 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">SLAPI - Design Phase</li>
+    <li class="sidebarTitle">SLAPI - 0.1.0</li>
     
     
     
     <li>
-        <a href="#">Framework</a>
+        <a href="#">SLAPI</a>
         <ul>
             
             
             
-            <li><a href="framework_landing.html">Framework Overview</a></li>
+            <li><a href="slapi_landing.html">SLAPI Overview</a></li>
             
             
             
@@ -246,7 +246,7 @@ window.location.href = uri;
             
             
             
-            <li><a href="api_framework.html">API - Framework</a></li>
+            <li><a href="api_chat.html">API - Chat</a></li>
             
             
             
@@ -254,13 +254,6 @@ window.location.href = uri;
             
             
             <li><a href="api_plugins.html">API - Plugins</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="api_brain.html">API - Brain</a></li>
             
             
             
@@ -276,42 +269,6 @@ window.location.href = uri;
             
             
             <li class="active"><a href="brain_landing.html">Brain Overview</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Plugin/Command Workflow</a>
-        <ul>
-            
-            
-            
-            <li><a href="plugin_workflow_01.html">Intialize</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_02.html">Eval, Install, Start</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_03.html">Command Builder</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_04.html">Client Connect</a></li>
             
             
             
@@ -375,7 +332,97 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h2 id="imagine-a-brain">Imagine a brain!</h2>
+  <h2 id="slapi-brain">SLAPI Brain</h2>
+
+<p>The Brain is a Redis Server in a docker container managed by the bot.</p>
+
+<p>See: <a href="https://github.com/ImperialLabs/slapi/blob/refactor_mvp/lib/brain/redis.rb">The Brain Class</a> for more specific info</p>
+
+<p>Docker Image Utilized: <a href="https://hub.docker.com/_/redis/">Dockerhub</a> <a href="https://github.com/docker-library/redis/blob/3f926a47370a19fc88d57d0245823758cbf19b2d/3.2/alpine/Dockerfile">Dockerfile/Version</a></p>
+
+<p>Docker Tag: redis:3-alpine</p>
+
+<h3 id="usage">Usage</h3>
+
+<p><strong>Note</strong>: The brain can only be used at the library level by the bot itself.</p>
+
+<h4 id="plugin-access">Plugin Access</h4>
+
+<p>Plugins may access the Brain via API, we have gone the simplest route possible for brain access.</p>
+
+<h5 id="save-key">Save Key</h5>
+<ul>
+  <li>Endpoint: <code class="highlighter-rouge">$bot_url/v1/save</code></li>
+  <li>Type: Post</li>
+  <li>Params (All Required):
+    <ul>
+      <li>plugin: $plugin_name (Utilized as Hash Name)</li>
+      <li>key: $key_name</li>
+      <li>value: $value to save</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X POST -d <span class="s2">"plugin=hello&amp;key=world&amp;value='what a world'"</span> http://localhost:4567/v1/save
+</code></pre>
+</div>
+
+<h5 id="query-key">Query Key</h5>
+<ul>
+  <li>Endpoint: <code class="highlighter-rouge">$bot_url/v1/query_key</code></li>
+  <li>Type: Get</li>
+  <li>Params (All Required):
+    <ul>
+      <li>plugin: $plugin_name (Utilized as Hash Name)</li>
+      <li>key: $key_name</li>
+    </ul>
+  </li>
+  <li>Returns Key Value</li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X GET -H <span class="s2">"plugin: hello"</span> -H <span class="s2">"key: world"</span> http://localhost:9292/v1/query_key
+</code></pre>
+</div>
+
+<h5 id="query-hash">Query Hash</h5>
+<ul>
+  <li>Endpoint: <code class="highlighter-rouge">$bot_url/v1/query_hash</code></li>
+  <li>Type: Get</li>
+  <li>Params (All Required):
+    <ul>
+      <li>plugin: $plugin_name (Utilized as Hash Name)</li>
+    </ul>
+  </li>
+  <li>Returns Hash Keys</li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X GET -H <span class="s2">"plugin: hello"</span> http://localhost:9292/v1/query_hash
+</code></pre>
+</div>
+
+<h5 id="delete-key">Delete Key</h5>
+<ul>
+  <li>Endpoint: <code class="highlighter-rouge">$bot_url/v1/delete</code></li>
+  <li>Type: Post</li>
+  <li>Params (All Required):
+    <ul>
+      <li>plugin: $plugin_name (Utilized as Hash Name)</li>
+      <li>key: $key_name</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X POST -d <span class="s2">"plugin=hello&amp;key=world"</span> http://localhost:4567/v1/delete
+</code></pre>
+</div>
 
 
 
@@ -400,7 +447,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Oct 14, 2016 <br />
+<p>Page last updated:</span> March 09, 2017<br/> Site last generated: Mar 10, 2017 <br />
                 </div>
             </div>
 </footer>

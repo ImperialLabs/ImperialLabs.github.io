@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="keywords" content="getting_startedframework,  getting_started, framework">
-<title>Framework Overview | Imperial Labs Documentation</title>
+<meta name="keywords" content="api,  getting_started, api">
+<title>SLAPI Chat API | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -121,7 +121,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the Framework Overview page: ";
+var body = "I have some feedback about the SLAPI Chat API page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -148,7 +148,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Framework Overview">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="SLAPI Chat API">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -178,17 +178,17 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">SLAPI - Design Phase</li>
+    <li class="sidebarTitle">SLAPI - 0.1.0</li>
     
     
     
     <li>
-        <a href="#">Framework</a>
+        <a href="#">SLAPI</a>
         <ul>
             
             
             
-            <li class="active"><a href="framework_landing.html">Framework Overview</a></li>
+            <li><a href="slapi_landing.html">SLAPI Overview</a></li>
             
             
             
@@ -246,7 +246,7 @@ window.location.href = uri;
             
             
             
-            <li><a href="api_framework.html">API - Framework</a></li>
+            <li class="active"><a href="api_chat.html">API - Chat</a></li>
             
             
             
@@ -254,13 +254,6 @@ window.location.href = uri;
             
             
             <li><a href="api_plugins.html">API - Plugins</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="api_brain.html">API - Brain</a></li>
             
             
             
@@ -276,42 +269,6 @@ window.location.href = uri;
             
             
             <li><a href="brain_landing.html">Brain Overview</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Plugin/Command Workflow</a>
-        <ul>
-            
-            
-            
-            <li><a href="plugin_workflow_01.html">Intialize</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_02.html">Eval, Install, Start</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_03.html">Command Builder</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="plugin_workflow_04.html">Client Connect</a></li>
             
             
             
@@ -335,7 +292,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Framework Overview</h1>
+   <h1 class="post-title-main">SLAPI Chat API</h1>
 </div>
 
 
@@ -375,28 +332,70 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="design-overview">Design Overview</h1>
-
-<p>SLAPI Bot (The ChatOps Framework) strives to accomplish is a truly code base agnostic approach to utilizing Bots and ChatOps.</p>
-
-<p>What does SLAPI Stand For? Simple Lightweight API Bot or Slack API Bot (Though slack is only the first support chat system)</p>
-
-<p>How is this different than other Bots?</p>
-
+  <h2 id="slapi-speak">SLAPI Speak</h2>
 <ul>
-  <li>No requirement to use same code base or import a specific library</li>
-  <li>Utilizes Docker as a package management system</li>
-  <li>Allows external API endpoints as plugins (if configured properly see Plugin Requirements)</li>
-  <li>Handles routing and plugin management within the framework</li>
+  <li>Endpoint: <code class="highlighter-rouge">$bot_url/v1/speak</code></li>
+  <li>Type: Post</li>
+  <li>Params (All Required):
+    <ul>
+      <li>channel: $channel - The Slack Channel ID (Public Channel Name works, private requires ID)</li>
+      <li>text: $text - The text that will be posted in the channel, supports formatting</li>
+    </ul>
+  </li>
 </ul>
 
-<figure><img class="docimage" src="images/design_overview.png" alt="" /></figure>
+<p><strong>Examples</strong></p>
 
-<h1 id="framework-overview">Framework Overview</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X POST -d <span class="s2">"channel=#integration_tests&amp;text=Hello World!"</span> http://localhost:4567/v1/speak
+</code></pre>
+</div>
 
-<p>Breakdown of how the framework will be built out and communicate within itself</p>
+<h2 id="slapi-emote">SLAPI Emote</h2>
+<ul>
+  <li>Endpoint: <code class="highlighter-rouge">$bot_url/v1/emote</code></li>
+  <li>Type: Post</li>
+  <li>Params (All Required):
+    <ul>
+      <li>channel: $channel - The Slack Channel ID (ID only supported by Emote)</li>
+      <li>text: $text - The text that will be emoted in the channel</li>
+    </ul>
+  </li>
+</ul>
 
-<figure><img class="docimage" src="images/framework_overview.png" alt="" /></figure>
+<p><strong>Examples</strong></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X POST -d <span class="s2">"channel=C445NT42J&amp;text=Hello World!"</span> http://localhost:4567/v1/emote
+</code></pre>
+</div>
+
+<h2 id="slapi-attachment">SLAPI Attachment</h2>
+<p>For more specifics see <a href="https://api.slack.com/docs/message-attachments">Slack Doc: Message Attachments</a></p>
+
+<ul>
+  <li>Endpoint: <code class="highlighter-rouge">$bot_url/v1/attachment</code></li>
+  <li>Type: Post</li>
+  <li>Params:
+    <ul>
+      <li>channel: $channel - The Slack Channel ID (Public Channel Name works, private requires ID)</li>
+      <li>attachments:
+        <ul>
+          <li>(Required) text: The text that will be posted in the channel</li>
+          <li>(Required) fallback: Text that shows in popup, not allow to be formatted</li>
+          <li>(Required) title: Title of Attachment, Shows in room and notification popup</li>
+          <li>(Optional) title_link: Makes title a clickable url</li>
+          <li>(Optional) pretext: Optional text that appears above the attachment block</li>
+          <li>(Optional) color: Sets color of attachment (default green)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X POST -d <span class="s2">"channel=#integration_tests&amp;attachments[text]=hello world&amp;attachments[fallback]=Hello World&amp;attachments[title]=HELLO WORLD"</span> http://localhost:4567/v1/attachment
+</code></pre>
+</div>
 
 
 
@@ -406,11 +405,7 @@ $('#toc').on('click', 'a', function() {
         
         
         
-        <a href="tag_getting_started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting_started</a>
-        
-        
-        
-        <a href="tag_framework.html" class="btn btn-default navbar-btn cursorNorm" role="button">framework</a>
+        <a href="tag_api.html" class="btn btn-default navbar-btn cursorNorm" role="button">api</a>
         
         
         
@@ -425,7 +420,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Oct 14, 2016 <br />
+<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Mar 10, 2017 <br />
                 </div>
             </div>
 </footer>

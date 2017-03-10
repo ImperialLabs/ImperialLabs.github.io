@@ -4,10 +4,10 @@
 
 
 {
-"title": "API Framework",
+"title": "SLAPI Chat API",
 "tags": "api",
 "keywords": "getting_started, api",
-"url": "api_framework.html",
+"url": "api_chat.html",
 "summary": ""
 },
 
@@ -43,56 +43,6 @@
 
 
 
-{
-"title": "Command Workflow",
-"tags": "",
-"keywords": "commands",
-"url": "command_workflow_01.html",
-"summary": "Command workflow and lifecycle."
-},
-
-
-
-{
-"title": "Command Workflow",
-"tags": "",
-"keywords": "commands",
-"url": "command_workflow_02.html",
-"summary": "Command workflow and lifecycle."
-},
-
-
-
-{
-"title": "Command Workflow",
-"tags": "",
-"keywords": "commands",
-"url": "command_workflow_03.html",
-"summary": "Command workflow and lifecycle."
-},
-
-
-
-{
-"title": "Command Workflow",
-"tags": "",
-"keywords": "commands",
-"url": "command_workflow_04.html",
-"summary": "Command workflow and lifecycle."
-},
-
-
-
-
-
-{
-"title": "Framework Overview",
-"tags": "getting_startedframework",
-"keywords": "getting_started, framework",
-"url": "framework_landing.html",
-"summary": ""
-},
-
 
 
 {
@@ -120,46 +70,6 @@
 "tags": "",
 "keywords": "news, blog, updates, release notes, announcements",
 "url": "news_archive.html",
-"summary": ""
-},
-
-
-
-{
-"title": "Plugin Initialize",
-"tags": "",
-"keywords": "plugins",
-"url": "plugin_workflow_01.html",
-"summary": ""
-},
-
-
-
-{
-"title": "Eval and Install",
-"tags": "",
-"keywords": "plugins",
-"url": "plugin_workflow_02.html",
-"summary": ""
-},
-
-
-
-{
-"title": "Plugin Info and Command Build",
-"tags": "",
-"keywords": "plugins",
-"url": "plugin_workflow_03.html",
-"summary": ""
-},
-
-
-
-{
-"title": "Client Connect",
-"tags": "",
-"keywords": "plugins",
-"url": "plugin_workflow_04.html",
 "summary": ""
 },
 
@@ -208,6 +118,16 @@
 
 
 
+
+
+
+{
+"title": "SLAPI Overview",
+"tags": "getting_startedframework",
+"keywords": "getting_started, framework",
+"url": "slapi_landing.html",
+"summary": ""
+},
 
 
 
