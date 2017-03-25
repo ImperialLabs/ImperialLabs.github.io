@@ -334,31 +334,21 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="overview">Overview</h1>
 
-<p>In a effort to make the simplest expandable bot possible we have several options when it comes to utilizing plugins</p>
+<p>3rd and most advanced level of plugin. Can be managed by Slapi or completely separate.</p>
 
-<h1 id="minimum-requirements">Minimum Requirements</h1>
-
-<h2 id="api-based">API Based</h2>
+<h2 id="api-plugin-basics">API Plugin Basics</h2>
 
 <h3 id="info-endpoint">Info Endpoint</h3>
 
-<p><strong>-==Under Review==-</strong></p>
-
-<p>This is an endpoint the Framework (slapi) can query to get plugin information and commands to setup routing and the help list with.</p>
+<p>This is an endpoint that Slapi can query to get plugin information and commands to setup routing and the help list with.</p>
 
 <p>Here is all the information the info endpoint can contain.</p>
 
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pagerduty"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"commandOpts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"on call"</span><span class="p">:</span><span class="w"> </span><span class="s2">"will return who's on call"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"on call for $schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chef who's on call for a specifc schedule"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"resolve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resolve incident"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-
+    </span><span class="nt">"help"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"arg01"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arg description"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"arg02"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arg description"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
@@ -368,37 +358,151 @@ $('#toc').on('click', 'a', function() {
     <p>Required Info Items</p>
 
     <ul>
-      <li>commandOpts: this is what we build the help list off of.</li>
+      <li>help: this is what we build the help list off of for <code class="highlighter-rouge">@bot help plugin</code></li>
     </ul>
   </li>
-  <li>
-    <p>Optional Info Items</p>
+</ul>
 
+<h3 id="command-endpoint">Command Endpoint</h3>
+
+<p>This is the endpoint that is posted to from the bot with the chat data</p>
+
+<h3 id="config">Config</h3>
+
+<p>We have enabled several config options for the API Plugin Type.</p>
+
+<h4 id="un-managed">Un-Managed</h4>
+<p>Setup the plugin anywhere in this option, as long as there are two endpoints available to the bot.</p>
+
+<ul>
+  <li>Endpoints:
     <ul>
-      <li>command: This is an override for replacing the plugin command. The plugin name is used by default.</li>
+      <li>info: provides help data about plugin; see <a href="#info-endpoint">info endpoint</a> section for more info</li>
+      <li>command: endpoint to pass all the plugin commands to, configurable see endpoint setting below (i.e. <code class="highlighter-rouge">@bot plugin_name do_something</code>)</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="command-opts">Command Opts</h3>
-
-<p>Command Opts are built as follows</p>
-
-<ul>
-  <li><code class="highlighter-rouge">"optname": "opt description/usage"</code></li>
-</ul>
-
-<p>an example of this in use is</p>
-
-<ul>
-  <li><code class="highlighter-rouge">@bot help plugin</code></li>
-</ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>    bot: plugin opts help
-         opts: Description/Usage
-         opt2: Description/Usage
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
+<span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">api</span>
+  <span class="s">api_config</span><span class="pi">:</span>
+    <span class="s">url</span><span class="pi">:</span> <span class="s1">'</span><span class="s">http://localhost:4700'</span>
+    <span class="s">endpoint</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/endpoint'</span>
+    <span class="s">headers</span><span class="pi">:</span> <span class="c1"># Enter as normal HTTP headers, Key: Value</span>
+      <span class="s">Content-Type</span><span class="pi">:</span> <span class="c1"># Set content type</span>
+      <span class="s">Authorization</span><span class="pi">:</span> <span class="c1"># Use for tokens</span>
 </code></pre>
 </div>
+
+<h4 id="managed">Managed</h4>
+
+<p>Works similar to a container plugin, but instead runs any execs via API calls.</p>
+
+<ul>
+  <li>Endpoints:
+    <ul>
+      <li>info: provides help data about plugin; see <a href="#info-endpoint">info endpoint</a> section for more info</li>
+      <li>command: endpoint to pass all the plugin commands to, configurable see endpoint setting below (i.e. <code class="highlighter-rouge">@bot plugin_name do_something</code>)</li>
+    </ul>
+  </li>
+  <li>Plugin Config Location: <code class="highlighter-rouge">config/plugins/plugin_name.yml</code>
+    <ul>
+      <li>plugin_name: whatever name you wish your plugin to be accessed as. (i.e.; <code class="highlighter-rouge">@bot plugin_name</code>)</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
+<span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">api</span>
+  <span class="s">managed</span><span class="pi">:</span> <span class="s">true</span>
+  <span class="s">api_config</span><span class="pi">:</span>
+    <span class="s">endpoint</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/endpoint'</span>
+    <span class="c1"># headers: # Enter as normal HTTP headers, Key: Value</span>
+    <span class="c1">#   Content-Type: # Set content type</span>
+    <span class="c1">#   Authorization: # Use for tokens</span>
+  <span class="s">config</span><span class="pi">:</span>
+    <span class="s">Image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slapi/slapin-test:api'</span> <span class="c1"># Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo</span>
+    <span class="s">HostConfig</span><span class="pi">:</span>
+      <span class="s">PortBindings</span><span class="pi">:</span>
+        <span class="s">4700/tcp</span><span class="pi">:</span>
+          <span class="pi">-</span>
+            <span class="s">HostIp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.0.0.0'</span>
+            <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">4700'</span>
+    <span class="s">Tty</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Set true/false for container TTY</span>
+    <span class="s">RestartPolicy</span><span class="pi">:</span> <span class="c1"># https://docs.docker.com/engine/reference/run/#/restart-policies---restart</span>
+     <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
+     <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quitting</span>
+</code></pre>
+</div>
+
+<h4 id="dockerfile-build">Dockerfile Build</h4>
+
+<p>This option will allow an API plugin to be managed and built from a Dockerfile.</p>
+
+<ul>
+  <li>Endpoints:
+    <ul>
+      <li>info: provides help data about plugin; see <a href="#info-endpoint">info endpoint</a> section for more info</li>
+      <li>command: endpoint to pass all the plugin commands to, configurable see endpoint setting below (i.e. <code class="highlighter-rouge">@bot plugin_name do_something</code>)</li>
+    </ul>
+  </li>
+  <li>Plugin Config Location: <code class="highlighter-rouge">config/plugins/plugin_name.yml</code>
+    <ul>
+      <li>plugin_name: whatever name you wish your plugin to be accessed as. (i.e.; <code class="highlighter-rouge">@bot plugin_name</code>)</li>
+    </ul>
+  </li>
+  <li>Docker File Location: <code class="highlighter-rouge">config/plugins/plugin_name/Dockerfile</code>
+    <ul>
+      <li>plugin_name: same as the <code class="highlighter-rouge">plugin_name.yml</code>. See <a href="https://github.com/ImperialLabs/slapi/blob/api_plugin/spec/fixtures/plugins/api.yml">api spec fixture config</a> for working example.</li>
+      <li>Treat the <code class="highlighter-rouge">plugin_name</code> folder as a regular docker folder. See <a href="https://github.com/ImperialLabs/slapi/tree/api_plugin/spec/fixtures/plugins/api">api spec fixture directory</a> for a working example.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
+<span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">api</span>
+  <span class="s">managed</span><span class="pi">:</span> <span class="s">true</span>
+  <span class="s">build</span><span class="pi">:</span> <span class="s">true</span>
+  <span class="s">api_config</span><span class="pi">:</span>
+    <span class="s">endpoint</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/endpoint'</span>
+    <span class="s">headers</span><span class="pi">:</span> <span class="c1"># Enter as normal HTTP headers, Key: Value</span>
+      <span class="s">Content-Type</span><span class="pi">:</span> <span class="c1"># Set content type</span>
+      <span class="s">Authorization</span><span class="pi">:</span> <span class="c1"># Use for tokens</span>
+  <span class="s">config</span><span class="pi">:</span>
+    <span class="s">HostConfig</span><span class="pi">:</span>
+      <span class="s">PortBindings</span><span class="pi">:</span>
+        <span class="s">4700/tcp</span><span class="pi">:</span>
+          <span class="pi">-</span>
+            <span class="s">HostIp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.0.0.0'</span>
+            <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">4700'</span>
+    <span class="s">Tty</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Set true/false for container TTY</span>
+    <span class="s">RestartPolicy</span><span class="pi">:</span> <span class="c1"># https://docs.docker.com/engine/reference/run/#/restart-policies---restart</span>
+     <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
+     <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quitting</span>
+</code></pre>
+</div>
+
+<h4 id="basic-auth">Basic Auth</h4>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
+<span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">api</span>
+  <span class="s">api_config</span><span class="pi">:</span>
+    <span class="s">url</span><span class="pi">:</span> <span class="s1">'</span><span class="s">http://localhost:4700'</span>
+    <span class="s">endpoint</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/endpoint'</span>
+    <span class="s">headers</span><span class="pi">:</span> <span class="c1"># Enter as normal HTTP headers, Key: Value</span>
+      <span class="s">Content-Type</span><span class="pi">:</span> <span class="c1"># Set content type</span>
+    <span class="s">basic_auth</span><span class="pi">:</span>
+      <span class="s">username</span><span class="pi">:</span>
+      <span class="s">password</span><span class="pi">:</span>
+</code></pre>
+</div>
+
+<h2 id="config-breakdown">Config Breakdown</h2>
+<p>Extensive breakdown of the API config options</p>
 
 
 
@@ -427,7 +531,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Mar 10, 2017 <br />
+<p>Page last updated:</span> March 24, 2017<br/> Site last generated: Mar 24, 2017 <br />
                 </div>
             </div>
 </footer>

@@ -386,28 +386,30 @@ $('#toc').on('click', 'a', function() {
       <span class="pi">-</span> <span class="s1">'</span><span class="s">/from/host:/to/container'</span>
     <span class="s">WorkingDir</span><span class="pi">:</span> <span class="c1"># Change working directory inside container</span>
     <span class="s">HostConfig</span><span class="pi">:</span>
-    <span class="s">Dns</span><span class="pi">:</span> <span class="c1"># Set DNS if you wish</span>
-      <span class="pi">-</span> <span class="s">8.8.8.8</span>
-      <span class="pi">-</span> <span class="s">8.8.4.4</span>
-    <span class="s">DnsSearch</span><span class="pi">:</span> <span class="c1"># Sets the domain names that are searched when a bare unqualified hostname is used inside of the container</span>
-      <span class="pi">-</span> <span class="s">google.com</span>
-      <span class="pi">-</span> <span class="s">domain.com</span>
-    <span class="s">ExtraHosts</span><span class="pi">:</span> <span class="c1"># Add hosts to /etc/hosts</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">hostname:127.0.0.1"</span>
-    <span class="s">Links</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s1">'</span><span class="s">container:hello'</span> <span class="c1"># Using this option as you run a container gives the new container’s /etc/hosts an extra entry named ALIAS that points to the IP address of the container identified by CONTAINER_NAME_or_ID.</span>
-    <span class="s">NetworkMode</span><span class="pi">:</span> <span class="s">host</span> <span class="c1"># Connect a container to a network https://docs.docker.com/engine/reference/run/#/network-settings</span>
-    <span class="s">PortBindings</span><span class="pi">:</span>
-     <span class="s">8080/tcp</span><span class="pi">:</span> <span class="c1"># Container Side: Set exposed port you want to mount to</span>
-      <span class="pi">-</span> <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1234'</span> <span class="c1"># Host Side: Set port to bind exposed port to</span>
-    <span class="s">PublishAllPorts</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># True/False Publish all exposed ports to the host interfaces</span>
-    <span class="s">RestartPolicy</span><span class="pi">:</span> <span class="c1"># https://docs.docker.com/engine/reference/run/#/restart-policies---restart</span>
-     <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
-     <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quiting</span>
-    <span class="s">ReadonlyRootfs</span><span class="pi">:</span> <span class="s">false</span> <span class="c1"># True/False to make Root Filesystem read only</span>
-    <span class="s">VolumesFrom</span><span class="pi">:</span> <span class="c1"># Volume From other Docker Containers</span>
-      <span class="pi">-</span> <span class="s">container1</span>
-      <span class="pi">-</span> <span class="s">container2</span>
+      <span class="s">Dns</span><span class="pi">:</span> <span class="c1"># Set DNS if you wish</span>
+        <span class="pi">-</span> <span class="s">8.8.8.8</span>
+        <span class="pi">-</span> <span class="s">8.8.4.4</span>
+      <span class="s">DnsSearch</span><span class="pi">:</span> <span class="c1"># Sets the domain names that are searched when a bare unqualified hostname is used inside of the container</span>
+        <span class="pi">-</span> <span class="s">google.com</span>
+        <span class="pi">-</span> <span class="s">domain.com</span>
+      <span class="s">ExtraHosts</span><span class="pi">:</span> <span class="c1"># Add hosts to /etc/hosts</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">hostname:127.0.0.1"</span>
+      <span class="s">Links</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s1">'</span><span class="s">container:hello'</span> <span class="c1"># Using this option as you run a container gives the new container’s /etc/hosts an extra entry named ALIAS that points to the IP address of the container identified by CONTAINER_NAME_or_ID.</span>
+      <span class="s">NetworkMode</span><span class="pi">:</span> <span class="s">host</span> <span class="c1"># Connect a container to a network https://docs.docker.com/engine/reference/run/#/network-settings</span>
+      <span class="s">PortBindings</span><span class="pi">:</span>
+        <span class="s">8080/tcp</span><span class="pi">:</span>
+          <span class="pi">-</span>
+            <span class="s">HostIp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.0.0.0'</span>
+            <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">8080'</span>
+      <span class="s">PublishAllPorts</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># True/False Publish all exposed ports to the host interfaces</span>
+      <span class="s">RestartPolicy</span><span class="pi">:</span> <span class="c1"># https://docs.docker.com/engine/reference/run/#/restart-policies---restart</span>
+       <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
+       <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quiting</span>
+      <span class="s">ReadonlyRootfs</span><span class="pi">:</span> <span class="s">false</span> <span class="c1"># True/False to make Root Filesystem read only</span>
+      <span class="s">VolumesFrom</span><span class="pi">:</span> <span class="c1"># Volume From other Docker Containers</span>
+        <span class="pi">-</span> <span class="s">container1</span>
+        <span class="pi">-</span> <span class="s">container2</span>
 </code></pre>
 </div>
 
@@ -438,7 +440,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Mar 10, 2017 <br />
+<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Mar 24, 2017 <br />
                 </div>
             </div>
 </footer>
