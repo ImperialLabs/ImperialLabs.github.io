@@ -12,7 +12,7 @@ folder: brain
 
 The Brain is a Redis Server in a docker container managed by the bot.
 
-See: [The Brain Class](https://github.com/ImperialLabs/slapi/blob/refactor_mvp/lib/brain/redis.rb) for more specific info
+See: [The Brain Class](https://github.com/ImperialLabs/slapi/blob/master/lib/brain/redis.rb) for more specific info
 
 Docker Image Utilized: [Dockerhub](https://hub.docker.com/_/redis/) [Dockerfile/Version](https://github.com/docker-library/redis/blob/3f926a47370a19fc88d57d0245823758cbf19b2d/3.2/alpine/Dockerfile)
 
