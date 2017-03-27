@@ -1,7 +1,7 @@
 ---
 title: Container Plugin
 keywords: 'getting_started, plugins'
-last_updated: 'October 3, 2016'
+last_updated: 'March 27, 2017'
 tags:
   - getting_started
   - plugins
@@ -22,8 +22,8 @@ You have several options when it comes to containers. We are utilizing the [Dock
 
 This is the baseline, the absolute minimum to configure to use a container based plugin.
 
-- example of file `on_call.yml`
-- Pulls from DockerHub
+-   Example of file `on_call.yml`
+-   Pulls from DockerHub
 
 ```yaml
 plugin:
@@ -36,16 +36,16 @@ plugin:
 
 All the options you can set when using a container.
 
-- example of file `schedules.yml`
+-   Example of file `schedules.yml` **Note**: This needs to be accessed for formatting, changes made as they are found
 
 ```yaml
 plugin:
-  type: docker
+  type: container
   managed: true # Choose True or False for SLAPI management
   listen_type: passive # Choose passive or active.
-  messageData: true # True/False to acccept the message data from who sent a message
+  message_data: true # True/False to accept the message data from who sent a message
+  mount_config: '/schedules/config/schedules.yml' # Path to config inside container, Will check if not nil and will mount if this exists into container
   config:
-    name: schedules # Name of instance
     Image: 'slapi/schedules' # Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo
     Labels: labels
     Cmd: # if you wish to override the container command
@@ -86,5 +86,43 @@ plugin:
         - container1
         - container2
 ```
+
+## Config Breakdown
+Extensive breakdown of the Container Type config options
+
+-   See [here](https://imperiallabs.github.io/plugins_script.html#config-breakdown)) for General Config Options
+
+### Docker/Container Config Options
+-   Plugin Level: `plugin:`
+    -   Type Setting; This lets Slapi know the type of plugin being loaded
+        -   `type: 'container'`
+    -   Listen Type Setting: This lets Slapi know if the container being used is a one time run (build, run, print output, delete) or a persistent plugin (build, start, forward exec data, print output)
+        -   `listen_type: 'passive'`; Slapi will recognize `active` for persistent/active plugin or `passive` for disposable run at exec plugins
+    -   Managed Setting; This will let Slapi know if it's a plugin that it's suppose to start/manage
+        -   `managed: true`; `true` for letting Slapi know to manage the plugin or `false` to just let it be aware of it
+    -   Build Setting; This will have Slapi build from a Dockefile
+        -   `build: true`; `true` to be a from Dockerfile or `false`(default) to pull image
+    -   Mount Config Setting; Allows mounting the same config Slapi uses to build plugin inside plugin container
+        -   `mount_config: '/api/api.yml'` # Path to config inside container, Will check if not nil and will mount if this exists into
+-   Container Config Level (Nested Under Plugin): `config:`; This is for managed Container plugins
+    -   Image Settings: Set `user/repo` to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; `domain.com/repo`), or use local build with just simple `repo` name
+        -   `Image: 'slapi/schedules'`
+    -   Label Settings: Optional: Labels is what Slapi uses to build out the help list for `@bot help` & `@bot help plugin`
+        -   `Labels: #nested hash`; You can enter the labels here or inside the container See [here](https://github.com/ImperialLabs/slapi/blob/master/examples/Dockerfile) for Dockerfile example or below for config example
+            ```yaml
+            Labels:
+              arg01: "description"
+              arg02: "description"
+            ```
+    -   Enterypoint Settings:
+        -   Entrypoint: # if you wish to override the container entrypoint
+    -   Environment Settings: Sets exported environment variables inside plugin container
+        -   `Env: # nested array`; List of environment variables, see below for example
+            ```yaml
+            Env:
+              - API='1u3042034'
+              - SERVICE='123490ijkd'
+            ```
+    -   Host Config Setting: `HostConfig:`; This is the most important and only require setting for a manged API Plugin
 
 {% include links.html %}

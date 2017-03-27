@@ -367,6 +367,26 @@ $('#toc').on('click', 'a', function() {
 
 <p>This is the endpoint that is posted to from the bot with the chat data</p>
 
+<ul>
+  <li>Endpoint is completely configurable, right now Slapi only supports 1 to 1 config. (1 Endpoint to 1 Plugin)</li>
+  <li>JSON Payload from Slapi:
+<code class="highlighter-rouge">json
+{
+    "chat":
+    {
+      "type":"message",
+      "channel":"C77777MMM",
+      "user":"U66666NNN",
+      "text":"\u003c@U66666NNN\u003e plugin_name plugin_arg",
+      "ts":"1484927050.000300",
+      "team":"T88888BBB"
+    },
+    "command": "plugin_arg"
+}
+</code></li>
+  <li>Gives the option of just running the <code class="highlighter-rouge">plugin_arg</code> from <code class="highlighter-rouge">@bot plugin_name plugin_arg</code> or sorting through the entire data</li>
+</ul>
+
 <h3 id="config">Config</h3>
 
 <p>We have enabled several config options for the API Plugin Type.</p>
@@ -423,7 +443,7 @@ $('#toc').on('click', 'a', function() {
     <span class="c1">#   Content-Type: # Set content type</span>
     <span class="c1">#   Authorization: # Use for tokens</span>
   <span class="s">config</span><span class="pi">:</span>
-    <span class="s">Image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slapi/slapin-test:api'</span> <span class="c1"># Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo</span>
+    <span class="s">Image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Slapi/Slapin-test:api'</span> <span class="c1"># Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo</span>
     <span class="s">HostConfig</span><span class="pi">:</span>
       <span class="s">PortBindings</span><span class="pi">:</span>
         <span class="s">4700/tcp</span><span class="pi">:</span>
@@ -455,8 +475,8 @@ $('#toc').on('click', 'a', function() {
   </li>
   <li>Docker File Location: <code class="highlighter-rouge">config/plugins/plugin_name/Dockerfile</code>
     <ul>
-      <li>plugin_name: same as the <code class="highlighter-rouge">plugin_name.yml</code>. See <a href="https://github.com/ImperialLabs/slapi/blob/api_plugin/spec/fixtures/plugins/api.yml">api spec fixture config</a> for working example.</li>
-      <li>Treat the <code class="highlighter-rouge">plugin_name</code> folder as a regular docker folder. See <a href="https://github.com/ImperialLabs/slapi/tree/api_plugin/spec/fixtures/plugins/api">api spec fixture directory</a> for a working example.</li>
+      <li>plugin_name: same as the <code class="highlighter-rouge">plugin_name.yml</code>. See <a href="https://github.com/ImperialLabs/Slapi/blob/api_plugin/spec/fixtures/plugins/api.yml">api spec fixture config</a> for working example.</li>
+      <li>Treat the <code class="highlighter-rouge">plugin_name</code> folder as a regular docker folder. See <a href="https://github.com/ImperialLabs/Slapi/tree/api_plugin/spec/fixtures/plugins/api">api spec fixture directory</a> for a working example.</li>
     </ul>
   </li>
 </ul>
@@ -502,7 +522,68 @@ $('#toc').on('click', 'a', function() {
 </div>
 
 <h2 id="config-breakdown">Config Breakdown</h2>
-<p>Extensive breakdown of the API config options</p>
+<p>Extensive breakdown of the API Type config options</p>
+
+<ul>
+  <li>See <a href="https://imperiallabs.github.io/plugins_script.html#config-breakdown">here</a>) for General Config Options</li>
+  <li>See <a href="https://imperiallabs.github.io/plugins_container.html#config-breakdown">here</a> for Docker/Container Specific Config Options</li>
+</ul>
+
+<h3 id="api-config-options">API Config Options</h3>
+<ul>
+  <li>Plugin Level: <code class="highlighter-rouge">plugin:</code>
+    <ul>
+      <li>Type Setting; This lets Slapi know the type of plugin being loaded
+        <ul>
+          <li><code class="highlighter-rouge">type: 'api'</code></li>
+        </ul>
+      </li>
+      <li>Managed Setting; This will let Slapi know if it’s a plugin that it’s suppose to start/manage
+        <ul>
+          <li><code class="highlighter-rouge">managed: true</code>; <code class="highlighter-rouge">true</code> for letting Slapi know to manage the plugin or <code class="highlighter-rouge">false</code> to just let it be aware of it</li>
+        </ul>
+      </li>
+      <li>Build Setting; This will have Slapi build from a Dockefile (see <a href="">here</a> for more info)</li>
+      <li>Mount Config Setting; Allows mounting the same config Slapi uses to build plugin inside plugin container
+        <ul>
+          <li><code class="highlighter-rouge">mount_config: '/api/api.yml'</code> # Path to config inside container, Will check if not nil and will mount if this exists into</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>API Config Level (Nested Under Plugin): <code class="highlighter-rouge">api_config:</code>
+    <ul>
+      <li>Endpoint Setting:
+        <ul>
+          <li><code class="highlighter-rouge">endpoint: '/endpoint'</code>; This is a configurable endpoint for the Slapi to post the <a href="#command-endpoint">json payload</a> to</li>
+          <li><code class="highlighter-rouge">url: 'http://localhost:4700'</code>; Only required for un-managed API setups. This lets the bot know the base URI for the plugin</li>
+          <li>Header Config Level: Slapi will iterate over any key value under this hash to create the headers for HTTParty to use, below are some common use examples
+            <ul>
+              <li><code class="highlighter-rouge">Content-Type: 'application/json'</code>; Just set the key/value exactly how you would for any header data. Right now only JSON is the supported content type or no content (ruby type hash)</li>
+              <li><code class="highlighter-rouge">Authorization: 'Token "token=sdf9u3jnf9sj3r"'</code>; You can pass any support Authorization type into this header.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Container Config Level (Nested Under Plugin): <code class="highlighter-rouge">config:</code>; This is for managed API plugins and configure the container
+    <ul>
+      <li>Host Config Setting: <code class="highlighter-rouge">HostConfig:</code>; This is the most important and only require setting for a manged API Plugin
+        <ul>
+          <li>Port Bindings: You can use any port (except Slapi or Brain (Redis) ports), The <code class="highlighter-rouge">0.0.0.0</code> is required though or it will not be accessible by the bot
+<code class="highlighter-rouge">yaml
+PortBindings:
+  4700/tcp:
+    -
+      HostIp: '0.0.0.0'
+      HostPort: '4700'
+</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 
 
@@ -531,7 +612,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> March 24, 2017<br/> Site last generated: Mar 25, 2017 <br />
+<p>Page last updated:</span> March 27, 2017<br/> Site last generated: Mar 27, 2017 <br />
                 </div>
             </div>
 </footer>

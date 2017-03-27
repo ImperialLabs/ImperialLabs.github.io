@@ -345,7 +345,7 @@ $('#toc').on('click', 'a', function() {
 <p>This is the baseline, the absolute minimum to configure to use a container based plugin.</p>
 
 <ul>
-  <li>example of file <code class="highlighter-rouge">on_call.yml</code></li>
+  <li>Example of file <code class="highlighter-rouge">on_call.yml</code></li>
   <li>Pulls from DockerHub</li>
 </ul>
 
@@ -361,16 +361,16 @@ $('#toc').on('click', 'a', function() {
 <p>All the options you can set when using a container.</p>
 
 <ul>
-  <li>example of file <code class="highlighter-rouge">schedules.yml</code></li>
+  <li>Example of file <code class="highlighter-rouge">schedules.yml</code> <strong>Note</strong>: This needs to be accessed for formatting, changes made as they are found</li>
 </ul>
 
 <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
-  <span class="s">type</span><span class="pi">:</span> <span class="s">docker</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">container</span>
   <span class="s">managed</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Choose True or False for SLAPI management</span>
   <span class="s">listen_type</span><span class="pi">:</span> <span class="s">passive</span> <span class="c1"># Choose passive or active.</span>
-  <span class="s">messageData</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># True/False to acccept the message data from who sent a message</span>
+  <span class="s">message_data</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># True/False to accept the message data from who sent a message</span>
+  <span class="s">mount_config</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/schedules/config/schedules.yml'</span> <span class="c1"># Path to config inside container, Will check if not nil and will mount if this exists into container</span>
   <span class="s">config</span><span class="pi">:</span>
-    <span class="s">name</span><span class="pi">:</span> <span class="s">schedules</span> <span class="c1"># Name of instance</span>
     <span class="s">Image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slapi/schedules'</span> <span class="c1"># Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo</span>
     <span class="s">Labels</span><span class="pi">:</span> <span class="s">labels</span>
     <span class="s">Cmd</span><span class="pi">:</span> <span class="c1"># if you wish to override the container command</span>
@@ -413,6 +413,84 @@ $('#toc').on('click', 'a', function() {
 </code></pre>
 </div>
 
+<h2 id="config-breakdown">Config Breakdown</h2>
+<p>Extensive breakdown of the Container Type config options</p>
+
+<ul>
+  <li>See <a href="https://imperiallabs.github.io/plugins_script.html#config-breakdown">here</a>) for General Config Options</li>
+</ul>
+
+<h3 id="dockercontainer-config-options">Docker/Container Config Options</h3>
+<ul>
+  <li>Plugin Level: <code class="highlighter-rouge">plugin:</code>
+    <ul>
+      <li>Type Setting; This lets Slapi know the type of plugin being loaded
+        <ul>
+          <li><code class="highlighter-rouge">type: 'container'</code></li>
+        </ul>
+      </li>
+      <li>Listen Type Setting: This lets Slapi know if the container being used is a one time run (build, run, print output, delete) or a persistent plugin (build, start, forward exec data, print output)
+        <ul>
+          <li><code class="highlighter-rouge">listen_type: 'passive'</code>; Slapi will recognize <code class="highlighter-rouge">active</code> for persistent/active plugin or <code class="highlighter-rouge">passive</code> for disposable run at exec plugins</li>
+        </ul>
+      </li>
+      <li>Managed Setting; This will let Slapi know if it’s a plugin that it’s suppose to start/manage
+        <ul>
+          <li><code class="highlighter-rouge">managed: true</code>; <code class="highlighter-rouge">true</code> for letting Slapi know to manage the plugin or <code class="highlighter-rouge">false</code> to just let it be aware of it</li>
+        </ul>
+      </li>
+      <li>Build Setting; This will have Slapi build from a Dockefile
+        <ul>
+          <li><code class="highlighter-rouge">build: true</code>; <code class="highlighter-rouge">true</code> to be a from Dockerfile or <code class="highlighter-rouge">false</code>(default) to pull image</li>
+        </ul>
+      </li>
+      <li>Mount Config Setting; Allows mounting the same config Slapi uses to build plugin inside plugin container
+        <ul>
+          <li><code class="highlighter-rouge">mount_config: '/api/api.yml'</code> # Path to config inside container, Will check if not nil and will mount if this exists into</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Container Config Level (Nested Under Plugin): <code class="highlighter-rouge">config:</code>; This is for managed Container plugins
+    <ul>
+      <li>Image Settings: Set <code class="highlighter-rouge">user/repo</code> to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; <code class="highlighter-rouge">domain.com/repo</code>), or use local build with just simple <code class="highlighter-rouge">repo</code> name
+        <ul>
+          <li><code class="highlighter-rouge">Image: 'slapi/schedules'</code></li>
+        </ul>
+      </li>
+      <li>Label Settings: Optional: Labels is what Slapi uses to build out the help list for <code class="highlighter-rouge">@bot help</code> &amp; <code class="highlighter-rouge">@bot help plugin</code>
+        <ul>
+          <li><code class="highlighter-rouge">Labels: #nested hash</code>; You can enter the labels here or inside the container See <a href="https://github.com/ImperialLabs/slapi/blob/master/examples/Dockerfile">here</a> for Dockerfile example or below for config example
+<code class="highlighter-rouge">yaml
+Labels:
+  arg01: "description"
+  arg02: "description"
+</code></li>
+        </ul>
+      </li>
+      <li>Enterypoint Settings:
+        <ul>
+          <li>Entrypoint: # if you wish to override the container entrypoint</li>
+        </ul>
+      </li>
+      <li>Environment Settings: Sets exported environment variables inside plugin container
+        <ul>
+          <li><code class="highlighter-rouge">Env: # nested array</code>; List of environment variables, see below for example
+```yaml
+Env:
+            <ul>
+              <li>API=’1u3042034’</li>
+              <li>SERVICE=’123490ijkd’
+```</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Host Config Setting: <code class="highlighter-rouge">HostConfig:</code>; This is the most important and only require setting for a manged API Plugin</li>
+    </ul>
+  </li>
+</ul>
+
 
 
     <div class="tags">
@@ -440,7 +518,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Mar 25, 2017 <br />
+<p>Page last updated:</span> March 27, 2017<br/> Site last generated: Mar 27, 2017 <br />
                 </div>
             </div>
 </footer>

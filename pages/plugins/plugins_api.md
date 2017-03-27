@@ -1,7 +1,7 @@
 ---
 title: API Plugins
 keywords: 'getting_started, plugins'
-last_updated: 'March 24, 2017'
+last_updated: 'March 27, 2017'
 tags:
   - getting_started
   - plugins
@@ -31,13 +31,31 @@ Here is all the information the info endpoint can contain.
 }
 ```
 
-- Required Info Items
+-   Required Info Items
 
-  - help: this is what we build the help list off of for `@bot help plugin`
+    -   help: this is what we build the help list off of for `@bot help plugin`
 
 ### Command Endpoint
 
 This is the endpoint that is posted to from the bot with the chat data
+
+-   Endpoint is completely configurable, right now Slapi only supports 1 to 1 config. (1 Endpoint to 1 Plugin)
+-   JSON Payload from Slapi:
+```json
+    {
+        "chat":
+        {
+          "type":"message",
+          "channel":"C77777MMM",
+          "user":"U66666NNN",
+          "text":"\u003c@U66666NNN\u003e plugin_name plugin_arg",
+          "ts":"1484927050.000300",
+          "team":"T88888BBB"
+        },
+        "command": "plugin_arg"
+    }
+```
+-   Gives the option of just running the `plugin_arg` from `@bot plugin_name plugin_arg` or sorting through the entire data
 
 ### Config
 
@@ -83,7 +101,7 @@ plugin:
     #   Content-Type: # Set content type
     #   Authorization: # Use for tokens
   config:
-    Image: 'slapi/slapin-test:api' # Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo
+    Image: 'Slapi/Slapin-test:api' # Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo
     HostConfig:
       PortBindings:
         4700/tcp:
@@ -106,8 +124,8 @@ This option will allow an API plugin to be managed and built from a Dockerfile.
 -   Plugin Config Location: `config/plugins/plugin_name.yml`
     -   plugin_name: whatever name you wish your plugin to be accessed as. (i.e.; `@bot plugin_name`)
 -   Docker File Location: `config/plugins/plugin_name/Dockerfile`
-    -   plugin_name: same as the `plugin_name.yml`. See [api spec fixture config](https://github.com/ImperialLabs/slapi/blob/api_plugin/spec/fixtures/plugins/api.yml) for working example.
-    -   Treat the `plugin_name` folder as a regular docker folder. See [api spec fixture directory](https://github.com/ImperialLabs/slapi/tree/api_plugin/spec/fixtures/plugins/api) for a working example.
+    -   plugin_name: same as the `plugin_name.yml`. See [api spec fixture config](https://github.com/ImperialLabs/Slapi/blob/api_plugin/spec/fixtures/plugins/api.yml) for working example.
+    -   Treat the `plugin_name` folder as a regular docker folder. See [api spec fixture directory](https://github.com/ImperialLabs/Slapi/tree/api_plugin/spec/fixtures/plugins/api) for a working example.
 
 ```yaml
 ---
@@ -150,7 +168,38 @@ plugin:
 ```
 
 ## Config Breakdown
-Extensive breakdown of the API config options
+Extensive breakdown of the API Type config options
+
+-   See [here](https://imperiallabs.github.io/plugins_script.html#config-breakdown)) for General Config Options
+-   See [here](https://imperiallabs.github.io/plugins_container.html#config-breakdown) for Docker/Container Specific Config Options
+
+### API Config Options
+-   Plugin Level: `plugin:`
+    -   Type Setting; This lets Slapi know the type of plugin being loaded
+        -   `type: 'api'`
+    -   Managed Setting; This will let Slapi know if it's a plugin that it's suppose to start/manage
+        -   `managed: true`; `true` for letting Slapi know to manage the plugin or `false` to just let it be aware of it
+    -   Build Setting; This will have Slapi build from a Dockefile (see [here]() for more info)
+    -   Mount Config Setting; Allows mounting the same config Slapi uses to build plugin inside plugin container
+        -   `mount_config: '/api/api.yml'` # Path to config inside container, Will check if not nil and will mount if this exists into
+-   API Config Level (Nested Under Plugin): `api_config:`
+    -   Endpoint Setting:
+        -   `endpoint: '/endpoint'`; This is a configurable endpoint for the Slapi to post the [json payload](#command-endpoint) to
+        -   `url: 'http://localhost:4700'`; Only required for un-managed API setups. This lets the bot know the base URI for the plugin
+        -   Header Config Level: Slapi will iterate over any key value under this hash to create the headers for HTTParty to use, below are some common use examples
+            -   `Content-Type: 'application/json'`; Just set the key/value exactly how you would for any header data. Right now only JSON is the supported content type or no content (ruby type hash)
+            -   `Authorization: 'Token "token=sdf9u3jnf9sj3r"'`; You can pass any support Authorization type into this header.
+-   Container Config Level (Nested Under Plugin): `config:`; This is for managed API plugins and configure the container
+    -   Host Config Setting: `HostConfig:`; This is the most important and only require setting for a manged API Plugin
+        -   Port Bindings: You can use any port (except Slapi or Brain (Redis) ports), The `0.0.0.0` is required though or it will not be accessible by the bot
+            ```yaml
+            PortBindings:
+              4700/tcp:
+                -
+                  HostIp: '0.0.0.0'
+                  HostPort: '4700'
+            ```
+
 
 
 {% include links.html %}

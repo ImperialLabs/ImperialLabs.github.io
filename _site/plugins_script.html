@@ -340,16 +340,23 @@ $('#toc').on('click', 'a', function() {
 
 <p>Just a simple script you wish to run as a bot command.</p>
 
-<p>It will write out the run: &gt; portion into the appropriate file, mount, and run inside a container.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>It will write out the run:</td>
+      <td>portion into the appropriate file, mount, and run inside a container.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="plugin-w-embedded-script">Plugin w/ Embedded Script</h2>
 
-<p>Will take the data from <code class="highlighter-rouge">write: &gt;</code> and write it out to a file with the plugin name as filename and appropriate language extension</p>
+<p>Will take the data from <code class="highlighter-rouge">write: |</code> and write it out to a file with the plugin name as filename and appropriate language extension</p>
 
 <h3 id="minimum-requirements">Minimum Requirements</h3>
 
 <ul>
-  <li>example of file <code class="highlighter-rouge">on_call.yml</code></li>
+  <li>Example of file <code class="highlighter-rouge">on_call.yml</code></li>
   <li>This example uses ruby and will write out to on_call.rb</li>
 </ul>
 
@@ -381,7 +388,7 @@ $('#toc').on('click', 'a', function() {
 <h3 id="all-available-options">All Available Options</h3>
 
 <ul>
-  <li>example of file <code class="highlighter-rouge">list_schedules.yml</code></li>
+  <li>Example of file <code class="highlighter-rouge">list_schedules.yml</code></li>
   <li>This example uses python and will write out to schedules.py</li>
 </ul>
 
@@ -391,7 +398,7 @@ $('#toc').on('click', 'a', function() {
   <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span>
   <span class="s">help</span><span class="pi">:</span> <span class="c1"># will be used to populate help options for schedules command</span>
     <span class="s">schedules</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># overrides the description set due to being the primary command for plugin.</span>
-  <span class="s">write</span><span class="pi">:</span> <span class="pi">&gt;</span>
+  <span class="s">write</span><span class="pi">:</span> <span class="pi">|</span>
     <span class="no">#!/usr/bin/env python</span>
     <span class="no">import requests</span>
 
@@ -459,17 +466,17 @@ $('#toc').on('click', 'a', function() {
 <p>Docker Image listed below that we utilize to run scripts in and the included 3rd party libraries.</p>
 
 <ul>
-  <li>
-    <p>Python:</p>
-
+  <li>Bash/Shell:
     <ul>
+      <li>Language Setting: <code class="highlighter-rouge">bash</code>, <code class="highlighter-rouge">shell</code>, or <code class="highlighter-rouge">sh</code></li>
+    </ul>
+  </li>
+  <li>Python:
+    <ul>
+      <li>Language Setting: <code class="highlighter-rouge">python</code> or <code class="highlighter-rouge">py</code></li>
       <li>DockerHub: <a href="https://hub.docker.com/r/slapi/python/">https://hub.docker.com/r/slapi/python/</a></li>
-      <li>
-        <p>Github: <a href="https://github.com/ImperialLabs/docker-python">https://github.com/ImperialLabs/docker-python</a></p>
-      </li>
-      <li>
-        <p>Installed Tools &amp; Libraries</p>
-
+      <li>Github: <a href="https://github.com/ImperialLabs/docker-python">https://github.com/ImperialLabs/docker-python</a></li>
+      <li>Installed Tools &amp; Libraries
         <ul>
           <li><a href="https://github.com/jkbrzt/httpie">HTTPie</a></li>
           <li><a href="https://github.com/crsmithdev/arrow">Arrow</a></li>
@@ -479,34 +486,24 @@ $('#toc').on('click', 'a', function() {
       </li>
     </ul>
   </li>
-  <li>
-    <p>Ruby:</p>
-
+  <li>Ruby:
     <ul>
+      <li>Language Setting: <code class="highlighter-rouge">ruby</code> or <code class="highlighter-rouge">rb</code></li>
       <li>DockerHub: <a href="https://hub.docker.com/r/slapi/ruby/">https://hub.docker.com/r/slapi/ruby/</a></li>
-      <li>
-        <p>Github: <a href="https://github.com/ImperialLabs/docker-ruby">https://github.com/ImperialLabs/docker-ruby</a></p>
-      </li>
-      <li>
-        <p>Installed Tools &amp; Libraries</p>
-
+      <li>Github: <a href="https://github.com/ImperialLabs/docker-ruby">https://github.com/ImperialLabs/docker-ruby</a></li>
+      <li>Installed Tools &amp; Libraries
         <ul>
           <li><a href="http://johnnunemaker.com/httparty/">httparty</a></li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>
-    <p>NodeJS:</p>
-
+  <li>NodeJS:
     <ul>
+      <li>Language Setting: <code class="highlighter-rouge">node</code>, <code class="highlighter-rouge">nodejs</code>, <code class="highlighter-rouge">javascript</code>, or <code class="highlighter-rouge">js</code></li>
       <li>DockerHub: <a href="https://hub.docker.com/r/slapi/nodejs/">https://hub.docker.com/r/slapi/nodejs/</a></li>
-      <li>
-        <p>Github: <a href="https://github.com/ImperialLabs/docker-nodejs">https://github.com/ImperialLabs/docker-nodejs</a></p>
-      </li>
-      <li>
-        <p>Installed Tools &amp; Libraries</p>
-
+      <li>Github: <a href="https://github.com/ImperialLabs/docker-nodejs">https://github.com/ImperialLabs/docker-nodejs</a></li>
+      <li>Installed Tools &amp; Libraries
         <ul>
           <li><a href="https://www.npmjs.com/package/request">Request</a></li>
           <li><a href="https://www.npmjs.com/package/moment">Moment</a></li>
@@ -515,16 +512,12 @@ $('#toc').on('click', 'a', function() {
       </li>
     </ul>
   </li>
-  <li>
-    <p>PHP: (PENDING)</p>
-
+  <li>PHP: (PENDING)
     <ul>
       <li>Installed Tools &amp; Libraries</li>
     </ul>
   </li>
-  <li>
-    <p>PowerShell: (PENDING)</p>
-
+  <li>PowerShell: (PENDING)
     <ul>
       <li>Installed Tools &amp; Libraries</li>
     </ul>
@@ -536,6 +529,31 @@ $('#toc').on('click', 'a', function() {
 <ul>
   <li><a href="https://github.com/PagerDuty/API_Ruby_Examples/tree/master/REST_API_v2">Pagerduty Ruby V2 Examples</a></li>
   <li><a href="https://github.com/PagerDuty/API_Python_Examples/tree/master/REST_API_v2">Pagerduty Python V2 Examples</a></li>
+</ul>
+
+<h2 id="config-breakdown">Config Breakdown</h2>
+<p>Extensive breakdown of the Script Type config options</p>
+
+<ul>
+  <li>Plugin Level: <code class="highlighter-rouge">plugin:</code>
+    <ul>
+      <li>Type Setting; This lets Slapi know the type of plugin being loaded
+        <ul>
+          <li><code class="highlighter-rouge">type: 'script'</code></li>
+        </ul>
+      </li>
+      <li>Language Setting; This is the setting used to determine the language of the image used. (see <a href="#usable-languages-and-libraries">above</a> for supported languages)
+        <ul>
+          <li><code class="highlighter-rouge">language: ruby</code></li>
+        </ul>
+      </li>
+      <li>Description Setting: Used to display next to help list of plugin, used as general overview of what plugin does (pending <a href="https://github.com/ImperialLabs/slapi/issues/51">issue</a>)
+        <ul>
+          <li><code class="highlighter-rouge">description: "gets on-calls for pagerduty"</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 
@@ -565,7 +583,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> October 3, 2016<br/> Site last generated: Mar 25, 2017 <br />
+<p>Page last updated:</span> March 27, 2017<br/> Site last generated: Mar 27, 2017 <br />
                 </div>
             </div>
 </footer>

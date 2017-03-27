@@ -1,7 +1,7 @@
 ---
 title: Script Based Plugins
 keywords: 'getting_started, plugins'
-last_updated: 'October 3, 2016'
+last_updated: 'March 27, 2017'
 tags:
   - getting_started
   - plugins
@@ -18,16 +18,16 @@ The easiest and lowest entry point into creating a "plugin" for SLAPI.
 
 Just a simple script you wish to run as a bot command.
 
-It will write out the run: > portion into the appropriate file, mount, and run inside a container.
+It will write out the run: | portion into the appropriate file, mount, and run inside a container.
 
 ## Plugin w/ Embedded Script
 
-Will take the data from `write: >` and write it out to a file with the plugin name as filename and appropriate language extension
+Will take the data from `write: |` and write it out to a file with the plugin name as filename and appropriate language extension
 
 ### Minimum Requirements
 
-- example of file `on_call.yml`
-- This example uses ruby and will write out to on_call.rb
+-   Example of file `on_call.yml`
+-   This example uses ruby and will write out to on_call.rb
 
 ```yaml
 plugin:
@@ -56,8 +56,8 @@ plugin:
 
 ### All Available Options
 
-- example of file `list_schedules.yml`
-- This example uses python and will write out to schedules.py
+-   Example of file `list_schedules.yml`
+-   This example uses python and will write out to schedules.py
 
 ```yaml
 plugin:
@@ -66,7 +66,7 @@ plugin:
   description: "gets pagerduty schedules for configured account"
   help: # will be used to populate help options for schedules command
     schedules: "gets pagerduty schedules for configured account" # overrides the description set due to being the primary command for plugin.
-  write: >
+  write: |
     #!/usr/bin/env python
     import requests
 
@@ -128,49 +128,55 @@ plugin:
 
 Docker Image listed below that we utilize to run scripts in and the included 3rd party libraries.
 
-- Python:
+-   Bash/Shell:
+    -   Language Setting: `bash`, `shell`, or `sh`
 
-  - DockerHub: <https://hub.docker.com/r/slapi/python/>
-  - Github: <https://github.com/ImperialLabs/docker-python>
+-   Python:
+    -   Language Setting: `python` or `py`
+    -   DockerHub: <https://hub.docker.com/r/slapi/python/>
+    -   Github: <https://github.com/ImperialLabs/docker-python>
+    -   Installed Tools & Libraries
+        -   [HTTPie](https://github.com/jkbrzt/httpie)
+        -   [Arrow](https://github.com/crsmithdev/arrow)
+        -   [Requests](https://github.com/kennethreitz/requests)
+        -   [awscli](https://github.com/aws/aws-cli)
 
-  - Installed Tools & Libraries
+-   Ruby:
+    -   Language Setting: `ruby` or `rb`
+    -   DockerHub: <https://hub.docker.com/r/slapi/ruby/>
+    -   Github: <https://github.com/ImperialLabs/docker-ruby>
+    -   Installed Tools & Libraries
+        -   [httparty](http://johnnunemaker.com/httparty/)
 
-    - [HTTPie](https://github.com/jkbrzt/httpie)
-    - [Arrow](https://github.com/crsmithdev/arrow)
-    - [Requests](https://github.com/kennethreitz/requests)
-    - [awscli](https://github.com/aws/aws-cli)
+-   NodeJS:
+    -   Language Setting: `node`, `nodejs`, `javascript`, or `js`
+    -   DockerHub: <https://hub.docker.com/r/slapi/nodejs/>
+    -   Github: <https://github.com/ImperialLabs/docker-nodejs>
+    -   Installed Tools & Libraries
+        -   [Request](https://www.npmjs.com/package/request)
+        -   [Moment](https://www.npmjs.com/package/moment)
+        -   [Node Rest Client](https://www.npmjs.com/package/node-rest-client)
 
-- Ruby:
+-   PHP: (PENDING)
+    -   Installed Tools & Libraries
 
-  - DockerHub: <https://hub.docker.com/r/slapi/ruby/>
-  - Github: <https://github.com/ImperialLabs/docker-ruby>
-
-  - Installed Tools & Libraries
-
-    - [httparty](http://johnnunemaker.com/httparty/)
-
-- NodeJS:
-
-  - DockerHub: <https://hub.docker.com/r/slapi/nodejs/>
-  - Github: <https://github.com/ImperialLabs/docker-nodejs>
-
-  - Installed Tools & Libraries
-
-    - [Request](https://www.npmjs.com/package/request)
-    - [Moment](https://www.npmjs.com/package/moment)
-    - [Node Rest Client](https://www.npmjs.com/package/node-rest-client)
-
-- PHP: (PENDING)
-
-  - Installed Tools & Libraries
-
-- PowerShell: (PENDING)
-
-  - Installed Tools & Libraries
+-   PowerShell: (PENDING)
+    -   Installed Tools & Libraries
 
 ## Example Code used
 
-- [Pagerduty Ruby V2 Examples](https://github.com/PagerDuty/API_Ruby_Examples/tree/master/REST_API_v2)
-- [Pagerduty Python V2 Examples](https://github.com/PagerDuty/API_Python_Examples/tree/master/REST_API_v2)
+-   [Pagerduty Ruby V2 Examples](https://github.com/PagerDuty/API_Ruby_Examples/tree/master/REST_API_v2)
+-   [Pagerduty Python V2 Examples](https://github.com/PagerDuty/API_Python_Examples/tree/master/REST_API_v2)
+
+## Config Breakdown
+Extensive breakdown of the Script Type config options
+
+-   Plugin Level: `plugin:`
+    -   Type Setting; This lets Slapi know the type of plugin being loaded
+        -   `type: 'script'`
+    -   Language Setting; This is the setting used to determine the language of the image used. (see [above](#usable-languages-and-libraries) for supported languages)
+        -   `language: ruby`
+    -   Description Setting: Used to display next to help list of plugin, used as general overview of what plugin does (pending [issue](https://github.com/ImperialLabs/slapi/issues/51))
+        -   `description: "gets on-calls for pagerduty"`
 
 {% include links.html %}
