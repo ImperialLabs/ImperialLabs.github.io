@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="keywords" content=" news, blog, updates, release notes, announcements">
-<title>News | Imperial Labs Documentation</title>
+<meta name="keywords" content="step-by-stepframework,  getting_started, quick start">
+<title>Step By Step - Docker | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -94,12 +94,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- entries without drop-downs appear here -->
                 
-                
-                
-                <li class="active"><a href="news">News</a></li>
-                
-                
-                
                 <!-- entries with drop-downs appear here -->
                 <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
                 
@@ -109,7 +103,11 @@
                     <ul class="dropdown-menu">
                         
                         
-                        <li><a href="https://github.com/ImperialLabs/framework" target="_blank">Github Repo</a></li>
+                        <li><a href="https://github.com/ImperialLabs/slapi" target="_blank">SLAPI</a></li>
+                        
+                        
+                        
+                        <li><a href="https://github.com/ImperialLabs/slapin-test" target="_blank">Plugin (SLAPIN) Examples</a></li>
                         
                         
                     </ul>
@@ -121,7 +119,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the News page: ";
+var body = "I have some feedback about the Step By Step - Docker page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -148,7 +146,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="News">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="Step By Step - Docker">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -189,6 +187,56 @@ window.location.href = uri;
             
             
             <li><a href="slapi_landing.html">SLAPI Overview</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Quick Start</a>
+        <ul>
+            
+            
+            
+            <li><a href="quick_landing.html">01 - Step by Step</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="local_start.html">02 - Step by Step - Local</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="docker_start.html">02 - Step by Step - Docker</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="common_start.html">03 - Step by Step - Common</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="ruby_install.html">Installing Ruby</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="docker_install.html">Installing Docker</a></li>
             
             
             
@@ -251,13 +299,6 @@ window.location.href = uri;
             
             
             
-            
-            
-            <li><a href="api_plugins.html">API - Plugins</a></li>
-            
-            
-            
-            
         </ul>
         
         
@@ -292,7 +333,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">News</h1>
+   <h1 class="post-title-main">Step By Step - Docker</h1>
 </div>
 
 
@@ -302,6 +343,27 @@ window.location.href = uri;
    
 
     
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
 
     
 
@@ -309,33 +371,92 @@ window.location.href = uri;
 
     
 
-  <div class="home">
+    
 
-    <div class="post-list">
+  <h1 id="slapi-step-by-step-guide">SLAPI: Step By Step Guide</h1>
 
+<h2 id="docker-install--run">Docker Install &amp; Run</h2>
 
-    <section id="archive">
-        <h3>This year's posts</h3>
-        
-        
-        <ul class="this">
-            
-            <li><time>20 Jul</time><a href="/initial_post.html">Testing News</a></li>
-            
-        </ul>
-    </section>
+<p>There are several ways to do this via Docker, this is the quickest options. The rake tasks will generate a bot.local.yml for you at <code class="highlighter-rouge">./config/bot.local.yml</code></p>
 
+<p><strong>Note</strong> All files in the <code class="highlighter-rouge">./config</code> are ignored by git and docker builds with the exception of <code class="highlighter-rouge">bot.yml</code> and <code class="highlighter-rouge">environments.yml</code>.</p>
 
-    <hr/>
+<ul>
+  <li>
+    <p>Option 1: If ruby and rake are installed</p>
 
-
-
-
-
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SLACK_TOKEN</span><span class="o">=</span>xoxb-XXXXXXXXXXXX-TTTTTTTTTTTTTT
+rake docker
+</code></pre>
     </div>
+  </li>
+  <li>
+    <p>Option 2: If only Docker Machine &amp; Compose is installed</p>
+    <ul>
+      <li>Create a config and Start Bot
+        <ul>
+          <li>
+            <p>Create the following config at <code class="highlighter-rouge">./config/bot.local.yml</code></p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">adapter</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">slack</span>
+  <span class="s">token</span><span class="pi">:</span> <span class="s">$SLACK_TOKEN</span>
+
+<span class="c1"># Bot ConfigFile</span>
+<span class="s">bot</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">slapi</span>
+
+<span class="c1"># Admin Settings</span>
+<span class="s">admin</span><span class="pi">:</span> <span class="c1"># Future Feature</span>
+  <span class="s">users</span><span class="pi">:</span>
+
+<span class="c1"># Help Settings</span>
+<span class="s">help</span><span class="pi">:</span>
+  <span class="s">level</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="s">dm_user</span><span class="pi">:</span> <span class="s">false</span>
+
+<span class="s">plugins</span><span class="pi">:</span>
+  <span class="s">location</span><span class="pi">:</span> <span class="s1">'</span><span class="s">../../config/plugins/'</span>
+</code></pre>
+            </div>
+          </li>
+          <li>
+            <p>For Prebuilt: Run Docker Compose Up</p>
+
+            <div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker-compose -f docker-compose.yml up
+</code></pre>
+            </div>
+          </li>
+          <li>
+            <p>For Fresh Build: Run Docker Compose Up</p>
+
+            <div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker-compose -f slapi-build-compose.yml up
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Go to the <a href="https://imperiallabs.github.io/common_start.html">Common Start</a> for more</p>
+
 
 
     <div class="tags">
+        
+        <b>Tags: </b>
+        
+        
+        
+        
+        
+        <a href="tag_framework.html" class="btn btn-default navbar-btn cursorNorm" role="button">framework</a>
+        
+        
         
     </div>
 
@@ -348,7 +469,7 @@ window.location.href = uri;
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
- Site last generated: Mar 27, 2017 <br />
+<p>Page last updated:</span> March 29, 2017<br/> Site last generated: Mar 29, 2017 <br />
                 </div>
             </div>
 </footer>

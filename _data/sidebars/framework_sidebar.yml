@@ -13,6 +13,33 @@ entries:
             url: /slapi_landing.html
             output: web, pdf
 
+    - title: Quick Start
+      output: web, pdf
+      folderitems:
+          - title: 01 - Step by Step
+            url: /quick_landing.html
+            output: web, pdf
+
+          - title: 02 - Step by Step - Local
+            url: /local_start.html
+            output: web, pdf
+
+          - title: 02 - Step by Step - Docker
+            url: /docker_start.html
+            output: web, pdf
+
+          - title: 03 - Step by Step - Common
+            url: /common_start.html
+            output: web, pdf
+
+          - title: Installing Ruby
+            url: /ruby_install.html
+            output: web, pdf
+
+          - title: Installing Docker
+            url: /docker_install.html
+            output: web, pdf
+
     - title: Plugins
       output: web, pdf
       folderitems:
@@ -29,7 +56,6 @@ entries:
             url: /plugins_api.html
             output: web, pdf
 
-
     - title: API
       output: web, pdf
       folderitems:
@@ -39,10 +65,6 @@ entries:
 
           - title: API - Chat
             url: /api_chat.html
-            output: web, pdf
-
-          - title: API - Plugins
-            url: /api_plugins.html
             output: web, pdf
 
     - title: Brain

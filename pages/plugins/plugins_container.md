@@ -94,20 +94,20 @@ Extensive breakdown of the Container Type config options
 
 ### Docker/Container Config Options
 -   Plugin Level: `plugin:`
-    -   Type Setting; This lets Slapi know the type of plugin being loaded
+    -   Type Setting; This lets SLAPI know the type of plugin being loaded
         -   `type: 'container'`
-    -   Listen Type Setting: This lets Slapi know if the container being used is a one time run (build, run, print output, delete) or a persistent plugin (build, start, forward exec data, print output)
-        -   `listen_type: 'passive'`; Slapi will recognize `active` for persistent/active plugin or `passive` for disposable run at exec plugins
-    -   Managed Setting; This will let Slapi know if it's a plugin that it's suppose to start/manage
-        -   `managed: true`; `true` for letting Slapi know to manage the plugin or `false` to just let it be aware of it
-    -   Build Setting; This will have Slapi build from a Dockefile
+    -   Listen Type Setting: This lets SLAPI know if the container being used is a one time run (build, run, print output, delete) or a persistent plugin (build, start, forward exec data, print output)
+        -   `listen_type: 'passive'`; SLAPI will recognize `active` for persistent/active plugin or `passive` for disposable run at exec plugins
+    -   Managed Setting; This will let SLAPI know if it's a plugin that it's suppose to start/manage
+        -   `managed: true`; `true` for letting SLAPI know to manage the plugin or `false` to just let it be aware of it
+    -   Build Setting; This will have SLAPI build from a Dockefile
         -   `build: true`; `true` to be a from Dockerfile or `false`(default) to pull image
-    -   Mount Config Setting; Allows mounting the same config Slapi uses to build plugin inside plugin container
+    -   Mount Config Setting; Allows mounting the same config SLAPI uses to build plugin inside plugin container
         -   `mount_config: '/api/api.yml'` # Path to config inside container, Will check if not nil and will mount if this exists into
 -   Container Config Level (Nested Under Plugin): `config:`; This is for managed Container plugins
     -   Image Settings: Set `user/repo` to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; `domain.com/repo`), or use local build with just simple `repo` name
         -   `Image: 'slapi/schedules'`
-    -   Label Settings: Optional: Labels is what Slapi uses to build out the help list for `@bot help` & `@bot help plugin`
+    -   Label Settings: Optional: Labels is what SLAPI uses to build out the help list for `@bot help` & `@bot help plugin`
         -   `Labels: #nested hash`; You can enter the labels here or inside the container See [here](https://github.com/ImperialLabs/slapi/blob/master/examples/Dockerfile) for Dockerfile example or below for config example
             ```yaml
             Labels:

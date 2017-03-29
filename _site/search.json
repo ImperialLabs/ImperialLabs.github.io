@@ -15,19 +15,9 @@
 
 {
 "title": "API Overview",
-"tags": "getting_startedapi",
+"tags": "overviewapi",
 "keywords": "getting_started, api",
 "url": "api_landing.html",
-"summary": ""
-},
-
-
-
-{
-"title": "API Requirements for Plugins",
-"tags": "api",
-"keywords": "getting_started, api",
-"url": "api_plugins.html",
 "summary": ""
 },
 
@@ -38,6 +28,36 @@
 "tags": "getting_started",
 "keywords": "getting_started, brain",
 "url": "brain_landing.html",
+"summary": ""
+},
+
+
+
+{
+"title": "Step By Step - Common",
+"tags": "step-by-stepframework",
+"keywords": "getting_started, quick start",
+"url": "common_start.html",
+"summary": ""
+},
+
+
+
+{
+"title": "Step By Step - Docker Install",
+"tags": "step-by-stepdocker",
+"keywords": "getting_started, quick start",
+"url": "docker_install.html",
+"summary": ""
+},
+
+
+
+{
+"title": "Step By Step - Docker",
+"tags": "step-by-stepframework",
+"keywords": "getting_started, quick start",
+"url": "docker_start.html",
 "summary": ""
 },
 
@@ -56,20 +76,10 @@
 
 
 {
-"title": "News",
-"tags": "",
-"keywords": "news, blog, updates, release notes, announcements",
-"url": "news.html",
-"summary": ""
-},
-
-
-
-{
-"title": "News",
-"tags": "",
-"keywords": "news, blog, updates, release notes, announcements",
-"url": "news_archive.html",
+"title": "Step By Step - Local",
+"tags": "step-by-stepframework",
+"keywords": "getting_started, quick start",
+"url": "local_start.html",
 "summary": ""
 },
 
@@ -114,6 +124,26 @@
 },
 
 
+
+
+
+{
+"title": "Step By Step - Landing",
+"tags": "step-by-stepframework",
+"keywords": "getting_started, quick start",
+"url": "quick_landing.html",
+"summary": ""
+},
+
+
+
+{
+"title": "Step By Step - Ruby Install",
+"tags": "step-by-stepruby",
+"keywords": "getting_started, quick start",
+"url": "ruby_install.html",
+"summary": ""
+},
 
 
 

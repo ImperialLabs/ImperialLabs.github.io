@@ -172,7 +172,7 @@ Docker Image listed below that we utilize to run scripts in and the included 3rd
 Extensive breakdown of the Script Type config options
 
 -   Plugin Level: `plugin:`
-    -   Type Setting; This lets Slapi know the type of plugin being loaded
+    -   Type Setting; This lets SLAPI know the type of plugin being loaded
         -   `type: 'script'`
     -   Language Setting; This is the setting used to determine the language of the image used. (see [above](#usable-languages-and-libraries) for supported languages)
         -   `language: ruby`

@@ -7,7 +7,7 @@ tags:
   - framework
 sidebar: framework_sidebar
 permalink: slapi_landing.html
-folder: framework
+folder: slapi
 ---
 
 # SLAPI Overview (Pending Update)
