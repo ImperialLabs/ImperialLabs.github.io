@@ -32,11 +32,11 @@ entries:
             url: /common_start.html
             output: web, pdf
 
-          - title: Installing Ruby
+          - title: Extra - Installing Ruby
             url: /ruby_install.html
             output: web, pdf
 
-          - title: Installing Docker
+          - title: Extra - Installing Docker
             url: /docker_install.html
             output: web, pdf
 
@@ -46,13 +46,13 @@ entries:
           - title: Plugins Overview
             url: /plugins_landing.html
             output: web, pdf
-          - title: Script Plugin
+          - title: Plugin - Script
             url: /plugins_script.html
             output: web, pdf
-          - title: Container Plugin
+          - title: Plugin - Container
             url: /plugins_container.html
             output: web, pdf
-          - title: API Plugin
+          - title: Plugin - API
             url: /plugins_api.html
             output: web, pdf
 
@@ -65,6 +65,14 @@ entries:
 
           - title: API - Chat
             url: /api_chat.html
+            output: web, pdf
+
+          - title: API - Bot
+            url: /api_bot.html
+            output: web, pdf
+
+          - title: API - Plugin
+            url: /api_plugin.html
             output: web, pdf
 
     - title: Brain

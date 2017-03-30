@@ -229,14 +229,14 @@ window.location.href = uri;
             
             
             
-            <li><a href="ruby_install.html">Installing Ruby</a></li>
+            <li><a href="ruby_install.html">Extra - Installing Ruby</a></li>
             
             
             
             
             
             
-            <li><a href="docker_install.html">Installing Docker</a></li>
+            <li><a href="docker_install.html">Extra - Installing Docker</a></li>
             
             
             
@@ -258,21 +258,21 @@ window.location.href = uri;
             
             
             
-            <li class="active"><a href="plugins_script.html">Script Plugin</a></li>
+            <li class="active"><a href="plugins_script.html">Plugin - Script</a></li>
             
             
             
             
             
             
-            <li><a href="plugins_container.html">Container Plugin</a></li>
+            <li><a href="plugins_container.html">Plugin - Container</a></li>
             
             
             
             
             
             
-            <li><a href="plugins_api.html">API Plugin</a></li>
+            <li><a href="plugins_api.html">Plugin - API</a></li>
             
             
             
@@ -295,6 +295,20 @@ window.location.href = uri;
             
             
             <li><a href="api_chat.html">API - Chat</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="api_bot.html">API - Bot</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="api_plugin.html">API - Plugin</a></li>
             
             
             
@@ -390,9 +404,102 @@ $('#toc').on('click', 'a', function() {
   </tbody>
 </table>
 
-<h2 id="plugin-w-embedded-script">Plugin w/ Embedded Script</h2>
+<h2 id="script-type-plugin">Script Type Plugin</h2>
 
 <p>Will take the data from <code class="highlighter-rouge">write: |</code> and write it out to a file with the plugin name as filename and appropriate language extension</p>
+
+<h3 id="data-from-chat">Data From Chat</h3>
+
+<p>SLAPI will break down commands from chat in a couple different ways so you can utilize them in plugins.</p>
+
+<ul>
+  <li>Simple Data - Default Toggle - Chat Text Breakdown
+    <ul>
+      <li>SLAPI breaks the text into an array based on spaces
+        <ul>
+          <li>The following <code class="highlighter-rouge">@bot hello world</code> becomes
+            <ul>
+              <li>Dropped from Exec Data: <code class="highlighter-rouge">@bot</code></li>
+              <li>Plugin Name: <code class="highlighter-rouge">hello</code></li>
+              <li>ARG 01: <code class="highlighter-rouge">world</code></li>
+            </ul>
+          </li>
+          <li>
+            <p>So in the following script, the <code class="highlighter-rouge">${1}</code> arg/variable would be null with <code class="highlighter-rouge">@bot hello</code>. However, <code class="highlighter-rouge">${1}</code> would equal <code class="highlighter-rouge">world</code> if you did <code class="highlighter-rouge">@bot hello world</code></p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1">## File would be saved in ./config/plugins/hello.yml for this example</span>
+<span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+  <span class="s">language</span><span class="pi">:</span> <span class="s">bash</span>
+  <span class="s">listen_type</span><span class="pi">:</span> <span class="s">passive</span>
+  <span class="s">help</span><span class="pi">:</span>
+    <span class="s">world</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Says</span><span class="nv"> </span><span class="s">Hello</span><span class="nv"> </span><span class="s">World!"</span>
+  <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">simple</span><span class="nv"> </span><span class="s">hello</span><span class="nv"> </span><span class="s">world"</span>
+  <span class="s">write</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="no">#!/bin/bash</span>
+    <span class="no">if [ "${1}" == 'world' ]; then</span>
+        <span class="no">echo 'Hello World!'</span>
+    <span class="no">else</span>
+        <span class="no">echo 'No World for You!'</span>
+    <span class="no">fi</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li>The exception to this rule is items in <code class="highlighter-rouge">" "</code> <strong>double quotes</strong>, it will ignore the spaces for those items and consider anything in <strong>double quotes</strong> as a single arg
+        <ul>
+          <li>The following <code class="highlighter-rouge">@bot say "hello world"</code> becomes
+            <ul>
+              <li>Dropped from Exec Data: <code class="highlighter-rouge">@bot</code></li>
+              <li>Plugin Name: <code class="highlighter-rouge">say</code></li>
+              <li>ARG 01: <code class="highlighter-rouge">hello world</code></li>
+            </ul>
+          </li>
+          <li>
+            <p>So in the following script, the <code class="highlighter-rouge">$@</code> arg/variable would be null with <code class="highlighter-rouge">@bot say</code>. However, <code class="highlighter-rouge">$@</code> would equal <code class="highlighter-rouge">hello world</code> if you did <code class="highlighter-rouge">@bot say "hello world"</code></p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1">## File would be saved in ./config/plugins/say.yml for this example</span>
+<span class="s">plugin</span><span class="pi">:</span>
+  <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
+  <span class="s">language</span><span class="pi">:</span> <span class="s">bash</span>
+  <span class="s">listen_type</span><span class="pi">:</span> <span class="s">passive</span>
+  <span class="s">help</span><span class="pi">:</span>
+    <span class="s">anything</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Says</span><span class="nv"> </span><span class="s">whatever</span><span class="nv"> </span><span class="s">you</span><span class="nv"> </span><span class="s">enter!</span><span class="nv"> </span><span class="s">`@bot</span><span class="nv"> </span><span class="s">say</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">things!`"</span>
+  <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">simple</span><span class="nv"> </span><span class="s">say</span><span class="nv"> </span><span class="s">script"</span>
+  <span class="s">write</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="no">#!/bin/bash</span>
+    <span class="no">if [ -n "$@" ]; then</span>
+        <span class="no">echo $@</span>
+    <span class="no">else</span>
+        <span class="no">echo 'nothing to say!'</span>
+    <span class="no">fi</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Advanced Data - Configurable Toggle - Full JSON Payload
+    <ul>
+      <li>
+        <p>The following JSON payload is passed into the container Exec</p>
+
+        <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"message"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"C77777MMM"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="s2">"U66666NNN"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"text"</span><span class="p">:</span><span class="s2">"\u003c@U66666NNN\u003e say hello world"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ts"</span><span class="p">:</span><span class="s2">"1484927050.000300"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"team"</span><span class="p">:</span><span class="s2">"T88888BBB"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="minimum-requirements">Minimum Requirements</h3>
 
@@ -624,7 +731,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> March 27, 2017<br/> Site last generated: Mar 29, 2017 <br />
+<p>Page last updated:</span> March 30, 2017<br/> Site last generated: Mar 30, 2017 <br />
                 </div>
             </div>
 </footer>

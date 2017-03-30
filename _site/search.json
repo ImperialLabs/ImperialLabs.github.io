@@ -4,9 +4,19 @@
 
 
 {
+"title": "SLAPI Bot API",
+"tags": "api",
+"keywords": "api",
+"url": "api_bot.html",
+"summary": ""
+},
+
+
+
+{
 "title": "SLAPI Chat API",
 "tags": "api",
-"keywords": "getting_started, api",
+"keywords": "api",
 "url": "api_chat.html",
 "summary": ""
 },
@@ -18,6 +28,16 @@
 "tags": "overviewapi",
 "keywords": "getting_started, api",
 "url": "api_landing.html",
+"summary": ""
+},
+
+
+
+{
+"title": "SLAPI Plugin API",
+"tags": "api",
+"keywords": "api",
+"url": "api_plugin.html",
 "summary": ""
 },
 

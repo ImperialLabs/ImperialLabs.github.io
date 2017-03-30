@@ -42,7 +42,7 @@ curl -X POST -d "plugin=hello&key=world&value='what a world'" http://localhost:4
 
 ##### Query Key
 -   Endpoint: `$bot_url/v1/query_key`
--   Type: Get
+-   Type: Post
 -   Params (All Required):
     -   plugin: $plugin_name (Utilized as Hash Name)
     -   key: $key_name
@@ -51,12 +51,12 @@ curl -X POST -d "plugin=hello&key=world&value='what a world'" http://localhost:4
 **Examples**
 
 ```bash
-curl -X GET -H "plugin: hello" -H "key: world" http://localhost:9292/v1/query_key
+curl -X POST -d "plugin=hello&key=world" http://localhost:9292/v1/query_key
 ```
 
 ##### Query Hash
 -   Endpoint: `$bot_url/v1/query_hash`
--   Type: Get
+-   Type: Post
 -   Params (All Required):
     -   plugin: $plugin_name (Utilized as Hash Name)
 -   Returns Hash Keys
@@ -64,7 +64,7 @@ curl -X GET -H "plugin: hello" -H "key: world" http://localhost:9292/v1/query_ke
 **Examples**
 
 ```bash
-curl -X GET -H "plugin: hello" http://localhost:9292/v1/query_hash
+curl -X POST -d "plugin=hello" http://localhost:9292/v1/query_hash
 ```
 
 ##### Delete Key

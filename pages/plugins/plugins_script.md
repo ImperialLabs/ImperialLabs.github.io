@@ -1,7 +1,7 @@
 ---
 title: Script Based Plugins
 keywords: 'getting_started, plugins'
-last_updated: 'March 27, 2017'
+last_updated: 'March 30, 2017'
 tags:
   - getting_started
   - plugins
@@ -20,9 +20,77 @@ Just a simple script you wish to run as a bot command.
 
 It will write out the run: | portion into the appropriate file, mount, and run inside a container.
 
-## Plugin w/ Embedded Script
+## Script Type Plugin
 
 Will take the data from `write: |` and write it out to a file with the plugin name as filename and appropriate language extension
+
+### Data From Chat
+
+SLAPI will break down commands from chat in a couple different ways so you can utilize them in plugins.
+
+-   Simple Data - Default Toggle - Chat Text Breakdown
+    -   SLAPI breaks the text into an array based on spaces
+        -   The following `@bot hello world` becomes
+            -   Dropped from Exec Data: `@bot`
+            -   Plugin Name: `hello`
+            -   ARG 01: `world`
+        -   So in the following script, the `${1}` arg/variable would be null with `@bot hello`. However, `${1}` would equal `world` if you did `@bot hello world`
+
+            ```yaml
+            ## File would be saved in ./config/plugins/hello.yml for this example
+            plugin:
+              type: script
+              language: bash
+              listen_type: passive
+              help:
+                world: "Says Hello World!"
+              description: "simple hello world"
+              write: |
+                #!/bin/bash
+                if [ "${1}" == 'world' ]; then
+                    echo 'Hello World!'
+                else
+                    echo 'No World for You!'
+                fi
+            ```
+
+    -   The exception to this rule is items in `" "` **double quotes**, it will ignore the spaces for those items and consider anything in **double quotes** as a single arg
+        -   The following `@bot say "hello world"` becomes
+            -   Dropped from Exec Data: `@bot`
+            -   Plugin Name: `say`
+            -   ARG 01: `hello world`
+        -   So in the following script, the `$@` arg/variable would be null with `@bot say`. However, `$@` would equal `hello world` if you did `@bot say "hello world"`
+
+            ```yaml
+            ## File would be saved in ./config/plugins/say.yml for this example
+            plugin:
+              type: script
+              language: bash
+              listen_type: passive
+              help:
+                anything: "Says whatever you enter! `@bot say all the things!`"
+              description: "simple say script"
+              write: |
+                #!/bin/bash
+                if [ -n "$@" ]; then
+                    echo $@
+                else
+                    echo 'nothing to say!'
+                fi
+            ```
+-   Advanced Data - Configurable Toggle - Full JSON Payload
+    -   The following JSON payload is passed into the container Exec
+
+        ```json
+        {
+          "type":"message",
+          "channel":"C77777MMM",
+          "user":"U66666NNN",
+          "text":"\u003c@U66666NNN\u003e say hello world",
+          "ts":"1484927050.000300",
+          "team":"T88888BBB"
+        }
+        ```
 
 ### Minimum Requirements
 

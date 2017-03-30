@@ -1,7 +1,7 @@
 ---
 title: API Plugins
 keywords: 'getting_started, plugins'
-last_updated: 'March 27, 2017'
+last_updated: 'March 30, 2017'
 tags:
   - getting_started
   - plugins
@@ -199,7 +199,6 @@ Extensive breakdown of the API Type config options
                   HostIp: '0.0.0.0'
                   HostPort: '4700'
             ```
-
 
 
 {% include links.html %}

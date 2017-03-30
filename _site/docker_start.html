@@ -229,14 +229,14 @@ window.location.href = uri;
             
             
             
-            <li><a href="ruby_install.html">Installing Ruby</a></li>
+            <li><a href="ruby_install.html">Extra - Installing Ruby</a></li>
             
             
             
             
             
             
-            <li><a href="docker_install.html">Installing Docker</a></li>
+            <li><a href="docker_install.html">Extra - Installing Docker</a></li>
             
             
             
@@ -258,21 +258,21 @@ window.location.href = uri;
             
             
             
-            <li><a href="plugins_script.html">Script Plugin</a></li>
+            <li><a href="plugins_script.html">Plugin - Script</a></li>
             
             
             
             
             
             
-            <li><a href="plugins_container.html">Container Plugin</a></li>
+            <li><a href="plugins_container.html">Plugin - Container</a></li>
             
             
             
             
             
             
-            <li><a href="plugins_api.html">API Plugin</a></li>
+            <li><a href="plugins_api.html">Plugin - API</a></li>
             
             
             
@@ -295,6 +295,20 @@ window.location.href = uri;
             
             
             <li><a href="api_chat.html">API - Chat</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="api_bot.html">API - Bot</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="api_plugin.html">API - Plugin</a></li>
             
             
             
@@ -379,7 +393,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>There are several ways to do this via Docker, this is the quickest options. The rake tasks will generate a bot.local.yml for you at <code class="highlighter-rouge">./config/bot.local.yml</code></p>
 
-<p><strong>Note</strong> All files in the <code class="highlighter-rouge">./config</code> are ignored by git and docker builds with the exception of <code class="highlighter-rouge">bot.yml</code> and <code class="highlighter-rouge">environments.yml</code>.</p>
+<p><strong>Note</strong> All files in the <code class="highlighter-rouge">./config</code> are ignored by git and docker builds with the exception of <code class="highlighter-rouge">bot.yml</code> and <code class="highlighter-rouge">environments.yml</code>. However the docker compose will mount the <code class="highlighter-rouge">./config</code> file to the bot. So <code class="highlighter-rouge">bot.local.yml</code> will still work but will not be saved.</p>
 
 <ul>
   <li>
@@ -420,15 +434,19 @@ rake docker
 </code></pre>
             </div>
           </li>
+          <li>Linux Only: Just run docker, no Compose (Will be fastest docker option, but less secure)
+<code class="highlighter-rouge">bash
+docker run -d -p 4567:4567 -v /path/to/slapi/config/:/usr/src/slapi/config -v /var/run/docker.sock:/var/run/docker.sock --name slapi slapi/slapi
+</code></li>
           <li>
-            <p>For Prebuilt: Run Docker Compose Up</p>
+            <p>For Prebuilt: Run Docker Compose Up (More secure option, but plugins respond a little slow)</p>
 
             <div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker-compose -f docker-compose.yml up
 </code></pre>
             </div>
           </li>
           <li>
-            <p>For Fresh Build: Run Docker Compose Up</p>
+            <p>For Fresh Build: Run Docker Compose Up (More secure option, but plugins respond a little slow)</p>
 
             <div class="language-bash highlighter-rouge"><pre class="highlight"><code>docker-compose -f slapi-build-compose.yml up
 </code></pre>
@@ -469,7 +487,7 @@ rake docker
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> March 29, 2017<br/> Site last generated: Mar 29, 2017 <br />
+<p>Page last updated:</span> March 29, 2017<br/> Site last generated: Mar 30, 2017 <br />
                 </div>
             </div>
 </footer>

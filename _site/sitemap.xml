@@ -14,6 +14,12 @@
   
   
   <url>
+    <loc>/api_bot.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>/api_chat.html</loc>
   </url>
   
@@ -21,6 +27,12 @@
   
   <url>
     <loc>/api_landing.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/api_plugin.html</loc>
   </url>
   
   

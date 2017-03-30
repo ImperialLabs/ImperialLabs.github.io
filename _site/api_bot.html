@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="keywords" content="step-by-stepframework,  getting_started, quick start">
-<title>Step By Step - Common | Imperial Labs Documentation</title>
+<meta name="keywords" content="api,  api">
+<title>SLAPI Bot API | Imperial Labs Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -119,7 +119,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "Imperial Labs Documentation feedback";
-var body = "I have some feedback about the Step By Step - Common page: ";
+var body = "I have some feedback about the SLAPI Bot API page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -146,7 +146,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Step By Step - Common">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="SLAPI Bot API">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -222,7 +222,7 @@ window.location.href = uri;
             
             
             
-            <li class="active"><a href="common_start.html">03 - Step by Step - Common</a></li>
+            <li><a href="common_start.html">03 - Step by Step - Common</a></li>
             
             
             
@@ -301,7 +301,7 @@ window.location.href = uri;
             
             
             
-            <li><a href="api_bot.html">API - Bot</a></li>
+            <li class="active"><a href="api_bot.html">API - Bot</a></li>
             
             
             
@@ -347,7 +347,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Step By Step - Common</h1>
+   <h1 class="post-title-main">SLAPI Bot API</h1>
 </div>
 
 
@@ -387,93 +387,24 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="slapi-step-by-step-guide">SLAPI: Step By Step Guide</h1>
+  <h1 id="slapi-bot-endpoints">SLAPI Bot Endpoints</h1>
 
-<h2 id="common-steps">Common Steps</h2>
+<p>SLAPI only has 1 Bot specific endpoint. These type of endpoints will enable to access or manage the bot via API</p>
 
-<p>Regardless of how you start the bot, these tasks will be identical</p>
-
-<h3 id="interact">Interact</h3>
-
-<p>So you have your bot connected? What do you do now?</p>
-
-<p>Let’s try a few things. (replace <code class="highlighter-rouge">@bot</code> with whatever you named your bot)</p>
+<h2 id="slapi-ping">SLAPI Ping</h2>
 
 <ul>
-  <li>Check that your bot is working - <code class="highlighter-rouge">@bot ping</code>
-    <figure><img class="docimage" src="images/bot_ping.png" alt="" /></figure>
-  </li>
-  <li>See what plugins are installed = <code class="highlighter-rouge">@bot help</code>
-    <figure><img class="docimage" src="images/bot_help_empty.png" alt="" /></figure>
-  </li>
+  <li>Endpoint: <code class="highlighter-rouge">$bot_url/ping</code></li>
+  <li>Type: Get</li>
+  <li>Params: none</li>
+  <li>Returns: <code class="highlighter-rouge">pong</code></li>
 </ul>
 
-<p>Hmm, seems like we’re a little bland eh? Let’s try something more advanced.</p>
+<p><strong>Examples</strong></p>
 
-<h3 id="get-slapin">Get SLAPIN!</h3>
-
-<p>The bot is on and it’s responding. Let’s add a little something to it.</p>
-
-<p>Leave the bot running for this whole process, no need to restart it.</p>
-
-<ul>
-  <li>
-    <p>Take the following code and put it in the file <code class="highlighter-rouge">./config/plugins/hello.yml</code>, this is what we refer to as a <a href="https://imperiallabs.github.io/plugins_script.html">Script</a> type plugin.</p>
-
-    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">plugin</span><span class="pi">:</span>
-    <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
-    <span class="s">language</span><span class="pi">:</span> <span class="s">bash</span>
-    <span class="s">listen_type</span><span class="pi">:</span> <span class="s">passive</span>
-    <span class="s">help</span><span class="pi">:</span>
-      <span class="s">world</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Says</span><span class="nv"> </span><span class="s">Hello</span><span class="nv"> </span><span class="s">World!"</span>
-    <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">simple</span><span class="nv"> </span><span class="s">hello</span><span class="nv"> </span><span class="s">world"</span>
-    <span class="s">write</span><span class="pi">:</span> <span class="pi">|</span>
-      <span class="no">#!/bin/bash</span>
-      <span class="no">if [ "${1}" == 'world' ]; then</span>
-          <span class="no">echo 'Hello World!'</span>
-      <span class="no">else</span>
-          <span class="no">echo 'No World for You!'</span>
-      <span class="no">fi</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X GET http://localhost:4567/ping
 </code></pre>
-    </div>
-  </li>
-</ul>
-
-<p>Alright! our first plugin, or as we call them. SLAPINS!</p>
-
-<p>Now go back to chat and run the following</p>
-
-<ul>
-  <li><code class="highlighter-rouge">@bot reload</code>
-    <figure><img class="docimage" src="images/bot_reload.png" alt="" /></figure>
-  </li>
-  <li>Lets try <code class="highlighter-rouge">@bot help</code> again
-    <figure><img class="docimage" src="images/bot_help.png" alt="" /></figure>
-  </li>
-  <li>Oh, there’s a plugin now. Lets try it! <code class="highlighter-rouge">@bot hello</code>
-    <figure><img class="docimage" src="images/bot_hello.png" alt="" /></figure>
-  </li>
-  <li>Eh, my bad. Maybe I should read the instructions</li>
-  <li>Lets dig into the help and see what it can do <code class="highlighter-rouge">@bot help hello</code>
-    <figure><img class="docimage" src="images/bot_help_arg.png" alt="" /></figure>
-  </li>
-  <li>Ahh, so.. it helps to read instructions. Try <code class="highlighter-rouge">@bot hello world</code>
-    <figure><img class="docimage" src="images/bot_hello_world.png" alt="" /></figure>
-  </li>
-</ul>
-
-<p>What?! How easy was that? The built in reload option will let you add plugins on the fly or update them right from the chat room.</p>
-
-<h3 id="whats-next">What’s Next?</h3>
-
-<p>This is where the step by step ends for now.</p>
-
-<p>We are working on more documentation and plugins to cover.</p>
-
-<p>We will also have a roadmap showing what upcoming and in what order for SLAPI. Until then, kick the tires and think about turning your favorite cli tool into a SLAPIN or make your own from scratch!</p>
-
-<p>See the <a href="https://imperiallabs.github.io/plugins_landing.html">Plugins</a> section to get started</p>
-
+</div>
 
 
     <div class="tags">
@@ -482,9 +413,7 @@ $('#toc').on('click', 'a', function() {
         
         
         
-        
-        
-        <a href="tag_framework.html" class="btn btn-default navbar-btn cursorNorm" role="button">framework</a>
+        <a href="tag_api.html" class="btn btn-default navbar-btn cursorNorm" role="button">api</a>
         
         
         
@@ -499,7 +428,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> March 29, 2017<br/> Site last generated: Mar 30, 2017 <br />
+<p>Page last updated:</span> March 30, 2017<br/> Site last generated: Mar 30, 2017 <br />
                 </div>
             </div>
 </footer>

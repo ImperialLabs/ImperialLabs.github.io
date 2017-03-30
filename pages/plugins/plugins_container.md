@@ -1,7 +1,7 @@
 ---
 title: Container Plugin
 keywords: 'getting_started, plugins'
-last_updated: 'March 27, 2017'
+last_updated: 'March 30, 2017'
 tags:
   - getting_started
   - plugins
@@ -14,9 +14,45 @@ folder: plugins
 
 The 2nd level of plugins is a completely containerized container using docker.
 
-## Containerized Plugin
+## Container Type Plugin
 
 You have several options when it comes to containers. We are utilizing the [Docker API](https://github.com/swipely/docker-api#containers) Library and anything under `config:` will be passed without any alteration into the Container Creation.
+
+### Data From Chat
+
+SLAPI will break down commands from chat in a couple different ways so you can utilize them in plugins.
+
+-   Simple Data - Default Toggle - Chat Text Breakdown
+    -   SLAPI breaks the text into an array based on spaces
+        -   The following `@bot say hello world` becomes
+            -   **note** File would be saved in `./config/plugins/say.yml` for this example
+            -   Dropped from Exec Data: `@bot`
+            -   Plugin Name: `say`
+            -   ARG 01: `hello`
+            -   ARG 02: `world`
+    -   The exception to this rule is items in `" "` **double quotes**, it will ignore the spaces for those items and consider anything in **double quotes** as a single arg
+        -   The following `@bot say "hello world"` becomes
+            -   **note** File would be saved in `./config/plugins/say.yml` for this example
+            -   Dropped from Exec Data: `@bot`
+            -   Plugin Name: `say`
+            -   ARG 01: `hello world`
+    -   So taking this knowledge, this would function like doing
+        -   `docker exec -it say hello world`
+    -   This is why having an Entrypoint inside the container is very important.
+        -   Having the Entrypoint `bash /scripts/say.sh`
+        -   Would make having the entire exec above look like `bash /scripts/say.sh hello world`
+-   Advanced Data - Configurable Toggle - Full JSON Payload
+    -   The following JSON payload is passed into the container Exec
+
+        ```json
+        {
+          "type":"message",
+          "channel":"C77777MMM",
+          "user":"U66666NNN",
+          "text":"\u003c@U66666NNN\u003e say hello world",
+          "ts":"1484927050.000300",
+          "team":"T88888BBB"
+        }
 
 ### Minimum Requirements
 

@@ -1,7 +1,7 @@
 ---
 title: Plugins Overview
 keywords: 'getting_started, plugins'
-last_updated: 'March 27, 2017'
+last_updated: 'March 30, 2017'
 tags:
   - getting_started
   - plugins
@@ -12,14 +12,14 @@ folder: plugins
 
 # Overview
 
-We strive to make our plugins as simple as possible.
+We strive to make our plugins as simple as possible
 
-We have broken them down into 3 sections depending on your level of need and skill.
+We have broken them down into 3 sections depending on your level of need and skill
 
--   Script
--   Container
--   API Endpoint
+-   [Script](https://imperiallabs.github.io/plugins_script.html)
+-   [Container](https://imperiallabs.github.io/plugins_container.html)
+-   [API](https://imperiallabs.github.io/plugins_api.html)
 
-Please see requirements for what's needed for each.
+Please see requirements for what's needed for each
 
 {% include links.html %}

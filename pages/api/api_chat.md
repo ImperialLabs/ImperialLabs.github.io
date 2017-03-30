@@ -1,12 +1,17 @@
 ---
 title: SLAPI Chat API
-keywords: getting_started, api
-last_updated: July 21, 2016
+keywords: api
+last_updated: 'March 30, 2017'
 tags: [api]
 sidebar: framework_sidebar
 permalink: api_chat.html
 folder: api
 ---
+
+
+# SLAPI Chat Endpoints
+
+SLAPI Currently has 3 Chat specific endpoints, see below for specifics and how to test/use them
 
 ## SLAPI Speak
 -   Endpoint: `$bot_url/v1/speak`

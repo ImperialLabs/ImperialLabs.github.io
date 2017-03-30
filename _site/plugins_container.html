@@ -229,14 +229,14 @@ window.location.href = uri;
             
             
             
-            <li><a href="ruby_install.html">Installing Ruby</a></li>
+            <li><a href="ruby_install.html">Extra - Installing Ruby</a></li>
             
             
             
             
             
             
-            <li><a href="docker_install.html">Installing Docker</a></li>
+            <li><a href="docker_install.html">Extra - Installing Docker</a></li>
             
             
             
@@ -258,21 +258,21 @@ window.location.href = uri;
             
             
             
-            <li><a href="plugins_script.html">Script Plugin</a></li>
+            <li><a href="plugins_script.html">Plugin - Script</a></li>
             
             
             
             
             
             
-            <li class="active"><a href="plugins_container.html">Container Plugin</a></li>
+            <li class="active"><a href="plugins_container.html">Plugin - Container</a></li>
             
             
             
             
             
             
-            <li><a href="plugins_api.html">API Plugin</a></li>
+            <li><a href="plugins_api.html">Plugin - API</a></li>
             
             
             
@@ -295,6 +295,20 @@ window.location.href = uri;
             
             
             <li><a href="api_chat.html">API - Chat</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="api_bot.html">API - Bot</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="api_plugin.html">API - Plugin</a></li>
             
             
             
@@ -377,9 +391,73 @@ $('#toc').on('click', 'a', function() {
 
 <p>The 2nd level of plugins is a completely containerized container using docker.</p>
 
-<h2 id="containerized-plugin">Containerized Plugin</h2>
+<h2 id="container-type-plugin">Container Type Plugin</h2>
 
 <p>You have several options when it comes to containers. We are utilizing the <a href="https://github.com/swipely/docker-api#containers">Docker API</a> Library and anything under <code class="highlighter-rouge">config:</code> will be passed without any alteration into the Container Creation.</p>
+
+<h3 id="data-from-chat">Data From Chat</h3>
+
+<p>SLAPI will break down commands from chat in a couple different ways so you can utilize them in plugins.</p>
+
+<ul>
+  <li>Simple Data - Default Toggle - Chat Text Breakdown
+    <ul>
+      <li>SLAPI breaks the text into an array based on spaces
+        <ul>
+          <li>The following <code class="highlighter-rouge">@bot say hello world</code> becomes
+            <ul>
+              <li><strong>note</strong> File would be saved in <code class="highlighter-rouge">./config/plugins/say.yml</code> for this example</li>
+              <li>Dropped from Exec Data: <code class="highlighter-rouge">@bot</code></li>
+              <li>Plugin Name: <code class="highlighter-rouge">say</code></li>
+              <li>ARG 01: <code class="highlighter-rouge">hello</code></li>
+              <li>ARG 02: <code class="highlighter-rouge">world</code></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>The exception to this rule is items in <code class="highlighter-rouge">" "</code> <strong>double quotes</strong>, it will ignore the spaces for those items and consider anything in <strong>double quotes</strong> as a single arg
+        <ul>
+          <li>The following <code class="highlighter-rouge">@bot say "hello world"</code> becomes
+            <ul>
+              <li><strong>note</strong> File would be saved in <code class="highlighter-rouge">./config/plugins/say.yml</code> for this example</li>
+              <li>Dropped from Exec Data: <code class="highlighter-rouge">@bot</code></li>
+              <li>Plugin Name: <code class="highlighter-rouge">say</code></li>
+              <li>ARG 01: <code class="highlighter-rouge">hello world</code></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>So taking this knowledge, this would function like doing
+        <ul>
+          <li><code class="highlighter-rouge">docker exec -it say hello world</code></li>
+        </ul>
+      </li>
+      <li>This is why having an Entrypoint inside the container is very important.
+        <ul>
+          <li>Having the Entrypoint <code class="highlighter-rouge">bash /scripts/say.sh</code></li>
+          <li>Would make having the entire exec above look like <code class="highlighter-rouge">bash /scripts/say.sh hello world</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Advanced Data - Configurable Toggle - Full JSON Payload
+    <ul>
+      <li>
+        <p>The following JSON payload is passed into the container Exec</p>
+
+        <p>```json
+{
+  “type”:”message”,
+  “channel”:”C77777MMM”,
+  “user”:”U66666NNN”,
+  “text”:”\u003c@U66666NNN\u003e say hello world”,
+  “ts”:”1484927050.000300”,
+  “team”:”T88888BBB”
+}</p>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="minimum-requirements">Minimum Requirements</h3>
 
@@ -559,7 +637,7 @@ Env:
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> March 27, 2017<br/> Site last generated: Mar 29, 2017 <br />
+<p>Page last updated:</span> March 30, 2017<br/> Site last generated: Mar 30, 2017 <br />
                 </div>
             </div>
 </footer>
