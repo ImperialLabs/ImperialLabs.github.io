@@ -53,6 +53,7 @@ SLAPI will break down commands from chat in a couple different ways so you can u
           "ts":"1484927050.000300",
           "team":"T88888BBB"
         }
+        ```
 
 ### Minimum Requirements
 
