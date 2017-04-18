@@ -387,28 +387,117 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="slapi-overview-pending-update">SLAPI Overview (Pending Update)</h1>
+  <h1 id="slapi-overview">SLAPI Overview</h1>
 
-<p>SLAPI Bot (The ChatOps Framework) strives to accomplish is a truly code base agnostic approach to utilizing Bots and ChatOps.</p>
+<p>SLAPI Bot strives to accomplish is a truly code agnostic approach to utilizing Bots and ChatOps.</p>
 
-<p>What does SLAPI Stand For? Simple Lightweight API Bot or Slack API Bot (Though slack is only the first support chat system)</p>
+<p>What does SLAPI Stand For? Simple Lightweight API Bot or Slack API Bot</p>
 
-<p>How is this different than other Bots?</p>
+<h2 id="what-makes-slapi-different">What makes SLAPI Different?</h2>
 
 <ul>
-  <li>No requirement to use same code base or import a specific library</li>
-  <li>Utilizes Docker as a package management system</li>
-  <li>Allows external API endpoints as plugins (if configured properly see Plugin Requirements)</li>
-  <li>Handles routing and plugin management within the framework</li>
+  <li>Code Agnostic
+    <ul>
+      <li>If it runs on Linux (windows pending) or has an API endpoint, you can make it a plugin</li>
+    </ul>
+  </li>
+  <li>Plugin system
+    <ul>
+      <li>Scripts
+        <ul>
+          <li>YAML Configuration, just block out your script and SLAPI will put it in a Language Supported container</li>
+          <li>For more specifics and a list of supported Script Languages here <a href="https://imperiallabs.github.io/plugins_script.html">Script Plugins</a></li>
+        </ul>
+      </li>
+      <li>Containers
+        <ul>
+          <li>Whether it’s a Dockerfile, Dockerhub, or Private Registry. You can pull it down and use it with SLAPI</li>
+          <li>For more information and expectations of Dockerized plugins check out <a href="https://imperiallabs.github.io/plugins_container.html">Container Plugins</a></li>
+        </ul>
+      </li>
+      <li>API
+        <ul>
+          <li>API Endpoints welcome, we just require 2 specific endpoints for SLAPI to utilize any external service</li>
+          <li>See <a href="https://imperiallabs.github.io/plugins_api.html">API Plugins</a> for more information</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
-<figure><img class="docimage" src="images/design_overview.png" alt="" /></figure>
+<h2 id="what-does-this-look-like">What does this look like?</h2>
 
-<h1 id="framework-overview">Framework Overview</h1>
+<p>SLAPI is currently a Slack only bot</p>
 
-<p>Breakdown of how the framework will be built out and communicate within itself</p>
+<figure>  <img class="docimage" src="images/SLAPI_Overview.png" alt="" />   </figure>
 
-<figure><img class="docimage" src="images/framework_overview.png" alt="" /></figure>
+<ul>
+  <li>Diagram Breakdown
+    <ul>
+      <li>User Interface
+        <ul>
+          <li>General Users interact via Slack</li>
+        </ul>
+      </li>
+      <li>Bot
+        <ul>
+          <li>Slack Client
+            <ul>
+              <li>Handles all back and forth of User/Bot</li>
+            </ul>
+          </li>
+          <li>SLAPI Framework (Ruby and Sinatra Based)
+            <ul>
+              <li>Initializes Client, Brain, and Plugins</li>
+              <li>Creates API Interface for SLAPI</li>
+            </ul>
+          </li>
+          <li>Plugin management
+            <ul>
+              <li>Loads <code class="highlighter-rouge">./config/plugin/*.yaml</code> files and creates plugins based on <code class="highlighter-rouge">Type</code></li>
+            </ul>
+          </li>
+          <li>Brain
+            <ul>
+              <li>Runs Redis in a Container and creates API endpoints to interact with the Redis Client</li>
+              <li>See <a href="https://imperiallabs.github.io/brain_landing.html">here</a> for more info on the Brain</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Internal Plugins
+        <ul>
+          <li>Languages Exampled: Golang, Python, NodeJS; These are only a fraction of supported languages</li>
+          <li>These plugins come in two flavors
+            <ul>
+              <li>Script
+                <ul>
+                  <li>Simple Script that can be triggered by the bot via Chat</li>
+                </ul>
+              </li>
+              <li>Container/Docker
+                <ul>
+                  <li>For more complex Command Line style programs, several configurable options for type of data passed into plugin</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>External Plugins
+        <ul>
+          <li>Frameworks Exampled: Rails, Spark, Flask; Not limited to these, any API/Web Framework will work</li>
+        </ul>
+      </li>
+      <li>External Notifications
+        <ul>
+          <li>Internal plugins containers can be configured to have ports binded to them to use for monitoring endpoints</li>
+          <li>i.e.; Github Webhook Plugin that notifies room every time there is a PR or Merge.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 
 
@@ -437,7 +526,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> July 21, 2016<br/> Site last generated: Mar 31, 2017 <br />
+<p>Page last updated:</span> April 18, 2017<br/> Site last generated: Apr 18, 2017 <br />
                 </div>
             </div>
 </footer>

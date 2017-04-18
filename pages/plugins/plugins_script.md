@@ -1,7 +1,7 @@
 ---
 title: Script Based Plugins
 keywords: 'getting_started, plugins'
-last_updated: 'March 30, 2017'
+last_updated: 'April 18, 2017'
 tags:
   - getting_started
   - plugins
@@ -17,8 +17,6 @@ In a effort to make the simplest expandable bot possible we have several options
 The easiest and lowest entry point into creating a "plugin" for SLAPI.
 
 Just a simple script you wish to run as a bot command.
-
-It will write out the run: | portion into the appropriate file, mount, and run inside a container.
 
 ## Script Type Plugin
 
