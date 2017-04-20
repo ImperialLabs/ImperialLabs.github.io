@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title></title>
-        <description>Documentation for Imperial Labs Projects</description>
-        <link>/</link>
-        <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 18 Apr 2017 17:32:14 -0500</pubDate>
-        <lastBuildDate>Tue, 18 Apr 2017 17:32:14 -0500</lastBuildDate>
-        <generator>Jekyll v3.2.1</generator>
+        <description>Documentation for SLAPI</description>
+        <link>http://localhost:4005/</link>
+        <atom:link href="http://localhost:4005/feed.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Thu, 20 Apr 2017 17:29:17 -0500</pubDate>
+        <lastBuildDate>Thu, 20 Apr 2017 17:29:17 -0500</lastBuildDate>
+        <generator>Jekyll v3.4.3</generator>
         
         <item>
             <title>Testing News</title>
@@ -16,8 +16,8 @@
 &lt;p&gt;Future landing zone for our newest engineering feet. Minus exhaust port.&lt;/p&gt;
 </description>
             <pubDate>Wed, 20 Jul 2016 00:00:00 -0500</pubDate>
-            <link>/initial_post.html</link>
-            <guid isPermaLink="true">/initial_post.html</guid>
+            <link>http://localhost:4005/initial_post.html</link>
+            <guid isPermaLink="true">http://localhost:4005/initial_post.html</guid>
             
             <category>news</category>
             

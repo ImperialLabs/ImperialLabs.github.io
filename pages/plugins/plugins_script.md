@@ -166,19 +166,18 @@ Providing a script path will allow SLAPI to just mount and run the desired scrip
 
 ### Minimum Requirements
 
-- example of file `on_call.yml`
+-   example of file `on_call.yml`
 
 ```yaml
 plugin:
   type: script
   language: ruby
   description: "gets on-calls for pagerduty"
-  path: /path/to/scripts/on_call.rb
 ```
 
 ### All Available Options
 
-- example of file `list_schedules.yml`
+-   example of file `list_schedules.yml`
 
 ```yaml
 plugin:
@@ -187,7 +186,6 @@ plugin:
   description: "gets pagerduty schedules for configured account" # is overrode by the `help:` setting if configured with `command: desc`
   help: # will be used to populate help options for schedules command
     schedules: "gets pagerduty schedules for configured account" # overrides the description set due to being the primary command for plugin.
-  path: /path/to/scripts/schedules.py
 ```
 
 ## Usable Languages and Libraries
@@ -238,11 +236,38 @@ Docker Image listed below that we utilize to run scripts in and the included 3rd
 Extensive breakdown of the Script Type config options
 
 -   Plugin Level: `plugin:`
-    -   Type Setting; This lets SLAPI know the type of plugin being loaded
-        -   `type: 'script'`
-    -   Language Setting; This is the setting used to determine the language of the image used. (see [above](#usable-languages-and-libraries) for supported languages)
-        -   `language: ruby`
-    -   Description Setting: Used to display next to help list of plugin, used as general overview of what plugin does (pending [issue](https://github.com/ImperialLabs/slapi/issues/51))
-        -   `description: "gets on-calls for pagerduty"`
+    -   **Type Setting**
+        -   This lets SLAPI know the type of plugin being loaded
+        -   Setting:
+
+            ```yaml
+            type: 'script'
+            ```
+
+    -   **Language Setting**
+        -   This is the setting used to determine the language of the image used. (see [above](#usable-languages-and-libraries) for supported languages)
+        -   Setting:
+
+            ```yaml
+            language: ruby
+            ```
+    -   **Description Setting**
+        -   Used to display next to help list of plugin, used as general overview of what plugin does (pending [issue](https://github.com/ImperialLabs/slapi/issues/51))
+        -   Setting:
+
+            ```yaml
+            description: "gets on-calls for pagerduty"
+            ```
+
+    -   **Help**
+        -   This lets SLAPI know what options the plugin has
+        -   Setting:
+
+            ```yaml
+            help:
+              arg01: "Arg Description"
+              arg02: "Arg Description"
+            ```
+
 
 {% include links.html %}

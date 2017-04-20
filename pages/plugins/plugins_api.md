@@ -1,7 +1,6 @@
 ---
 title: API Plugins
 keywords: 'getting_started, plugins'
-last_updated: 'March 30, 2017'
 tags:
   - getting_started
   - plugins
@@ -108,10 +107,6 @@ plugin:
           -
             HostIp: '0.0.0.0'
             HostPort: '4700'
-    Tty: true # Set true/false for container TTY
-    RestartPolicy: # https://docs.docker.com/engine/reference/run/#/restart-policies---restart
-     Name: on-failure # no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount
-     MaximumRetryCount: 2 # Max number of time to attempt to restart container/plugin before quitting
 ```
 
 #### Dockerfile Build
@@ -145,10 +140,6 @@ plugin:
           -
             HostIp: '0.0.0.0'
             HostPort: '4700'
-    Tty: true # Set true/false for container TTY
-    RestartPolicy: # https://docs.docker.com/engine/reference/run/#/restart-policies---restart
-     Name: on-failure # no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount
-     MaximumRetryCount: 2 # Max number of time to attempt to restart container/plugin before quitting
 ```
 
 #### Basic Auth
@@ -175,30 +166,129 @@ Extensive breakdown of the API Type config options
 
 ### API Config Options
 -   Plugin Level: `plugin:`
-    -   Type Setting; This lets SLAPI know the type of plugin being loaded
-        -   `type: 'api'`
-    -   Managed Setting; This will let SLAPI know if it's a plugin that it's suppose to start/manage
-        -   `managed: true`; `true` for letting SLAPI know to manage the plugin or `false` to just let it be aware of it
-    -   Build Setting; This will have SLAPI build from a Dockefile (see [here]() for more info)
-    -   Mount Config Setting; Allows mounting the same config SLAPI uses to build plugin inside plugin container
-        -   `mount_config: '/api/api.yml'` # Path to config inside container, Will check if not nil and will mount if this exists into
--   API Config Level (Nested Under Plugin): `api_config:`
-    -   Endpoint Setting:
-        -   `endpoint: '/endpoint'`; This is a configurable endpoint for the SLAPI to post the [json payload](#command-endpoint) to
-        -   `url: 'http://localhost:4700'`; Only required for un-managed API setups. This lets the bot know the base URI for the plugin
-        -   Header Config Level: SLAPI will iterate over any key value under this hash to create the headers for HTTParty to use, below are some common use examples
-            -   `Content-Type: 'application/json'`; Just set the key/value exactly how you would for any header data. Right now only JSON is the supported content type or no content (ruby type hash)
-            -   `Authorization: 'Token "token=sdf9u3jnf9sj3r"'`; You can pass any support Authorization type into this header.
--   Container Config Level (Nested Under Plugin): `config:`; This is for managed API plugins and configure the container
-    -   Host Config Setting: `HostConfig:`; This is the most important and only require setting for a manged API Plugin
-        -   Port Bindings: You can use any port (except SLAPI or Brain (Redis) ports), The `0.0.0.0` is required though or it will not be accessible by the bot
+    -   **Type Setting**
+        -   This lets SLAPI know the type of plugin being loaded
+        -   Setting:
+
             ```yaml
-            PortBindings:
-              4700/tcp:
-                -
-                  HostIp: '0.0.0.0'
-                  HostPort: '4700'
+            type: 'api'
             ```
+
+    -   **Managed Setting**
+        -   This will let SLAPI know if it's a plugin that it's suppose to start/manage
+        -   `true` for letting SLAPI know to manage the plugin or `false` to just let it be aware of it
+        -   Setting:
+
+            ```yaml
+            managed: true
+            ```
+
+    -   **Build Setting**
+        -   This will have SLAPI build from a Dockefile
+        -   `true` to be a from Dockerfile or `false`(default) to pull image
+        -   Setting:
+
+            ```yaml
+            build: true
+            ```
+    -   **Mount Config Setting**
+        -   Allows mounting the same config SLAPI uses to build plugin inside plugin container
+        -   Path to config inside container, Will check if not nil and will mount if this exists into
+        -   Setting:
+
+            ```yaml
+            mount_config: '/api/api.yml'
+            ```
+
+-   **API Config Level** - All of these settings are nested  under
+
+    ```yaml
+    Plugin:
+       api_config:
+    ```
+
+    -   **Endpoint Setting**
+        -   This is a configurable endpoint for the SLAPI to post the [json payload](#command-endpoint) to
+        -   Setting:
+            ```yaml
+            endpoint: '/endpoint'
+            ```
+    -   **URL Setting**    
+        -   Only required for un-managed API setups. This lets the bot know the base URI for the plugin
+        -   Setting:
+
+            ```yaml
+            url: 'http://localhost:4700'
+            ```
+
+    -   **Basic Auth Setting**
+        -   If you wish to use basic auth, just configure it under `api_config` like so
+        -   Setting:
+
+            ```yaml
+            basic_auth:
+              username:
+              password:
+            ```
+
+    -   **Header Config Level** - All of these settings are nested  under
+
+          ```yaml
+          Plugin:
+             api_config:
+               headers:
+          ```
+        -   SLAPI will iterate over any key value under this hash to create the headers for HTTParty to use, below are some common use examples
+            -   **Content Type Setting**
+                -   Just set the key/value exactly how you would for any header data. Right now only JSON is the supported content type or no content (ruby type hash)
+                -   Setting:
+                    ```yaml
+                    Content-Type: 'application/json'
+                    ```
+            -   **Authorization Setting**
+                -   You can pass any support Authorization type into this header.
+                -   Setting:
+
+                    ```yaml
+                    Authorization: 'Token "token=sdf9u3jnf9sj3r"'
+                    ```
+
+-   **Container Config Level** - All of these settings are nested  under
+
+    ```yaml
+    Plugin:
+       config:
+    ```
+
+-   **Note**: This is for managed Container plugins
+-   **Image Setting**
+    -   Set `user/repo` to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; `domain.com/repo`), or use local build with just simple `repo` name
+    -   Setting:
+
+        ```yaml
+        Image: 'slapi/schedules'
+        ```
+
+    -   **Host Config Setting**
+        -   All of these settings are nested under (see below) and these directly affect the container
+
+            ```yaml
+            Plugin:
+               config:
+                 HostConfig:
+            ```
+
+            -   **Port Bindings Setting**
+                -   You can use any port (except SLAPI or Brain (Redis) ports), The `0.0.0.0` is required though or it will not be accessible by the bot
+                -   Settings:
+
+                    ```yaml
+                    PortBindings:
+                      8080/tcp:
+                        -
+                          HostIp: '0.0.0.0'
+                          HostPort: '8080'
+                    ```
 
 
 {% include links.html %}

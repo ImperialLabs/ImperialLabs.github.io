@@ -2,10 +2,10 @@
 output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
 
-topnav_title: Imperial Labs Documentation
+topnav_title: SLAPI Bot Documentation
 # this appears on the top navigation bar next to the home button
 
-site_title: Imperial Labs Documentation
+site_title: SLAPI Bot Documentation
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
 
 company_name: Imperial Labs
@@ -93,8 +93,11 @@ defaults:
 sidebars:
 - framework_sidebar
 
-description: "Documentation for Imperial Labs Projects"
+description: "Documentation for SLAPI"
 # the description is used in the feed.xml file
 
 # needed for sitemap.xml file only
 url:
+
+gems:
+- jekyll-last-modified-at

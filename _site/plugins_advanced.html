@@ -4,8 +4,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="keywords" content="getting_startedframework,  getting_started, framework">
-<title>SLAPI Overview | SLAPI Bot Documentation</title>
+<meta name="keywords" content="plugins,  plugins">
+<title>Plugins Advanced | SLAPI Bot Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -119,7 +119,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "SLAPI Bot Documentation feedback";
-var body = "I have some feedback about the SLAPI Overview page: ";
+var body = "I have some feedback about the Plugins Advanced page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:atat@hearst.com?subject=";
@@ -146,7 +146,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: 'search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="SLAPI Overview">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="Plugins Advanced">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -186,7 +186,7 @@ window.location.href = uri;
             
             
             
-            <li class="active"><a href="slapi_landing.html">SLAPI Overview</a></li>
+            <li><a href="slapi_landing.html">SLAPI Overview</a></li>
             
             
             
@@ -279,7 +279,7 @@ window.location.href = uri;
             
             
             
-            <li><a href="plugins_advanced.html">Plugin - Advanced</a></li>
+            <li class="active"><a href="plugins_advanced.html">Plugin - Advanced</a></li>
             
             
             
@@ -354,7 +354,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">SLAPI Overview</h1>
+   <h1 class="post-title-main">Plugins Advanced</h1>
 </div>
 
 
@@ -394,115 +394,236 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="slapi-overview">SLAPI Overview</h1>
+  <h1 id="overview">Overview</h1>
 
-<p>SLAPI Bot strives to accomplish is a truly code agnostic approach to utilizing Bots and ChatOps.</p>
+<p>Below are items that most likely only used in advanced or unique situations.</p>
 
-<p>What does SLAPI Stand For? Simple Lightweight API Bot or Slack API Bot</p>
+<h1 id="additional-plugin-config">Additional Plugin Config</h1>
 
-<h2 id="what-makes-slapi-different">What makes SLAPI Different?</h2>
+<h2 id="container-config-level">Container Config Level</h2>
+
+<p>These settings apply to both Container and API plugin (If managed) types</p>
+
+<p>You can use any option available to the <a href="https://github.com/swipely/docker-api">Docker API Client</a> that fits under config/host config</p>
 
 <ul>
-  <li>Code Agnostic
+  <li>
+    <p>All of these settings are nested under</p>
+
+    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Plugin</span><span class="pi">:</span>
+   <span class="s">config</span><span class="pi">:</span>
+</code></pre>
+    </div>
+
     <ul>
-      <li>If it runs on Linux (windows pending) or has an API endpoint, you can make it a plugin</li>
+      <li><strong>TTY Setting</strong>
+        <ul>
+          <li>Set true/false for container TTY</li>
+          <li>
+            <p>Settings:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Tty</span><span class="pi">:</span> <span class="s">true</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>User Setting</strong>
+        <ul>
+          <li>Set user in container to run commands as</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">User</span><span class="pi">:</span> <span class="s">user</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Volumes Setting</strong>
+        <ul>
+          <li>Set volumes to attach to container</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">/from/host:/to/container'</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Working Directory Setting</strong>
+        <ul>
+          <li>Change working directory inside container</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">WorkingDir</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/path/to/dir'</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
-  <li>Plugin system
-    <ul>
-      <li>Scripts
-        <ul>
-          <li>YAML Configuration, just block out your script and SLAPI will put it in a Language Supported container</li>
-          <li>For more specifics and a list of supported Script Languages here <a href="https://imperiallabs.github.io/plugins_script.html">Script Plugins</a></li>
-        </ul>
-      </li>
-      <li>Containers
-        <ul>
-          <li>Whether it’s a Dockerfile, Dockerhub, or Private Registry. You can pull it down and use it with SLAPI</li>
-          <li>For more information and expectations of Dockerized plugins check out <a href="https://imperiallabs.github.io/plugins_container.html">Container Plugins</a></li>
-        </ul>
-      </li>
-      <li>API
-        <ul>
-          <li>API Endpoints welcome, we just require 2 specific endpoints for SLAPI to utilize any external service</li>
-          <li>See <a href="https://imperiallabs.github.io/plugins_api.html">API Plugins</a> for more information</li>
-        </ul>
-      </li>
-    </ul>
+  <li>
+    <p>Example of these options in the plugin yml config</p>
+
+    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">config</span><span class="pi">:</span>
+  <span class="s">Tty</span><span class="pi">:</span> <span class="s">true</span>
+  <span class="s">User</span><span class="pi">:</span> <span class="s">user</span>
+  <span class="s">Volumes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">/from/host:/to/container'</span>
+  <span class="s">WorkingDir</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/path/to/dir'</span>
+</code></pre>
+    </div>
   </li>
 </ul>
 
-<h2 id="what-does-this-look-like">What does this look like?</h2>
-
-<p>SLAPI is currently a Slack only bot</p>
-
-<figure>  <img class="docimage" src="images/SLAPI_Overview.png" alt="" />   </figure>
+<h2 id="host-config-level">Host Config Level</h2>
 
 <ul>
-  <li>Diagram Breakdown
+  <li>
+    <p>All of these settings are nested under (see below) and these directly affect the container</p>
+
+    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Plugin</span><span class="pi">:</span>
+   <span class="s">config</span><span class="pi">:</span>
+     <span class="s">HostConfig</span><span class="pi">:</span>
+</code></pre>
+    </div>
+
     <ul>
-      <li>User Interface
+      <li><strong>DNS Setting</strong>
         <ul>
-          <li>General Users interact via Slack</li>
-        </ul>
-      </li>
-      <li>Bot
-        <ul>
-          <li>Slack Client
-            <ul>
-              <li>Handles all back and forth of User/Bot</li>
-            </ul>
-          </li>
-          <li>SLAPI Framework (Ruby and Sinatra Based)
-            <ul>
-              <li>Initializes Client, Brain, and Plugins</li>
-              <li>Creates API Interface for SLAPI</li>
-            </ul>
-          </li>
-          <li>Plugin management
-            <ul>
-              <li>Loads <code class="highlighter-rouge">./config/plugin/*.yaml</code> files and creates plugins based on <code class="highlighter-rouge">Type</code></li>
-            </ul>
-          </li>
-          <li>Brain
-            <ul>
-              <li>Runs Redis in a Container and creates API endpoints to interact with the Redis Client</li>
-              <li>See <a href="https://imperiallabs.github.io/brain_landing.html">here</a> for more info on the Brain</li>
-            </ul>
+          <li>Change DNS Servers for container</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Dns</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">8.8.8.8</span>
+  <span class="pi">-</span> <span class="s">8.8.4.4</span>
+</code></pre>
+            </div>
           </li>
         </ul>
       </li>
-      <li>Internal Plugins
+      <li><strong>DNS Search Setting</strong>
         <ul>
-          <li>Languages Exampled: Golang, Python, NodeJS; These are only a fraction of supported languages</li>
-          <li>These plugins come in two flavors
-            <ul>
-              <li>Script
-                <ul>
-                  <li>Simple Script that can be triggered by the bot via Chat</li>
-                </ul>
-              </li>
-              <li>Container/Docker
-                <ul>
-                  <li>For more complex Command Line style programs, several configurable options for type of data passed into plugin</li>
-                </ul>
-              </li>
-            </ul>
+          <li>Sets the domain names that are searched when a bare unqualified hostname is used inside of the container</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">DnsSearch</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">google.com</span>
+  <span class="pi">-</span> <span class="s">domain.com</span>
+</code></pre>
+            </div>
           </li>
         </ul>
       </li>
-      <li>External Plugins
+      <li><strong>Extra Hosts Setting</strong>
         <ul>
-          <li>Frameworks Exampled: Rails, Spark, Flask; Not limited to these, any API/Web Framework will work</li>
+          <li>Adds hosts to /etc/hosts in container</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code>
+<span class="s2">"</span><span class="s">hostname:127.0.0.1"</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>External Notifications
+      <li><strong>Links Setting</strong>
         <ul>
-          <li>Internal plugins containers can be configured to have ports binded to them to use for monitoring endpoints</li>
-          <li>i.e.; Github Webhook Plugin that notifies room every time there is a PR or Merge.</li>
+          <li>Using this option as you run a container gives the new container’s /etc/hosts an extra entry named ALIAS that points to the IP address of the container identified by CONTAINER_NAME_or_ID</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Links</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">container:hello'</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Publish All Ports Setting</strong>
+        <ul>
+          <li>True/False Publish all exposed ports to the host interfaces</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">PublishAllPorts</span><span class="pi">:</span> <span class="s">true</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Restart Policy Setting</strong>
+        <ul>
+          <li><a href="https://docs.docker.com/engine/reference/run/#/restart-policies---restart">https://docs.docker.com/engine/reference/run/#/restart-policies---restart</a></li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">RestartPolicy</span><span class="pi">:</span>
+  <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
+  <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quiting</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Read Only Root FS Setting</strong>
+        <ul>
+          <li>True/False to make Root Filesystem read only</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">ReadonlyRootfs</span><span class="pi">:</span> <span class="s">false</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Volumes From Setting</strong>
+        <ul>
+          <li>
+            <p>Volume From other Docker Containers</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">VolumesFrom</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">container1</span>
+  <span class="pi">-</span> <span class="s">container2</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
     </ul>
+  </li>
+  <li>
+    <p>Example of these options in the plugin yml config</p>
+
+    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">config</span><span class="pi">:</span>
+  <span class="s">HostConfig</span><span class="pi">:</span>
+    <span class="s">Dns</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">8.8.8.8</span>
+      <span class="pi">-</span> <span class="s">8.8.4.4</span>
+    <span class="s">ExtraHosts</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">hostname:127.0.0.1"</span>
+    <span class="s">Links</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">container:hello'</span>
+    <span class="s">NetworkMode</span><span class="pi">:</span> <span class="s">host</span>
+    <span class="s">PublishAllPorts</span><span class="pi">:</span> <span class="s">true</span>
+    <span class="s">RestartPolicy</span><span class="pi">:</span>
+     <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span>
+     <span class="s">MaximumRetryCount</span><span class="pi">:</span>
+    <span class="s">ReadonlyRootfs</span><span class="pi">:</span> <span class="s">false</span>
+    <span class="s">VolumesFrom</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">container1</span>
+      <span class="pi">-</span> <span class="s">container2</span>
+</code></pre>
+    </div>
   </li>
 </ul>
 
@@ -514,11 +635,7 @@ $('#toc').on('click', 'a', function() {
         
         
         
-        <a href="tag_getting_started.html" class="btn btn-default navbar-btn cursorNorm" role="button">getting_started</a>
-        
-        
-        
-        <a href="tag_framework.html" class="btn btn-default navbar-btn cursorNorm" role="button">framework</a>
+        <a href="tag_plugins.html" class="btn btn-default navbar-btn cursorNorm" role="button">plugins</a>
         
         
         
@@ -533,7 +650,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-                  <p>Page last updated:</span> Apr 18, 2017<br/> Site last generated: Apr 20, 2017 <br />
+                  <p>Page last updated:</span> Apr 20, 2017<br/> Site last generated: Apr 20, 2017 <br />
                 </div>
             </div>
 </footer>

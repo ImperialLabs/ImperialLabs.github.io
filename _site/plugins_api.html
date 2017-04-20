@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content="getting_startedplugins,  getting_started, plugins">
-<title>API Plugins | Imperial Labs Documentation</title>
+<title>API Plugins | SLAPI Bot Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -35,7 +35,7 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="" href="feed.xml">
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4005feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -88,7 +88,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> Imperial Labs Documentation</span></a>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> SLAPI Bot Documentation</span></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -118,7 +118,7 @@
             <!-- Send feedback function -->
 <script>
 function SendLinkByMail(href) {
-var subject= "Imperial Labs Documentation feedback";
+var subject= "SLAPI Bot Documentation feedback";
 var body = "I have some feedback about the API Plugins page: ";
 body += window.location.href;
 body += "";
@@ -277,6 +277,13 @@ window.location.href = uri;
             
             
             
+            
+            
+            <li><a href="plugins_advanced.html">Plugin - Advanced</a></li>
+            
+            
+            
+            
         </ul>
         
         
@@ -425,20 +432,21 @@ $('#toc').on('click', 'a', function() {
 <ul>
   <li>Endpoint is completely configurable, right now SLAPI only supports 1 to 1 config. (1 Endpoint to 1 Plugin)</li>
   <li>JSON Payload from SLAPI:
-<code class="highlighter-rouge">json
-{
-    "chat":
-    {
-      "type":"message",
-      "channel":"C77777MMM",
-      "user":"U66666NNN",
-      "text":"\u003c@U66666NNN\u003e plugin_name plugin_arg",
-      "ts":"1484927050.000300",
-      "team":"T88888BBB"
-    },
-    "command": "plugin_arg"
-}
-</code></li>
+    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"chat"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"message"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"C77777MMM"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user"</span><span class="p">:</span><span class="s2">"U66666NNN"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="s2">"\u003c@U66666NNN\u003e plugin_name plugin_arg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ts"</span><span class="p">:</span><span class="s2">"1484927050.000300"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"team"</span><span class="p">:</span><span class="s2">"T88888BBB"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plugin_arg"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+  </li>
   <li>Gives the option of just running the <code class="highlighter-rouge">plugin_arg</code> from <code class="highlighter-rouge">@bot plugin_name plugin_arg</code> or sorting through the entire data</li>
 </ul>
 
@@ -505,10 +513,6 @@ $('#toc').on('click', 'a', function() {
           <span class="pi">-</span>
             <span class="s">HostIp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.0.0.0'</span>
             <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">4700'</span>
-    <span class="s">Tty</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Set true/false for container TTY</span>
-    <span class="s">RestartPolicy</span><span class="pi">:</span> <span class="c1"># https://docs.docker.com/engine/reference/run/#/restart-policies---restart</span>
-     <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
-     <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quitting</span>
 </code></pre>
 </div>
 
@@ -553,10 +557,6 @@ $('#toc').on('click', 'a', function() {
           <span class="pi">-</span>
             <span class="s">HostIp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.0.0.0'</span>
             <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">4700'</span>
-    <span class="s">Tty</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Set true/false for container TTY</span>
-    <span class="s">RestartPolicy</span><span class="pi">:</span> <span class="c1"># https://docs.docker.com/engine/reference/run/#/restart-policies---restart</span>
-     <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
-     <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quitting</span>
 </code></pre>
 </div>
 
@@ -588,52 +588,192 @@ $('#toc').on('click', 'a', function() {
 <ul>
   <li>Plugin Level: <code class="highlighter-rouge">plugin:</code>
     <ul>
-      <li>Type Setting; This lets SLAPI know the type of plugin being loaded
+      <li><strong>Type Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">type: 'api'</code></li>
+          <li>This lets SLAPI know the type of plugin being loaded</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">type</span><span class="pi">:</span> <span class="s1">'</span><span class="s">api'</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Managed Setting; This will let SLAPI know if it’s a plugin that it’s suppose to start/manage
+      <li><strong>Managed Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">managed: true</code>; <code class="highlighter-rouge">true</code> for letting SLAPI know to manage the plugin or <code class="highlighter-rouge">false</code> to just let it be aware of it</li>
+          <li>This will let SLAPI know if it’s a plugin that it’s suppose to start/manage</li>
+          <li><code class="highlighter-rouge">true</code> for letting SLAPI know to manage the plugin or <code class="highlighter-rouge">false</code> to just let it be aware of it</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">managed</span><span class="pi">:</span> <span class="s">true</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Build Setting; This will have SLAPI build from a Dockefile (see <a href="">here</a> for more info)</li>
-      <li>Mount Config Setting; Allows mounting the same config SLAPI uses to build plugin inside plugin container
+      <li><strong>Build Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">mount_config: '/api/api.yml'</code> # Path to config inside container, Will check if not nil and will mount if this exists into</li>
+          <li>This will have SLAPI build from a Dockefile</li>
+          <li><code class="highlighter-rouge">true</code> to be a from Dockerfile or <code class="highlighter-rouge">false</code>(default) to pull image</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">build</span><span class="pi">:</span> <span class="s">true</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Mount Config Setting</strong>
+        <ul>
+          <li>Allows mounting the same config SLAPI uses to build plugin inside plugin container</li>
+          <li>Path to config inside container, Will check if not nil and will mount if this exists into</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">mount_config</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/api/api.yml'</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>API Config Level (Nested Under Plugin): <code class="highlighter-rouge">api_config:</code>
+  <li>
+    <p><strong>API Config Level</strong> - All of these settings are nested  under</p>
+
+    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Plugin</span><span class="pi">:</span>
+   <span class="s">api_config</span><span class="pi">:</span>
+</code></pre>
+    </div>
+
     <ul>
-      <li>Endpoint Setting:
+      <li><strong>Endpoint Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">endpoint: '/endpoint'</code>; This is a configurable endpoint for the SLAPI to post the <a href="#command-endpoint">json payload</a> to</li>
-          <li><code class="highlighter-rouge">url: 'http://localhost:4700'</code>; Only required for un-managed API setups. This lets the bot know the base URI for the plugin</li>
-          <li>Header Config Level: SLAPI will iterate over any key value under this hash to create the headers for HTTParty to use, below are some common use examples
+          <li>This is a configurable endpoint for the SLAPI to post the <a href="#command-endpoint">json payload</a> to</li>
+          <li>Setting:
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">endpoint</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/endpoint'</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>URL Setting</strong>
+        <ul>
+          <li>Only required for un-managed API setups. This lets the bot know the base URI for the plugin</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">url</span><span class="pi">:</span> <span class="s1">'</span><span class="s">http://localhost:4700'</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Basic Auth Setting</strong>
+        <ul>
+          <li>If you wish to use basic auth, just configure it under <code class="highlighter-rouge">api_config</code> like so</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">basic_auth</span><span class="pi">:</span>
+  <span class="s">username</span><span class="pi">:</span>
+  <span class="s">password</span><span class="pi">:</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Header Config Level</strong> - All of these settings are nested  under</p>
+
+        <div class="language-yaml highlighter-rouge"><pre class="highlight"><code>  <span class="s">Plugin</span><span class="pi">:</span>
+     <span class="s">api_config</span><span class="pi">:</span>
+       <span class="s">headers</span><span class="pi">:</span>
+</code></pre>
+        </div>
+        <ul>
+          <li>SLAPI will iterate over any key value under this hash to create the headers for HTTParty to use, below are some common use examples
             <ul>
-              <li><code class="highlighter-rouge">Content-Type: 'application/json'</code>; Just set the key/value exactly how you would for any header data. Right now only JSON is the supported content type or no content (ruby type hash)</li>
-              <li><code class="highlighter-rouge">Authorization: 'Token "token=sdf9u3jnf9sj3r"'</code>; You can pass any support Authorization type into this header.</li>
+              <li><strong>Content Type Setting</strong>
+                <ul>
+                  <li>Just set the key/value exactly how you would for any header data. Right now only JSON is the supported content type or no content (ruby type hash)</li>
+                  <li>Setting:
+                    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Content-Type</span><span class="pi">:</span> <span class="s1">'</span><span class="s">application/json'</span>
+</code></pre>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Authorization Setting</strong>
+                <ul>
+                  <li>You can pass any support Authorization type into this header.</li>
+                  <li>
+                    <p>Setting:</p>
+
+                    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Authorization</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Token</span><span class="nv"> </span><span class="s">"token=sdf9u3jnf9sj3r"'</span>
+</code></pre>
+                    </div>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>Container Config Level (Nested Under Plugin): <code class="highlighter-rouge">config:</code>; This is for managed API plugins and configure the container
+  <li>
+    <p><strong>Container Config Level</strong> - All of these settings are nested  under</p>
+
+    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Plugin</span><span class="pi">:</span>
+   <span class="s">config</span><span class="pi">:</span>
+</code></pre>
+    </div>
+  </li>
+  <li><strong>Note</strong>: This is for managed Container plugins</li>
+  <li><strong>Image Setting</strong>
     <ul>
-      <li>Host Config Setting: <code class="highlighter-rouge">HostConfig:</code>; This is the most important and only require setting for a manged API Plugin
+      <li>Set <code class="highlighter-rouge">user/repo</code> to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; <code class="highlighter-rouge">domain.com/repo</code>), or use local build with just simple <code class="highlighter-rouge">repo</code> name</li>
+      <li>
+        <p>Setting:</p>
+
+        <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slapi/schedules'</span>
+</code></pre>
+        </div>
+      </li>
+      <li><strong>Host Config Setting</strong>
         <ul>
-          <li>Port Bindings: You can use any port (except SLAPI or Brain (Redis) ports), The <code class="highlighter-rouge">0.0.0.0</code> is required though or it will not be accessible by the bot
-<code class="highlighter-rouge">yaml
-PortBindings:
-  4700/tcp:
-    -
-      HostIp: '0.0.0.0'
-      HostPort: '4700'
-</code></li>
+          <li>
+            <p>All of these settings are nested under (see below) and these directly affect the container</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Plugin</span><span class="pi">:</span>
+   <span class="s">config</span><span class="pi">:</span>
+     <span class="s">HostConfig</span><span class="pi">:</span>
+</code></pre>
+            </div>
+
+            <ul>
+              <li><strong>Port Bindings Setting</strong>
+                <ul>
+                  <li>You can use any port (except SLAPI or Brain (Redis) ports), The <code class="highlighter-rouge">0.0.0.0</code> is required though or it will not be accessible by the bot</li>
+                  <li>
+                    <p>Settings:</p>
+
+                    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">PortBindings</span><span class="pi">:</span>
+  <span class="s">8080/tcp</span><span class="pi">:</span>
+    <span class="pi">-</span>
+      <span class="s">HostIp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.0.0.0'</span>
+      <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">8080'</span>
+</code></pre>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
@@ -667,7 +807,7 @@ PortBindings:
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> March 30, 2017<br/> Site last generated: Apr 18, 2017 <br />
+                  <p>Page last updated:</span> Mar 30, 2017<br/> Site last generated: Apr 20, 2017 <br />
                 </div>
             </div>
 </footer>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content="getting_startedplugins,  getting_started, plugins">
-<title>Script Based Plugins | Imperial Labs Documentation</title>
+<title>Script Based Plugins | SLAPI Bot Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -35,7 +35,7 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="" href="feed.xml">
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4005feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -88,7 +88,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> Imperial Labs Documentation</span></a>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> SLAPI Bot Documentation</span></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -118,7 +118,7 @@
             <!-- Send feedback function -->
 <script>
 function SendLinkByMail(href) {
-var subject= "Imperial Labs Documentation feedback";
+var subject= "SLAPI Bot Documentation feedback";
 var body = "I have some feedback about the Script Based Plugins page: ";
 body += window.location.href;
 body += "";
@@ -273,6 +273,13 @@ window.location.href = uri;
             
             
             <li><a href="plugins_api.html">Plugin - API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="plugins_advanced.html">Plugin - Advanced</a></li>
             
             
             
@@ -580,7 +587,6 @@ $('#toc').on('click', 'a', function() {
   <span class="s">type</span><span class="pi">:</span> <span class="s">script</span>
   <span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
   <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">on-calls</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">pagerduty"</span>
-  <span class="s">path</span><span class="pi">:</span> <span class="s">/path/to/scripts/on_call.rb</span>
 </code></pre>
 </div>
 
@@ -596,7 +602,6 @@ $('#toc').on('click', 'a', function() {
   <span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># is overrode by the `help:` setting if configured with `command: desc`</span>
   <span class="s">help</span><span class="pi">:</span> <span class="c1"># will be used to populate help options for schedules command</span>
     <span class="s">schedules</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">pagerduty</span><span class="nv"> </span><span class="s">schedules</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">account"</span> <span class="c1"># overrides the description set due to being the primary command for plugin.</span>
-  <span class="s">path</span><span class="pi">:</span> <span class="s">/path/to/scripts/schedules.py</span>
 </code></pre>
 </div>
 
@@ -676,19 +681,54 @@ $('#toc').on('click', 'a', function() {
 <ul>
   <li>Plugin Level: <code class="highlighter-rouge">plugin:</code>
     <ul>
-      <li>Type Setting; This lets SLAPI know the type of plugin being loaded
+      <li><strong>Type Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">type: 'script'</code></li>
+          <li>This lets SLAPI know the type of plugin being loaded</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">type</span><span class="pi">:</span> <span class="s1">'</span><span class="s">script'</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Language Setting; This is the setting used to determine the language of the image used. (see <a href="#usable-languages-and-libraries">above</a> for supported languages)
+      <li><strong>Language Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">language: ruby</code></li>
+          <li>This is the setting used to determine the language of the image used. (see <a href="#usable-languages-and-libraries">above</a> for supported languages)</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Description Setting: Used to display next to help list of plugin, used as general overview of what plugin does (pending <a href="https://github.com/ImperialLabs/slapi/issues/51">issue</a>)
+      <li><strong>Description Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">description: "gets on-calls for pagerduty"</code></li>
+          <li>Used to display next to help list of plugin, used as general overview of what plugin does (pending <a href="https://github.com/ImperialLabs/slapi/issues/51">issue</a>)</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gets</span><span class="nv"> </span><span class="s">on-calls</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">pagerduty"</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Help</strong>
+        <ul>
+          <li>This lets SLAPI know what options the plugin has</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">help</span><span class="pi">:</span>
+  <span class="s">arg01</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Arg</span><span class="nv"> </span><span class="s">Description"</span>
+  <span class="s">arg02</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Arg</span><span class="nv"> </span><span class="s">Description"</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
     </ul>
@@ -722,7 +762,7 @@ $('#toc').on('click', 'a', function() {
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> April 18, 2017<br/> Site last generated: Apr 18, 2017 <br />
+                  <p>Page last updated:</span> Apr 18, 2017<br/> Site last generated: Apr 20, 2017 <br />
                 </div>
             </div>
 </footer>

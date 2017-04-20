@@ -7,77 +7,85 @@ entries:
   folders:
 
     - title: SLAPI
-      output: web, pdf
+      output: web
       folderitems:
           - title: SLAPI Overview
             url: /slapi_landing.html
-            output: web, pdf
+            output: web
 
     - title: Quick Start
-      output: web, pdf
+      output: web
       folderitems:
           - title: 01 - Step by Step
             url: /quick_landing.html
-            output: web, pdf
+            output: web
 
           - title: 02 - Step by Step - Local
             url: /local_start.html
-            output: web, pdf
+            output: web
 
           - title: 02 - Step by Step - Docker
             url: /docker_start.html
-            output: web, pdf
+            output: web
 
           - title: 03 - Step by Step - Common
             url: /common_start.html
-            output: web, pdf
+            output: web
 
           - title: Extra - Installing Ruby
             url: /ruby_install.html
-            output: web, pdf
+            output: web
 
           - title: Extra - Installing Docker
             url: /docker_install.html
-            output: web, pdf
+            output: web
 
     - title: Plugins
-      output: web, pdf
+      output: web
       folderitems:
           - title: Plugins Overview
             url: /plugins_landing.html
-            output: web, pdf
+            output: web
+
           - title: Plugin - Script
             url: /plugins_script.html
-            output: web, pdf
+            output: web
+
           - title: Plugin - Container
             url: /plugins_container.html
-            output: web, pdf
+            output: web
+
           - title: Plugin - API
             url: /plugins_api.html
-            output: web, pdf
+            output: web
+
+          - title: Plugin - Advanced
+            url: /plugins_advanced.html
+            output: web
+
 
     - title: API
-      output: web, pdf
+      output: web
       folderitems:
           - title: API Overview
             url: /api_landing.html
-            output: web, pdf
+            output: web
 
           - title: API - Chat
             url: /api_chat.html
-            output: web, pdf
+            output: web
 
           - title: API - Bot
             url: /api_bot.html
-            output: web, pdf
+            output: web
 
           - title: API - Plugin
             url: /api_plugin.html
-            output: web, pdf
+            output: web
 
     - title: Brain
-      output: web, pdf
+      output: web
       folderitems:
           - title: Brain Overview
             url: /brain_landing.html
-            output: web, pdf
+            output: web

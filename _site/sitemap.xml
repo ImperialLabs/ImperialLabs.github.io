@@ -3,7 +3,7 @@
   
   
   <url>
-    <loc>/initial_post.html</loc>
+    <loc>http://localhost:4005/initial_post.html</loc>
   </url>
   
   
@@ -14,87 +14,49 @@
   
   
   <url>
-    <loc>/api_bot.html</loc>
+    <loc>http://localhost:4005/api_bot.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/api_chat.html</loc>
+    <loc>http://localhost:4005/api_chat.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/api_landing.html</loc>
+    <loc>http://localhost:4005/api_landing.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/api_plugin.html</loc>
+    <loc>http://localhost:4005/api_plugin.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/brain_landing.html</loc>
+    <loc>http://localhost:4005/brain_landing.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/common_start.html</loc>
+    <loc>http://localhost:4005/common_start.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/docker_install.html</loc>
+    <loc>http://localhost:4005/docker_install.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/docker_start.html</loc>
-  </url>
-  
-  
-  
-  
-  
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/local_start.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/plugins_api.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/plugins_container.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/plugins_landing.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>/plugins_script.html</loc>
+    <loc>http://localhost:4005/docker_start.html</loc>
   </url>
   
   
@@ -102,13 +64,57 @@
   
   
   <url>
-    <loc>/quick_landing.html</loc>
+    <loc>http://localhost:4005/index.html</loc>
   </url>
   
   
   
   <url>
-    <loc>/ruby_install.html</loc>
+    <loc>http://localhost:4005/local_start.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4005/plugins_advanced.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4005/plugins_api.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4005/plugins_container.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4005/plugins_landing.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4005/plugins_script.html</loc>
+  </url>
+  
+  
+  
+  
+  
+  <url>
+    <loc>http://localhost:4005/quick_landing.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4005/ruby_install.html</loc>
   </url>
   
   
@@ -118,7 +124,7 @@
   
   
   <url>
-    <loc>/slapi_landing.html</loc>
+    <loc>http://localhost:4005/slapi_landing.html</loc>
   </url>
   
   

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content="getting_startedplugins,  getting_started, plugins">
-<title>Container Plugin | Imperial Labs Documentation</title>
+<title>Container Plugin | SLAPI Bot Documentation</title>
 <link rel="stylesheet" href="css/syntax.css">
 
 
@@ -35,7 +35,7 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="" href="feed.xml">
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4005feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -88,7 +88,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> Imperial Labs Documentation</span></a>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> SLAPI Bot Documentation</span></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -118,7 +118,7 @@
             <!-- Send feedback function -->
 <script>
 function SendLinkByMail(href) {
-var subject= "Imperial Labs Documentation feedback";
+var subject= "SLAPI Bot Documentation feedback";
 var body = "I have some feedback about the Container Plugin page: ";
 body += window.location.href;
 body += "";
@@ -273,6 +273,13 @@ window.location.href = uri;
             
             
             <li><a href="plugins_api.html">Plugin - API</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="plugins_advanced.html">Plugin - Advanced</a></li>
             
             
             
@@ -492,44 +499,20 @@ $('#toc').on('click', 'a', function() {
   <span class="s">mount_config</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/schedules/config/schedules.yml'</span> <span class="c1"># Path to config inside container, Will check if not nil and will mount if this exists into container</span>
   <span class="s">config</span><span class="pi">:</span>
     <span class="s">Image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slapi/schedules'</span> <span class="c1"># Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo</span>
-    <span class="s">Labels</span><span class="pi">:</span> <span class="s">labels</span>
+    <span class="s">Labels</span><span class="pi">:</span>
+      <span class="s">arg01</span><span class="pi">:</span> <span class="s2">"</span><span class="s">arg01</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">this"</span>
+      <span class="s">arg02</span><span class="pi">:</span> <span class="s2">"</span><span class="s">arg02</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">this"</span>
     <span class="s">Cmd</span><span class="pi">:</span> <span class="c1"># if you wish to override the container command</span>
     <span class="s">Entrypoint</span><span class="pi">:</span> <span class="c1"># if you wish to override the container entrypoint</span>
     <span class="s">Env</span><span class="pi">:</span> <span class="c1"># List of environment variables</span>
       <span class="pi">-</span> <span class="s">API='1u3042034'</span>
       <span class="pi">-</span> <span class="s">SERVICE='123490ijkd'</span>
-    <span class="s">ExposedPorts</span><span class="pi">:</span> <span class="c1"># Expose a port or a range of ports inside the container.</span>
-    <span class="s">8080/tcp</span><span class="pi">:</span> <span class="pi">{}</span>
-    <span class="s">Tty</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># Set true/false for container TTY</span>
-    <span class="s">User</span><span class="pi">:</span> <span class="s">user</span> <span class="c1"># Set user in container to run commands as</span>
-    <span class="s">Volumes</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s1">'</span><span class="s">/from/host:/to/container'</span>
-    <span class="s">WorkingDir</span><span class="pi">:</span> <span class="c1"># Change working directory inside container</span>
     <span class="s">HostConfig</span><span class="pi">:</span>
-      <span class="s">Dns</span><span class="pi">:</span> <span class="c1"># Set DNS if you wish</span>
-        <span class="pi">-</span> <span class="s">8.8.8.8</span>
-        <span class="pi">-</span> <span class="s">8.8.4.4</span>
-      <span class="s">DnsSearch</span><span class="pi">:</span> <span class="c1"># Sets the domain names that are searched when a bare unqualified hostname is used inside of the container</span>
-        <span class="pi">-</span> <span class="s">google.com</span>
-        <span class="pi">-</span> <span class="s">domain.com</span>
-      <span class="s">ExtraHosts</span><span class="pi">:</span> <span class="c1"># Add hosts to /etc/hosts</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">hostname:127.0.0.1"</span>
-      <span class="s">Links</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s1">'</span><span class="s">container:hello'</span> <span class="c1"># Using this option as you run a container gives the new container’s /etc/hosts an extra entry named ALIAS that points to the IP address of the container identified by CONTAINER_NAME_or_ID.</span>
-      <span class="s">NetworkMode</span><span class="pi">:</span> <span class="s">host</span> <span class="c1"># Connect a container to a network https://docs.docker.com/engine/reference/run/#/network-settings</span>
       <span class="s">PortBindings</span><span class="pi">:</span>
         <span class="s">8080/tcp</span><span class="pi">:</span>
           <span class="pi">-</span>
             <span class="s">HostIp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.0.0.0'</span>
             <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">8080'</span>
-      <span class="s">PublishAllPorts</span><span class="pi">:</span> <span class="s">true</span> <span class="c1"># True/False Publish all exposed ports to the host interfaces</span>
-      <span class="s">RestartPolicy</span><span class="pi">:</span> <span class="c1"># https://docs.docker.com/engine/reference/run/#/restart-policies---restart</span>
-       <span class="s">Name</span><span class="pi">:</span> <span class="s">on-failure</span> <span class="c1"># no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount</span>
-       <span class="s">MaximumRetryCount</span><span class="pi">:</span> <span class="s">2</span> <span class="c1"># Max number of time to attempt to restart container/plugin before quiting</span>
-      <span class="s">ReadonlyRootfs</span><span class="pi">:</span> <span class="s">false</span> <span class="c1"># True/False to make Root Filesystem read only</span>
-      <span class="s">VolumesFrom</span><span class="pi">:</span> <span class="c1"># Volume From other Docker Containers</span>
-        <span class="pi">-</span> <span class="s">container1</span>
-        <span class="pi">-</span> <span class="s">container2</span>
 </code></pre>
 </div>
 
@@ -537,76 +520,175 @@ $('#toc').on('click', 'a', function() {
 <p>Extensive breakdown of the Container Type config options</p>
 
 <ul>
-  <li>See <a href="https://imperiallabs.github.io/plugins_script.html#config-breakdown">here</a>) for General Config Options</li>
+  <li>See <a href="https://imperiallabs.github.io/plugins_script.html#config-breakdown">here</a> for General Config Options</li>
 </ul>
 
 <h3 id="dockercontainer-config-options">Docker/Container Config Options</h3>
 <ul>
-  <li>Plugin Level: <code class="highlighter-rouge">plugin:</code>
+  <li><strong>Plugin Level</strong>: <code class="highlighter-rouge">plugin:</code>
     <ul>
-      <li>Type Setting; This lets SLAPI know the type of plugin being loaded
+      <li><strong>Type Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">type: 'container'</code></li>
+          <li>This lets SLAPI know the type of plugin being loaded</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">type</span><span class="pi">:</span> <span class="s1">'</span><span class="s">container'</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Listen Type Setting: This lets SLAPI know if the container being used is a one time run (build, run, print output, delete) or a persistent plugin (build, start, forward exec data, print output)
+      <li><strong>Listen Type Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">listen_type: 'passive'</code>; SLAPI will recognize <code class="highlighter-rouge">active</code> for persistent/active plugin or <code class="highlighter-rouge">passive</code> for disposable run at exec plugins</li>
+          <li>This lets SLAPI know if the container being used is a one time run (build, run, print output, delete) or a persistent plugin (build, start, forward exec data, print output)</li>
+          <li>SLAPI will recognize <code class="highlighter-rouge">active</code> for persistent/active plugin or <code class="highlighter-rouge">passive</code> for disposable run at exec plugins</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">listen_type</span><span class="pi">:</span> <span class="s1">'</span><span class="s">passive'</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Managed Setting; This will let SLAPI know if it’s a plugin that it’s suppose to start/manage
+      <li><strong>Managed Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">managed: true</code>; <code class="highlighter-rouge">true</code> for letting SLAPI know to manage the plugin or <code class="highlighter-rouge">false</code> to just let it be aware of it</li>
+          <li>This will let SLAPI know if it’s a plugin that it’s suppose to start/manage</li>
+          <li><code class="highlighter-rouge">true</code> for letting SLAPI know to manage the plugin or <code class="highlighter-rouge">false</code> to just let it be aware of it</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">managed</span><span class="pi">:</span> <span class="s">true</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Build Setting; This will have SLAPI build from a Dockefile
+      <li><strong>Build Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">build: true</code>; <code class="highlighter-rouge">true</code> to be a from Dockerfile or <code class="highlighter-rouge">false</code>(default) to pull image</li>
+          <li>This will have SLAPI build from a Dockefile</li>
+          <li><code class="highlighter-rouge">true</code> to be a from Dockerfile or <code class="highlighter-rouge">false</code>(default) to pull image</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">build</span><span class="pi">:</span> <span class="s">true</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Mount Config Setting; Allows mounting the same config SLAPI uses to build plugin inside plugin container
+      <li><strong>Mount Config Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">mount_config: '/api/api.yml'</code> # Path to config inside container, Will check if not nil and will mount if this exists into</li>
+          <li>Allows mounting the same config SLAPI uses to build plugin inside plugin container</li>
+          <li>Path to config inside container, Will check if not nil and will mount if this exists into</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">mount_config</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/container/container.yml'</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>Container Config Level (Nested Under Plugin): <code class="highlighter-rouge">config:</code>; This is for managed Container plugins
+  <li>
+    <p><strong>Container Config Level</strong> - All of these settings are nested  under</p>
+
+    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Plugin</span><span class="pi">:</span>
+   <span class="s">config</span><span class="pi">:</span>
+</code></pre>
+    </div>
+  </li>
+  <li><strong>Note</strong>: This is for managed Container plugins
     <ul>
-      <li>Image Settings: Set <code class="highlighter-rouge">user/repo</code> to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; <code class="highlighter-rouge">domain.com/repo</code>), or use local build with just simple <code class="highlighter-rouge">repo</code> name
+      <li><strong>Image Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">Image: 'slapi/schedules'</code></li>
+          <li>Set <code class="highlighter-rouge">user/repo</code> to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; <code class="highlighter-rouge">domain.com/repo</code>), or use local build with just simple <code class="highlighter-rouge">repo</code> name</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slapi/schedules'</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Label Settings: Optional: Labels is what SLAPI uses to build out the help list for <code class="highlighter-rouge">@bot help</code> &amp; <code class="highlighter-rouge">@bot help plugin</code>
+      <li><strong>Label Setting</strong>
         <ul>
-          <li><code class="highlighter-rouge">Labels: #nested hash</code>; You can enter the labels here or inside the container See <a href="https://github.com/ImperialLabs/slapi/blob/master/examples/Dockerfile">here</a> for Dockerfile example or below for config example
-<code class="highlighter-rouge">yaml
-Labels:
-  arg01: "description"
-  arg02: "description"
-</code></li>
+          <li>Optional: Labels is what SLAPI uses to build out the help list for <code class="highlighter-rouge">@bot help</code> &amp; <code class="highlighter-rouge">@bot help plugin</code></li>
+          <li><code class="highlighter-rouge">Labels: #nested hash</code>; You can enter the labels here or inside the container See <a href="https://github.com/ImperialLabs/slapi/blob/master/examples/Dockerfile">here</a> for Dockerfile example or below for config example</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Labels</span><span class="pi">:</span>
+  <span class="s">arg01</span><span class="pi">:</span> <span class="s2">"</span><span class="s">description"</span>
+  <span class="s">arg02</span><span class="pi">:</span> <span class="s2">"</span><span class="s">description"</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Enterypoint Settings:
+      <li><strong>Entrypoint Settings</strong>
         <ul>
-          <li>Entrypoint: # if you wish to override the container entrypoint</li>
+          <li>If you wish to override the container entrypoint</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Entrypoint</span><span class="pi">:</span> <span class="s">/path/to/script.sh</span>
+</code></pre>
+            </div>
+          </li>
         </ul>
       </li>
-      <li>Environment Settings: Sets exported environment variables inside plugin container
+      <li><strong>Environment Settings</strong>
         <ul>
-          <li><code class="highlighter-rouge">Env: # nested array</code>; List of environment variables, see below for example
-```yaml
-Env:
+          <li>Sets exported environment variables inside plugin container</li>
+          <li><code class="highlighter-rouge">Env: # nested array</code>; List of environment variables, see below for example</li>
+          <li>
+            <p>Setting:</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Env</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">API='1u3042034'</span>
+  <span class="pi">-</span> <span class="s">SERVICE='123490ijkd'</span>
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Host Config Setting</strong>
+        <ul>
+          <li>
+            <p>All of these settings are nested under (see below) and these directly affect the container</p>
+
+            <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">Plugin</span><span class="pi">:</span>
+   <span class="s">config</span><span class="pi">:</span>
+     <span class="s">HostConfig</span><span class="pi">:</span>
+</code></pre>
+            </div>
+
             <ul>
-              <li>API=’1u3042034’</li>
-              <li>SERVICE=’123490ijkd’
-```</li>
+              <li><strong>Port Bindings Setting</strong>
+                <ul>
+                  <li>You can use any port (except SLAPI or Brain (Redis) ports), The <code class="highlighter-rouge">0.0.0.0</code> is required though or it will not be accessible by the bot</li>
+                  <li>
+                    <p>Settings:</p>
+
+                    <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">PortBindings</span><span class="pi">:</span>
+  <span class="s">8080/tcp</span><span class="pi">:</span>
+    <span class="pi">-</span>
+      <span class="s">HostIp</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.0.0.0'</span>
+      <span class="s">HostPort</span><span class="pi">:</span> <span class="s1">'</span><span class="s">8080'</span>
+</code></pre>
+                    </div>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
         </ul>
       </li>
-      <li>Host Config Setting: <code class="highlighter-rouge">HostConfig:</code>; This is the most important and only require setting for a manged API Plugin</li>
     </ul>
   </li>
 </ul>
@@ -638,7 +720,7 @@ Env:
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-<p>Page last updated:</span> March 30, 2017<br/> Site last generated: Apr 18, 2017 <br />
+                  <p>Page last updated:</span> Mar 31, 2017<br/> Site last generated: Apr 20, 2017 <br />
                 </div>
             </div>
 </footer>

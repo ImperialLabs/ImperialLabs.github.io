@@ -84,82 +84,138 @@ plugin:
   mount_config: '/schedules/config/schedules.yml' # Path to config inside container, Will check if not nil and will mount if this exists into container
   config:
     Image: 'slapi/schedules' # Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo
-    Labels: labels
+    Labels:
+      arg01: "arg01 does this"
+      arg02: "arg02 does this"
     Cmd: # if you wish to override the container command
     Entrypoint: # if you wish to override the container entrypoint
     Env: # List of environment variables
       - API='1u3042034'
       - SERVICE='123490ijkd'
-    ExposedPorts: # Expose a port or a range of ports inside the container.
-    8080/tcp: {}
-    Tty: true # Set true/false for container TTY
-    User: user # Set user in container to run commands as
-    Volumes:
-      - '/from/host:/to/container'
-    WorkingDir: # Change working directory inside container
     HostConfig:
-      Dns: # Set DNS if you wish
-        - 8.8.8.8
-        - 8.8.4.4
-      DnsSearch: # Sets the domain names that are searched when a bare unqualified hostname is used inside of the container
-        - google.com
-        - domain.com
-      ExtraHosts: # Add hosts to /etc/hosts
-        - "hostname:127.0.0.1"
-      Links:
-        - 'container:hello' # Using this option as you run a container gives the new container’s /etc/hosts an extra entry named ALIAS that points to the IP address of the container identified by CONTAINER_NAME_or_ID.
-      NetworkMode: host # Connect a container to a network https://docs.docker.com/engine/reference/run/#/network-settings
       PortBindings:
         8080/tcp:
           -
             HostIp: '0.0.0.0'
             HostPort: '8080'
-      PublishAllPorts: true # True/False Publish all exposed ports to the host interfaces
-      RestartPolicy: # https://docs.docker.com/engine/reference/run/#/restart-policies---restart
-       Name: on-failure # no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount
-       MaximumRetryCount: 2 # Max number of time to attempt to restart container/plugin before quiting
-      ReadonlyRootfs: false # True/False to make Root Filesystem read only
-      VolumesFrom: # Volume From other Docker Containers
-        - container1
-        - container2
 ```
 
 ## Config Breakdown
 Extensive breakdown of the Container Type config options
 
--   See [here](https://imperiallabs.github.io/plugins_script.html#config-breakdown)) for General Config Options
+-   See [here](https://imperiallabs.github.io/plugins_script.html#config-breakdown) for General Config Options
 
 ### Docker/Container Config Options
--   Plugin Level: `plugin:`
-    -   Type Setting; This lets SLAPI know the type of plugin being loaded
-        -   `type: 'container'`
-    -   Listen Type Setting: This lets SLAPI know if the container being used is a one time run (build, run, print output, delete) or a persistent plugin (build, start, forward exec data, print output)
-        -   `listen_type: 'passive'`; SLAPI will recognize `active` for persistent/active plugin or `passive` for disposable run at exec plugins
-    -   Managed Setting; This will let SLAPI know if it's a plugin that it's suppose to start/manage
-        -   `managed: true`; `true` for letting SLAPI know to manage the plugin or `false` to just let it be aware of it
-    -   Build Setting; This will have SLAPI build from a Dockefile
-        -   `build: true`; `true` to be a from Dockerfile or `false`(default) to pull image
-    -   Mount Config Setting; Allows mounting the same config SLAPI uses to build plugin inside plugin container
-        -   `mount_config: '/api/api.yml'` # Path to config inside container, Will check if not nil and will mount if this exists into
--   Container Config Level (Nested Under Plugin): `config:`; This is for managed Container plugins
-    -   Image Settings: Set `user/repo` to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; `domain.com/repo`), or use local build with just simple `repo` name
-        -   `Image: 'slapi/schedules'`
-    -   Label Settings: Optional: Labels is what SLAPI uses to build out the help list for `@bot help` & `@bot help plugin`
+-   **Plugin Level**: `plugin:`
+    -   **Type Setting**
+        -   This lets SLAPI know the type of plugin being loaded
+        -   Setting:
+
+            ```yaml
+            type: 'container'
+            ```
+
+    -   **Listen Type Setting**
+        -   This lets SLAPI know if the container being used is a one time run (build, run, print output, delete) or a persistent plugin (build, start, forward exec data, print output)
+        -   SLAPI will recognize `active` for persistent/active plugin or `passive` for disposable run at exec plugins
+        -   Setting:
+
+            ```yaml
+            listen_type: 'passive'
+            ```
+
+    -   **Managed Setting**
+        -   This will let SLAPI know if it's a plugin that it's suppose to start/manage
+        -   `true` for letting SLAPI know to manage the plugin or `false` to just let it be aware of it
+        -   Setting:
+
+            ```yaml
+            managed: true
+            ```
+
+    -   **Build Setting**
+        -   This will have SLAPI build from a Dockefile
+        -   `true` to be a from Dockerfile or `false`(default) to pull image
+        -   Setting:
+
+            ```yaml
+            build: true
+            ```
+
+    -   **Mount Config Setting**
+        -   Allows mounting the same config SLAPI uses to build plugin inside plugin container
+        -   Path to config inside container, Will check if not nil and will mount if this exists into
+        -   Setting:
+
+            ```yaml
+            mount_config: '/container/container.yml'
+            ```
+
+-   **Container Config Level** - All of these settings are nested  under
+
+    ```yaml
+    Plugin:
+       config:
+    ```
+
+-   **Note**: This is for managed Container plugins
+    -   **Image Setting**
+        -   Set `user/repo` to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; `domain.com/repo`), or use local build with just simple `repo` name
+        -   Setting:
+
+            ```yaml
+            Image: 'slapi/schedules'
+            ```
+
+    -   **Label Setting**
+        -   Optional: Labels is what SLAPI uses to build out the help list for `@bot help` & `@bot help plugin`
         -   `Labels: #nested hash`; You can enter the labels here or inside the container See [here](https://github.com/ImperialLabs/slapi/blob/master/examples/Dockerfile) for Dockerfile example or below for config example
+        -   Setting:
+
             ```yaml
             Labels:
               arg01: "description"
               arg02: "description"
             ```
-    -   Enterypoint Settings:
-        -   Entrypoint: # if you wish to override the container entrypoint
-    -   Environment Settings: Sets exported environment variables inside plugin container
+
+    -   **Entrypoint Settings**
+        -   If you wish to override the container entrypoint
+        -   Setting:
+
+            ```yaml
+            Entrypoint: /path/to/script.sh
+            ```
+
+    -   **Environment Settings**
+        -   Sets exported environment variables inside plugin container
         -   `Env: # nested array`; List of environment variables, see below for example
+        -   Setting:
+
             ```yaml
             Env:
               - API='1u3042034'
               - SERVICE='123490ijkd'
             ```
-    -   Host Config Setting: `HostConfig:`; This is the most important and only require setting for a manged API Plugin
+
+    -   **Host Config Setting**
+        -   All of these settings are nested under (see below) and these directly affect the container
+
+            ```yaml
+            Plugin:
+               config:
+                 HostConfig:
+            ```
+
+            -   **Port Bindings Setting**
+                -   You can use any port (except SLAPI or Brain (Redis) ports), The `0.0.0.0` is required though or it will not be accessible by the bot
+                -   Settings:
+
+                    ```yaml
+                    PortBindings:
+                      8080/tcp:
+                        -
+                          HostIp: '0.0.0.0'
+                          HostPort: '8080'
+                    ```
 
 {% include links.html %}
