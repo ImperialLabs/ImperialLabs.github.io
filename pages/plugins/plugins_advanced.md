@@ -106,8 +106,8 @@ You can use any option available to the [Docker API Client](https://github.com/s
         -   Setting:
 
             ```yaml
-
-            "hostname:127.0.0.1"
+            ExtraHosts:
+              - "hostname:127.0.0.1"
             ```
 
     -   **Links Setting**
