@@ -98,6 +98,3 @@ description: "Documentation for SLAPI"
 
 # needed for sitemap.xml file only
 url:
-
-gems:
-- jekyll-last-modified-at

@@ -1,7 +1,7 @@
 ---
 title: SLAPI Overview
 keywords: 'getting_started, framework'
-last_updated: 'April 18, 2017'
+last_updated: { modified_time }
 tags:
   - getting_started
   - framework
