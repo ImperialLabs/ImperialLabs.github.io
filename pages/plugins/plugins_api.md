@@ -96,11 +96,11 @@ plugin:
   managed: true
   api_config:
     endpoint: '/endpoint'
-    # headers: # Enter as normal HTTP headers, Key: Value
-    #   Content-Type: # Set content type
-    #   Authorization: # Use for tokens
+    headers: # Enter as normal HTTP headers, Key: Value
+      Content-Type: # Set content type
+      Authorization: # Use for tokens
   config:
-    Image: 'SLAPI/SLAPIn-test:api' # Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo
+    Image: 'SLAPI/slapin-test:api' # Enter user/repo (standard docker pull procedures), you can also pull from a private repo via domain.com/repo
     HostConfig:
       PortBindings:
         4700/tcp:
@@ -119,8 +119,8 @@ This option will allow an API plugin to be managed and built from a Dockerfile.
 -   Plugin Config Location: `config/plugins/plugin_name.yml`
     -   plugin_name: whatever name you wish your plugin to be accessed as. (i.e.; `@bot plugin_name`)
 -   Docker File Location: `config/plugins/plugin_name/Dockerfile`
-    -   plugin_name: same as the `plugin_name.yml`. See [api spec fixture config](https://github.com/ImperialLabs/SLAPI/blob/api_plugin/spec/fixtures/plugins/api.yml) for working example.
-    -   Treat the `plugin_name` folder as a regular docker folder. See [api spec fixture directory](https://github.com/ImperialLabs/SLAPI/tree/api_plugin/spec/fixtures/plugins/api) for a working example.
+    -   plugin_name: same as the `plugin_name.yml`. See [api spec fixture config](https://github.com/ImperialLabs/slapi/blob/master/spec/fixtures/plugins/api.yml) for working example.
+    -   Treat the `plugin_name` folder as a regular docker folder. See [api spec fixture directory](https://github.com/ImperialLabs/slapi/tree/master/spec/fixtures/plugins/api) for a working example.
 
 ```yaml
 ---
@@ -168,6 +168,7 @@ Extensive breakdown of the API Type config options
 -   Plugin Level: `plugin:`
     -   **Type Setting**
         -   This lets SLAPI know the type of plugin being loaded
+        -   Default: `nil`
         -   Setting:
 
             ```yaml
@@ -177,6 +178,7 @@ Extensive breakdown of the API Type config options
     -   **Managed Setting**
         -   This will let SLAPI know if it's a plugin that it's suppose to start/manage
         -   `true` for letting SLAPI know to manage the plugin or `false` to just let it be aware of it
+        -   Default: `false`
         -   Setting:
 
             ```yaml
@@ -185,7 +187,8 @@ Extensive breakdown of the API Type config options
 
     -   **Build Setting**
         -   This will have SLAPI build from a Dockefile
-        -   `true` to be a from Dockerfile or `false`(default) to pull image
+        -   `true` to be a from Dockerfile or `false` to pull image
+        -   Default: `false`
         -   Setting:
 
             ```yaml
@@ -193,7 +196,8 @@ Extensive breakdown of the API Type config options
             ```
     -   **Mount Config Setting**
         -   Allows mounting the same config SLAPI uses to build plugin inside plugin container
-        -   Path to config inside container, Will check if not nil and will mount if this exists into
+        -   Path configured is for container side only, it will mount the current plugin config to the container under that path for the plugin to use
+        -   Default: `nil`
         -   Setting:
 
             ```yaml
@@ -209,12 +213,14 @@ Extensive breakdown of the API Type config options
 
     -   **Endpoint Setting**
         -   This is a configurable endpoint for the SLAPI to post the [json payload](#command-endpoint) to
+        -   Default: `nil`
         -   Setting:
             ```yaml
             endpoint: '/endpoint'
             ```
     -   **URL Setting**    
         -   Only required for un-managed API setups. This lets the bot know the base URI for the plugin
+        -   Default: `nil`
         -   Setting:
 
             ```yaml
@@ -222,7 +228,8 @@ Extensive breakdown of the API Type config options
             ```
 
     -   **Basic Auth Setting**
-        -   If you wish to use basic auth, just configure it under `api_config` like so
+        -   If you wish to use basic auth, just configure it under `api_config`
+        -   Default: `nil`
         -   Setting:
 
             ```yaml
@@ -231,7 +238,7 @@ Extensive breakdown of the API Type config options
               password:
             ```
 
-    -   **Header Config Level** - All of these settings are nested  under
+    -   **Header Config Level** - All of these settings are nested under
 
           ```yaml
           Plugin:
@@ -241,12 +248,14 @@ Extensive breakdown of the API Type config options
         -   SLAPI will iterate over any key value under this hash to create the headers for HTTParty to use, below are some common use examples
             -   **Content Type Setting**
                 -   Just set the key/value exactly how you would for any header data. Right now only JSON is the supported content type or no content (ruby type hash)
+                -   Default: `nil`
                 -   Setting:
                     ```yaml
                     Content-Type: 'application/json'
                     ```
             -   **Authorization Setting**
                 -   You can pass any support Authorization type into this header.
+                -   Default: `nil`
                 -   Setting:
 
                     ```yaml
@@ -254,20 +263,21 @@ Extensive breakdown of the API Type config options
                     ```
 
 -   **Container Config Level** - All of these settings are nested  under
+-   **Note**: This is for managed Container plugins
 
     ```yaml
     Plugin:
        config:
     ```
 
--   **Note**: This is for managed Container plugins
--   **Image Setting**
-    -   Set `user/repo` to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; `domain.com/repo`), or use local build with just simple `repo` name
-    -   Setting:
+    -   **Image Setting**
+        -   Set `user/repo` to pull from Dockerhub, use 3rd party/private but entering the entire url (e.g.; `domain.com/repo`), or use local build with just simple `repo` name
+        -   Default: `nil`
+        -   Setting:
 
-        ```yaml
-        Image: 'slapi/schedules'
-        ```
+            ```yaml
+            Image: 'slapi/schedules'
+            ```
 
     -   **Host Config Setting**
         -   All of these settings are nested under (see below) and these directly affect the container
@@ -280,6 +290,7 @@ Extensive breakdown of the API Type config options
 
             -   **Port Bindings Setting**
                 -   You can use any port (except SLAPI or Brain (Redis) ports), The `0.0.0.0` is required though or it will not be accessible by the bot
+                -   Default: `nil`
                 -   Settings:
 
                     ```yaml

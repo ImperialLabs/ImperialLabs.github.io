@@ -16,9 +16,9 @@ Below are items that most likely only used in advanced or unique situations.
 
 ## Container Config Level
 
-These settings apply to both Container and API plugin (If managed) types
+These settings apply to both Container and API plugin (if managed) types
 
-You can use any option available to the [Docker API Client](https://github.com/swipely/docker-api) that fits under config/host config
+You can use any option available to the [Docker API Client](https://github.com/swipely/docker-api) that fits under config/host config. The following list is just the settings we found most likely used.
 
 -   All of these settings are nested under
 
