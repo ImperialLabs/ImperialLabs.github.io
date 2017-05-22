@@ -22,6 +22,7 @@ So you have your bot connected? What do you do now?
 
 Let's try a few things. (replace `@bot` with whatever you named your bot)
 
+-   Make sure to invite the Bot to the room you are working in `/invite @bot`
 -   Check that your bot is working - `@bot ping`
     {% include image.html file="bot_ping.png" %}
 -   See what plugins are installed = `@bot help`

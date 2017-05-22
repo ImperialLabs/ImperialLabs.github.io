@@ -27,4 +27,10 @@ You will also need Docker Compose 1.8 or greater if planning on using the compos
 -   Docker Compose Install: <https://docs.docker.com/compose/install/>
     -   Required to setup DinD Host and SLAPI with Compose Files
 
+## Important Info
+
+If the user that is running the SLAPI bot can't run docker (i.e.; run `docker ps` with user) then SLAPI will fail to start in local mode.
+
+-   These instructions will show you how to create a Docker group and fix this issue <https://docs.docker.com/engine/installation/linux/linux-postinstall/>
+
 {% include links.html %}
