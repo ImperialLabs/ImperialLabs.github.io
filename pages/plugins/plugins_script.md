@@ -100,7 +100,7 @@ plugin:
   type: script
   language: ruby
   description: "gets on-calls for pagerduty"
-  write: >
+  write: |
     #!/usr/bin/env ruby
     # -*- coding: UTF-8 -*-
 
