@@ -64,7 +64,7 @@ This is the baseline, the absolute minimum to configure to use a container based
 
 ```yaml
 plugin:
-  type: docker
+  type: container
   config:
     image: 'username/plugin'
 ```
@@ -124,7 +124,7 @@ Extensive breakdown of the Container Type config options
         -   Setting:
 
             ```yaml
-            type: 'container'
+            type: container
             ```
 
     -   **Listen Type Setting**
@@ -158,6 +158,28 @@ Extensive breakdown of the Container Type config options
 
             ```yaml
             build: true
+            ```
+
+    -   **Force Build Setting**
+        -   Required: No
+        -   Ignores if Image Already Exists, build Dockerfile regardless
+        -   `true` to build every reload/restart or `false` to use existing image built
+        -   Default: `false`
+        -   Setting:
+
+            ```yaml
+            build_force: true
+            ```
+
+    -   **Stream Build Log**
+        -   Required: No
+        -   Will stream docker build to stdout
+        -   `true` to stream log to stdout or `false` to quitely build
+        -   Default: `false`
+        -   Setting:
+
+            ```yaml
+            build_stream: true
             ```
 
     -   **Mount Config Setting**
