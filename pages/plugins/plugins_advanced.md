@@ -29,14 +29,16 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **TTY Setting**
         -   Set true/false for container TTY
+        -   Default: `true`
         -   Settings:
 
             ```yaml
-            Tty: true
+            Tty: false
             ```
 
     -   **User Setting**
         -   Set user in container to run commands as
+        -   Default: `nil`
         -   Setting:
 
             ```yaml
@@ -45,6 +47,7 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **Volumes Setting**
         -   Set volumes to attach to container
+        -   Default: `nil`
         -   Setting:
 
             ```yaml
@@ -54,6 +57,7 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **Working Directory Setting**
         -   Change working directory inside container
+        -   Default: Dockerfile/Image setting
         -   Setting:
 
             ```yaml
@@ -83,6 +87,7 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **DNS Setting**
         -   Change DNS Servers for container
+        -   Default: Docker Default
         -   Setting:
 
             ```yaml
@@ -93,6 +98,7 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **DNS Search Setting**
         -   Sets the domain names that are searched when a bare unqualified hostname is used inside of the container
+        -   Default: Docker Default
         -   Setting:
 
             ```yaml
@@ -103,6 +109,7 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **Extra Hosts Setting**
         -   Adds hosts to /etc/hosts in container
+        -   Default: Docker Default
         -   Setting:
 
             ```yaml
@@ -112,6 +119,7 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **Links Setting**
         -   Using this option as you run a container gives the new container’s /etc/hosts an extra entry named ALIAS that points to the IP address of the container identified by CONTAINER_NAME_or_ID
+        -   Default: Docker Default
         -   Setting:
 
             ```yaml
@@ -121,6 +129,7 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **Publish All Ports Setting**
         -   True/False Publish all exposed ports to the host interfaces
+        -   Default: Docker Default
         -   Setting:
 
             ```yaml
@@ -129,16 +138,23 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **Restart Policy Setting**
         -   <https://docs.docker.com/engine/reference/run/#/restart-policies---restart>
+        -   Default:
+            ```yaml
+            RestartPolicy:
+              Name: on-failure
+              MaximumRetryCount: 2
+            ```
         -   Setting:
 
             ```yaml
             RestartPolicy:
               Name: on-failure # no|always|unless-stopped are valid options. on-failure requires MaximumRetryCount
-              MaximumRetryCount: 2 # Max number of time to attempt to restart container/plugin before quiting
+              MaximumRetryCount: 0 # Max number of time to attempt to restart container/plugin before quiting
             ```
 
     -   **Read Only Root FS Setting**
         -   True/False to make Root Filesystem read only
+        -   Default: Docker Default
         -   Setting:
 
             ```yaml
@@ -147,6 +163,7 @@ You can use any option available to the [Docker API Client](https://github.com/s
 
     -   **Volumes From Setting**
         -   Volume From other Docker Containers
+        -   Default: Docker Default
 
             ```yaml
             VolumesFrom:
