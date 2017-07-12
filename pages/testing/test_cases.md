@@ -78,6 +78,4 @@ Below are all the individual tests that exist or need to be created
     -   Success Tests
     -   Fail Tests
 
-```
-
 {% include links.html %}
