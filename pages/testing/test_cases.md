@@ -16,27 +16,32 @@ This section covers every situation we test or plan to test for
 
 Below are all the individual tests that exist or need to be created
 
+Tests eventually need to run in the following scenarios
+
+-   Local Bot w/ Docker Plugins
+-   Container Bot w/ Docker in Docker for Plugins (via compose)
+
 ### API
 -   Chat
     -   Success Tests
-        -   Utilize Speak Endpoint Successfully
-        -   Utilize Attachment Endpoint Successfully
-        -   Utilize Emote Endpoint Successfully
+        -   Utilize Speak Route Successfully
+        -   Utilize Attachment Route Successfully
+        -   Utilize Emote Route Successfully
     -   Fail Tests
-        -   Provide Incorrect Params for Speak Endpoint
-        -   Provide Incorrect Params for Attachment Endpoint
-        -   Provide Incorrect Params for Emote Endpoint
+        -   Provide Incorrect Params for Speak Route
+        -   Provide Incorrect Params for Attachment Route
+        -   Provide Incorrect Params for Emote Route
 -   Plugins
     -   Success Tests
-        -   Utilize reload Endpoint Successfully
+        -   Utilize reload Route Successfully
     -   Fail Tests
         -   None currently
 -   Brain
     -   Success Tests
-        -   Successfully save data via save Endpoint
-        -   Successfully search hashes via search_hash Endpoint
-        -   Successfully search key via search_key Endpoint
-        -   Successfully delete data via delete Endpoint
+        -   Successfully save data via save Route
+        -   Successfully search hashes via search_hash Route
+        -   Successfully search key via search_key Route
+        -   Successfully delete data via delete Route
     -   Fail Tests
         -   Try to save incomplete data
         -   Try to search non-existent hashes
@@ -70,6 +75,9 @@ Below are all the individual tests that exist or need to be created
     -   Successfully search hashes via search_hash method
     -   Successfully search key via search_key method
     -   Successfully delete data via delete method
+    -   Successfully validate data persistence
+        -   with Restart
+        -   with Container Rebuild
 -   Fail Tests
     -   Try to save incomplete data
     -   Try to search non-existent hashes
@@ -81,6 +89,8 @@ Below are all the individual tests that exist or need to be created
     -   Plugins
         -   Success Tests (Each plugin type)
             -   Call plugin by name, no args
+            -   Call plugin with extraneous (unneeded) arguments (Success ignores additional arguments)
+            -   Call plugin with string payload after arguments
             -   Call plugin with single arguments
             -   Call plugin with multiple arguments
         -   Fail Tests (Each plugin type)
@@ -91,8 +101,9 @@ Below are all the individual tests that exist or need to be created
         -   Success Tests
             -   Call help with Tier 1 listing
             -   Call help with Tier 2 listing
-            -   Call Help with DM response
+            -   Call help with DM response
             -   Call help for specific plugin
+            -   Call help with extraneous (unneeded) arguments (Success ignores additional arguments)
         -   Fail Tests
             -   Call help for non-existing plugin
     -   Built-In Functions
