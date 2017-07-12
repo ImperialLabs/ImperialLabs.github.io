@@ -46,13 +46,22 @@ Below are all the individual tests that exist or need to be created
 ### Plugins
 -   Script Based
     -   Success Tests
+        -   Load plugin
     -   Fail Tests
+        -   Load plugin with missing requirements
+        -   Load plugin with missing script
 -   Container Based
     -   Success Tests
+        -   Load plugin w/ Image from Dockerhub
+        -   Load plugin w/ Image from Dockerfile
     -   Fail Tests
+        -   Load plugin w/ Image from bad/missing Dockerfile
 -   API Based
     -   Success Tests
+        -   Load plugin w/ External Setup
+        -   Load plugin w/ Managed Setup
     -   Fail Tests
+        -   Test non-responsive External & Managed Plugin
 
 ### Brain
 **Note:** Need to determine if having both API and Unit testing is appropriate, API may test thoroughly enough
@@ -68,14 +77,32 @@ Below are all the individual tests that exist or need to be created
     -   Try to delete non-existent data
 
 ### User Interaction
--   Plugins
-    -   Success Tests
-    -   Fail Tests
--   Help
-    -   Success Tests
-    -   Fail Tests
--   Functions
-    -   Success Tests
-    -   Fail Tests
+-   Open Chat
+    -   Plugins
+        -   Success Tests (Each plugin type)
+            -   Call plugin by name, no args
+            -   Call plugin with single arguments
+            -   Call plugin with multiple arguments
+        -   Fail Tests (Each plugin type)
+            -   Call non-existing plugin
+            -   Call plugin with incorrect arguments
+            -   Call plugin as a Bot user
+    -   Help
+        -   Success Tests
+            -   Call help with Tier 1 listing
+            -   Call help with Tier 2 listing
+            -   Call Help with DM response
+            -   Call help for specific plugin
+        -   Fail Tests
+            -   Call help for non-existing plugin
+    -   Built-In Functions
+        -   Success Tests
+            -   Call ping command
+            -   Call reload command
+        -   Fail Tests
+            -   N/A
+-   Direct Message 
+    -   All Open Chat Tests
+    -   All Open Chat tests without @bot
 
 {% include links.html %}
