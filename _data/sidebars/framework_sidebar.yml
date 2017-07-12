@@ -89,3 +89,10 @@ entries:
           - title: Brain Overview
             url: /brain_landing.html
             output: web
+    
+    - title: Testing
+      output: web
+      folderitems:
+          - title: SLAPI - Test Cases
+            url: /test_cases.html
+            output: web
